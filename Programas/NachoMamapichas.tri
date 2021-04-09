@@ -1,0 +1,22 @@
+! Calculates the fibonnaci sequence.
+! Luis Leopoldo Pérez, Sep. 2005
+let
+var i: Integer;
+var j: Integer;
+var k: Integer;
+var num: Integer
+in
+begin
+getint (var num); ! Number of iterations.
+i:= 1;
+j:= 2;
+while (num > 0) do
+begin
+putint(i);
+put(' ');
+k:= i+j;
+i:= j;
+j:= k;
+num:= num - 1;
+end;
+end
