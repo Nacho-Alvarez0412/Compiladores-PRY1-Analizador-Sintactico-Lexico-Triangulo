@@ -293,11 +293,18 @@ public class Parser {
       }
       break;
 
+    // @author        Joseph
+    // @description   Borrado de la alternativa: "begin" Command "end"
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        J.3
+    /* J.3 
     case Token.BEGIN:
       acceptIt();
       commandAST = parseCommand();
       accept(Token.END);
       break;
+    */
+    // END CAMBIO Joseph
 
     case Token.LET:
       {
