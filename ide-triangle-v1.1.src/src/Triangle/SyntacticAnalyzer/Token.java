@@ -123,7 +123,7 @@ final class Token extends Object {
     // special tokens...
     EOT			= 47,
     ERROR		= 48;
-  /* 
+  /* A.1
   // Token classes...
 
   public static final int
@@ -230,7 +230,7 @@ final class Token extends Object {
     "",
     "<error>"
   };
-  /*
+  /* A.2
   private static String[] tokenTable = new String[] {
     "<int>",
     "<char>",
