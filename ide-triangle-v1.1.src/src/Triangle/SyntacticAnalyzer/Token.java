@@ -57,7 +57,7 @@ final class Token extends Object {
   }
   
   // @author        Andres
-  // @description   Cambio en la lista de tokens
+  // @description   Cambio en los identifiers de los tokens
   // @funcionalidad Cambios de la lista de tokens
   // @codigo        A.1 
   // Token classes...
@@ -175,6 +175,62 @@ final class Token extends Object {
   */
   // END CAMBIO Andres
   
+  // @author        Andres
+  // @description   Cambio en la tabla de tokens
+  // @funcionalidad Cambios de la lista de tokens
+  // @codigo        A.2 
+  // Triangle extended token table
+  private static String[] tokenTable = new String[] {
+    "<int>",
+    "<char>",
+    "<identifier>",
+    "<operator>",
+    "array",
+    "choose",
+    "const",
+    "do",
+    "else",
+    "elsif",
+    "end",
+    "for",
+    "from",
+    "func",
+    "if",
+    "in",
+    "let",
+    "loop",
+    "of",
+    "package",
+    "private",
+    "proc",
+    "record",
+    "recursive",
+    "then",
+    "to",
+    "type",
+    "until",
+    "var",
+    "when",
+    "while",
+    ".",
+    ":",
+    ";",
+    ",",
+    ":=",
+    "~",
+    "|",
+    "$",
+    "..",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "",
+    "<error>"
+  };
+  /*
   private static String[] tokenTable = new String[] {
     "<int>",
     "<char>",
@@ -212,6 +268,8 @@ final class Token extends Object {
     "",
     "<error>"
   };
+  */
+  // END Cambios Andres
 
   private final static int	firstReservedWord = Token.ARRAY,
   				lastReservedWord  = Token.WHILE;
