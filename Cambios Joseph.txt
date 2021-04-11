@@ -1,3 +1,0 @@
-J.1: Scanner.java
-J.2: Scanner.java
-J.3: Parser.java

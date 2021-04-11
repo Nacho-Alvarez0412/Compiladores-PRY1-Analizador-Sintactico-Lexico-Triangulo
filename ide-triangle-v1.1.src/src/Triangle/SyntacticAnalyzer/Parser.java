@@ -305,8 +305,13 @@ public class Parser {
       break;
     */
     // END CAMBIO Joseph
-
-    case Token.LET:
+    
+    // @author        Andres
+    // @descripcion   Borrado de las alternativas let, if, while
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.3
+    /* A.3
+        case Token.LET:
       {
         acceptIt();
         Declaration dAST = parseDeclaration();
@@ -340,6 +345,8 @@ public class Parser {
         commandAST = new WhileCommand(eAST, cAST, commandPos);
       }
       break;
+    */
+    
 
     case Token.SEMICOLON:
     case Token.END:
