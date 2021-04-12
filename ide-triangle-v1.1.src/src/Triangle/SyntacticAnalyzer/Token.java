@@ -55,7 +55,75 @@ final class Token extends Object {
     return "Kind=" + kind + ", spelling=" + spelling +
       ", position=" + position;
   }
+  
+  // @author        Andres
+  // @description   Cambio en los identifiers de los tokens
+  // @funcionalidad Cambios de la lista de tokens
+  // @codigo        A.1 
+  // Token classes...
+  
+  public static final int
 
+    // literals, identifiers, operators...
+    INTLITERAL	= 0,
+    CHARLITERAL	= 1,
+    IDENTIFIER	= 2,
+    OPERATOR	= 3,
+
+    // reserved words - must be in alphabetical order...
+    ARRAY		= 4,
+    CHOOSE              = 5,
+    CONST		= 6,
+    DO			= 7,
+    ELSE		= 8,
+    ELSIF               = 9,
+    END			= 10,
+    FOR                 = 11,
+    FROM                = 12,
+    FUNC		= 13,
+    IF			= 14,
+    IN			= 15,
+    LET			= 16,
+    LOOP                = 17,
+    NOTHING             = 18,
+    OF			= 19,
+    PACKAGE             = 20,
+    PRIVATE             = 21,
+    PROC		= 22,
+    RECORD		= 23,
+    RECURSIVE           = 24,
+    THEN		= 25,
+    TO                  = 26,
+    TYPE		= 27,
+    UNTIL               = 28,
+    VAR			= 29,
+    WHEN                = 30,
+    WHILE		= 31,
+     
+    // punctuation...
+    DOT			= 32,
+    COLON		= 33,
+    SEMICOLON	= 34,
+    COMMA		= 35,
+    BECOMES		= 36,
+    IS			= 37,
+    // Triangle Extended punctuation...
+    PIPE                = 38,
+    DOLLAR              = 39,
+    DOUBLEDOT           = 40,
+
+    // brackets...
+    LPAREN		= 41,
+    RPAREN		= 42,
+    LBRACKET	= 43,
+    RBRACKET	= 44,
+    LCURLY		= 45,
+    RCURLY		= 46,
+
+    // special tokens...
+    EOT			= 47,
+    ERROR		= 48;
+  /* A.1
   // Token classes...
 
   public static final int
@@ -104,7 +172,65 @@ final class Token extends Object {
     // special tokens...
     EOT			= 33,
     ERROR		= 34;
-
+  */
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @description   Cambio en la tabla de tokens
+  // @funcionalidad Cambios de la lista de tokens
+  // @codigo        A.2 
+  // Triangle extended token table
+  private static String[] tokenTable = new String[] {
+    "<int>",
+    "<char>",
+    "<identifier>",
+    "<operator>",
+    "array",
+    "choose",
+    "const",
+    "do",
+    "else",
+    "elsif",
+    "end",
+    "for",
+    "from",
+    "func",
+    "if",
+    "in",
+    "let",
+    "loop",
+    "of",
+    "package",
+    "private",
+    "proc",
+    "record",
+    "recursive",
+    "then",
+    "to",
+    "type",
+    "until",
+    "var",
+    "when",
+    "while",
+    ".",
+    ":",
+    ";",
+    ",",
+    ":=",
+    "~",
+    "|",
+    "$",
+    "..",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "",
+    "<error>"
+  };
+  /* A.2
   private static String[] tokenTable = new String[] {
     "<int>",
     "<char>",
@@ -142,6 +268,8 @@ final class Token extends Object {
     "",
     "<error>"
   };
+  */
+  // END Cambios Andres
 
   private final static int	firstReservedWord = Token.ARRAY,
   				lastReservedWord  = Token.WHILE;

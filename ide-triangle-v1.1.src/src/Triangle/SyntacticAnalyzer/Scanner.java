@@ -128,9 +128,23 @@ public final class Scanner {
       } else
         return Token.ERROR;
 
+    // @author        Joseph
+    // @description   Cambio en el reconocimiento de tipos de token de puntuacion '..'
+    // @funcionalidad Cambios de la lista de tokens
+    // @codigo        J.2
+    case '.':
+      takeIt();
+      if (currentChar == '.') {
+        takeIt();
+        return Token.DOUBLEDOT;
+      } else
+        return Token.DOT;
+    /* J.2
     case '.':
       takeIt();
       return Token.DOT;
+    */
+    //END CAMBIO Joseph
 
     case ':':
       takeIt();
@@ -175,6 +189,22 @@ public final class Scanner {
     case '}':
       takeIt();
       return Token.RCURLY;
+      
+    // @author        Joseph
+    // @description   Cambio en el reconocimiento de tipos de token de puntuacion '$' y '|'
+    // @funcionalidad Cambios de la lista de tokens
+    // @codigo        J.1
+    case '|':
+      takeIt();
+      return Token.PIPE;
+    
+    case '$':
+      takeIt();
+      return Token.DOLLAR;
+      
+    /* J.1
+    */
+    //END CAMBIO Joseph
 
     case SourceFile.EOT:
       return Token.EOT;
