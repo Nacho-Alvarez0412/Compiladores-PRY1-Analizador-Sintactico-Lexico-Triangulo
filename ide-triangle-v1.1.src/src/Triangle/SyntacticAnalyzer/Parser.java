@@ -294,9 +294,9 @@ public class Parser {
       break;
         
     // @author        Andres
-    // @descripcion   Alternativa nothin para single command
+    // @descripcion   Alternativa nothing para single command
     // @funcionalidad Parsear alternativas de single-command
-    // @codigo        A.3
+    // @codigo        A.4
     case Token.NOTHING:
         {
             // dummy statement?
@@ -304,7 +304,25 @@ public class Parser {
         }
         break;
     // END Cambio Andres
-    
+        
+    // @author        Andres
+    // @descripcion   Alternativa let para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.5
+    case Token.LET:
+    {
+        acceptIt();
+        Declaration dAST = parseDeclaration();
+        accept(Token.IN);
+        Command cAST = parseCommand();
+        finish(commandPos);
+        commandAST = new LetCommand(dAST, cAST, commandPos);
+        accept(Token.END);
+    }
+    break;   
+    // END Cambio Andres
+        
+    // TODO: 
         
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
@@ -324,7 +342,7 @@ public class Parser {
     // @funcionalidad Cambio en las alternativas de single-command
     // @codigo        A.3
     /* A.3
-        case Token.LET:
+    case Token.LET:
       {
         acceptIt();
         Declaration dAST = parseDeclaration();
