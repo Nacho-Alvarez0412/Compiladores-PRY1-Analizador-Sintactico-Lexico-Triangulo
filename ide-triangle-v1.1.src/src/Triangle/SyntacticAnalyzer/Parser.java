@@ -292,7 +292,20 @@ public class Parser {
         }
       }
       break;
-
+        
+    // @author        Andres
+    // @descripcion   Alternativa nothin para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.3
+    case Token.NOTHING:
+        {
+            // dummy statement?
+            acceptIt();
+        }
+        break;
+    // END Cambio Andres
+    
+        
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
     // @funcionalidad Cambio en las alternativas de single-command
