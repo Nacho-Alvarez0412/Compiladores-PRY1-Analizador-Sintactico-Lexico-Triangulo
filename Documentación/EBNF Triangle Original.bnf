@@ -1,0 +1,86 @@
+Program		::= Command
+
+Command		::= single-Command
+		 	 |  Command ; single-Command
+
+single-Command	::= 
+			 |  V-name := Expression
+			 |  Identifier ( Actual-Parameter-Sequence )
+			 |  "begin" Command "end"
+			 |  "let" Declaration "in" single-Command
+			 |  "if" Expression "then" single-Command "else" single-Command
+			 |  "while" Expression "do" single-Command
+
+Expression		::= secondary-Expression
+			 |  "let" Declaration "in" Expression
+			 |  "if" Expression "then" Expression "else" Expression
+
+secondary-Expression ::= primary-Expression
+			 |  secondary-Expression Operator primary-Expression
+
+primary-Expression ::= Integer-Literal
+			 |  Character-Literal
+			 |  V-name
+			 |  Identifier ( Actual-Parameter-Sequence )
+			 |  Operator primary-Expression
+			 |  ( Expression )
+			 |  { Record-Aggregate }
+			 |  [ Array-Aggregate ]
+
+Record-Aggregate	::= Identifier ~ Expression
+			 |  Identifier ~ Expression , Record-Aggregate
+
+Array-Aggregate	::= Expression
+			 |  Expression , Array-Aggregate
+
+
+V-name	 	::= Identifier
+			 |  V-name . Identifier
+			 |  V-name [ Expression ]
+
+Declaration		::= single-Declaration
+			 |  Declaration ; single-Declaration
+
+
+single-Declaration ::= "const" Identifier ~ Expression
+			 |  "var" Identifier : Type-denoter
+                         |  "proc" Identifier ( Formal-Parameter-Sequence ) ~ 
+                                single-Command
+			 |  "func" Identifier ( Formal-Parameter-Sequence )
+				: Type-denoter ~ Expression
+			 |  "type" Identifier ~ Type-denoter
+
+Formal-Parameter-Sequence ::= 
+			 |  proper-Formal-Parameter-Sequence
+
+proper-Formal-Parameter-Sequence ::= Formal-Parameter
+			 |  Formal-Parameter , proper-Formal-Parameter-Sequence
+
+Formal-Parameter	::= Identifier : Type-denoter
+			 |  "var" Identifier : Type-denoter
+			 |  "proc" Identifier ( Formal-Parameter-Sequence )
+			 |  "func" Identifier ( Formal-Parameter-Sequence )
+				: Type-denoter
+
+Actual-Parameter-Sequence ::= 
+			 |  proper-Actual-Parameter-Sequence
+
+proper-Actual-Parameter-Sequence ::= Actual-Parameter
+			 |  Actual-Parameter , proper-Actual-Parameter-Sequence
+
+Actual-Parameter	::= Expression
+			 |  "var" V-name
+			 |  "proc" Identifier
+			 |  "func" Identifier
+
+Type-denoter	        ::= Identifier
+			 |  "array" Integer-Literal of Type-denoter
+			 |  "record" Record-Type-denoter "end"
+
+Record-Type-Denoter	::= Identifier : Type-denoter
+			 |  Identifier : Type-denoter , Record-Type-denoter
+
+
+
+                
+       

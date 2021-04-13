@@ -6,7 +6,7 @@ single-Command  ::= "nothing"
                 |   Identifier (Actual-Parameters-Sequence)
                 |   "let" Declaration "in" Command "end"
                 |   "if" Expression "then" Command ("elsif" Expression "then" Command)*
-                        "else" Command "end" | "choose" Expression "from" Cases "end"
+                        "else" Command "end" 
                 |   "choose" Expression "from" Cases "end"
                 |   "loop" "while" Expression "do" Command "end"
                 |   "loop" "until" Expression "do" Command "end"
@@ -14,4 +14,3 @@ single-Command  ::= "nothing"
                 |   "loop" "for" Identifier "from" Expression "to" Expression
                         ("do" command "end" | "while" Expression "do" Command "end" | "until" Expression "do" Command "end")
                 
-       
