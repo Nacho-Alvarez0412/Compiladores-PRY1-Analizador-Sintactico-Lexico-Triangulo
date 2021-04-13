@@ -17,6 +17,10 @@ package Triangle.AbstractSyntaxTrees;
 public interface Visitor {
 
   // Commands
+  // @author        Andres
+  // @descripcion   Agregar elsif y sequential elsif command al visitor
+  // @funcionalidad AST para nuevo if command
+  // @codigo        A.7
   public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);
   public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
@@ -24,6 +28,18 @@ public interface Visitor {
   public abstract Object visitLetCommand(LetCommand ast, Object o);
   public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
   public abstract Object visitWhileCommand(WhileCommand ast, Object o);
+  public abstract Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o);
+  public abstract Object visitSingleElsifCommand(SingleElsifCommand ast, Object o);
+  /*
+  public abstract Object visitAssignCommand(AssignCommand ast, Object o);
+  public abstract Object visitCallCommand(CallCommand ast, Object o);
+  public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
+  public abstract Object visitIfCommand(IfCommand ast, Object o);
+  public abstract Object visitLetCommand(LetCommand ast, Object o);
+  public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
+  public abstract Object visitWhileCommand(WhileCommand ast, Object o);
+  */
+  // END Cambio Andres
 
 
   // Expressions

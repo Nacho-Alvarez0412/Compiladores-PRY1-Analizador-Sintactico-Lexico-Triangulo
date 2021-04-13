@@ -298,11 +298,11 @@ public class Parser {
     // @funcionalidad Parsear alternativas de single-command
     // @codigo        A.4
     case Token.NOTHING:
-        {
-            // dummy statement?
-            acceptIt();
-        }
-        break;
+    {
+        // dummy statement?
+        acceptIt();
+    }
+    break;
     // END Cambio Andres
         
     // @author        Andres
@@ -321,9 +321,33 @@ public class Parser {
     }
     break;   
     // END Cambio Andres
+    case Token.IF:
+    {
+        acceptIt();
+        Expression eAST = parseExpression();
+        accept(Token.THEN);
+        Command cAST = parseCommand();
+        // TODO: Parsear elsif
+        // TODO: Parsear else
+        while(currentToken.kind == Token.ELSIF) {
+
+        }
+        commandAST = new IfCommand(eAST, cAST);
+    }
+    break;
         
-    // TODO: 
-        
+    // TODO: Parser alternative for choose instruction
+    case Token.CHOOSE:
+    {
+        acceptIt();
+        Expression eAST = parseExpression();
+        accept(Token.FROM);
+        // TODO: Parse Cases
+        // TODO: Create AST for choose instruction
+        accept(Token.END);
+    }
+    break;
+    
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
     // @funcionalidad Cambio en las alternativas de single-command

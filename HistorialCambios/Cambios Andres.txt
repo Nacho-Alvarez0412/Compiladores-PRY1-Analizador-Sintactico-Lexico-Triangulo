@@ -3,3 +3,7 @@ A.2 - Token.java
 A.3 - Parser.java
 A.4 - Parser.java
 A.5 - Parser.java
+A.6 - Parser.java
+A.7 - Visitor.java
+A.8 - Checker.java
+A.9 - Checker.java

@@ -86,6 +86,8 @@ import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.SyntacticAnalyzer.SourcePosition;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 
 public final class Checker implements Visitor {
 
@@ -102,7 +104,24 @@ public final class Checker implements Visitor {
       reporter.reportError ("assignment incompatibilty", "", ast.position);
     return null;
   }
-
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @funcionalidad AST SingleElsifCommand
+  // @codigo        A.8
+  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @funcionalidad AST SequentialElsifCommand
+  // @codigo        A.9
+  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
 
   public Object visitCallCommand(CallCommand ast, Object o) {
 
