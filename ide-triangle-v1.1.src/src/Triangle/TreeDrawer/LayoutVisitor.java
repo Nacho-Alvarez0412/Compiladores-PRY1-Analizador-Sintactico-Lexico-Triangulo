@@ -63,10 +63,12 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -96,6 +98,26 @@ public class LayoutVisitor implements Visitor {
   public Object visitAssignCommand(AssignCommand ast, Object obj) {
     return layoutBinary("AssignCom.", ast.V, ast.E);
   }
+  
+  // @author        Andres
+  // @descripcion   
+  // @funcionalidad 
+  // @codigo        A.10
+  // TODO: Agregar funcionalidad para dibujar
+  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   
+  // @funcionalidad 
+  // @codigo        A.11
+  // TODO: Agregar funcionalidad para dibujar
+  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
 
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);

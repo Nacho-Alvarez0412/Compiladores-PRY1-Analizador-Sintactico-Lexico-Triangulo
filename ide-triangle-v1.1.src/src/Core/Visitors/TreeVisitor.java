@@ -51,10 +51,12 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -91,6 +93,26 @@ public class TreeVisitor implements Visitor {
     public Object visitAssignCommand(AssignCommand ast, Object o) {
         return(createBinary("Assign Command", ast.V, ast.E));
     }
+    
+    // @author        Andres
+    // @descripcion   
+    // @funcionalidad 
+    // @codigo        A.14
+    // TODO: Implementar funcionalidad
+    public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+        return null;
+    }
+    // END cambio Andres
+
+    // @author        Andres
+    // @descripcion   
+    // @funcionalidad 
+    // @codigo        A.15
+    // TODO: Implementar funcionalidad
+    public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+        return null;
+    }
+    // END cambio Andres
     
     public Object visitCallCommand(CallCommand ast, Object o) {
         return(createBinary("Call Command", ast.I, ast.APS));

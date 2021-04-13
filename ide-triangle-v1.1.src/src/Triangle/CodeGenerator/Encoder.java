@@ -71,10 +71,12 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -101,6 +103,24 @@ public final class Encoder implements Visitor {
 		valSize.intValue());
     return null;
   }
+  
+  // @author        Abdres
+  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @funcionalidad AST SingleElsifCommand
+  // @codigo        A.16
+  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @funcionalidad AST SequentialElsifCommand
+  // @codigo        A.17
+  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
 
   public Object visitCallCommand(CallCommand ast, Object o) {
     Frame frame = (Frame) o;
