@@ -109,12 +109,11 @@ public class TreeVisitor implements Visitor {
     }
     
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Crea un arbol binario AST para el comando "elsif"
+    // @funcionalidad Crear arbol AST para el "elsif"
     // @codigo        A.14
-    // TODO: Implementar funcionalidad
     public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-        return null;
+        return(createBinary("Elsif Command", ast.E, ast.C));
     }
     // END cambio Andres
 
