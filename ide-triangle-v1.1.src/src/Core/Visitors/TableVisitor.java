@@ -50,12 +50,10 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
-import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -68,7 +66,18 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.8
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+/* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 import Triangle.CodeGenerator.Field;
 import Triangle.CodeGenerator.KnownAddress;
 import Triangle.CodeGenerator.KnownRoutine;
@@ -156,13 +165,39 @@ public class TableVisitor implements Visitor {
 
         return (null);
     }
-
-    public Object visitWhileCommand(WhileCommand ast, Object o) {
+    
+    // @author        Joseph
+    // @descripcion   Cambio de while como alternativa de single-command
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        J.7
+    public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
         ast.E.visit(this, null);
         ast.C.visit(this, null);
 
         return (null);
     }
+    /* J.7
+    public Object visitWhileLoopCommand(WhileCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
+
+        return (null);
+    }
+    */
+    // END CAMBIO Joseph
+    
+// @author        Joseph
+// @descripcion   Metodos encoder para visitar nuevos ASTS
+// @funcionalidad Creacion de nuevas alternativas de no-terminales
+// @codigo        J.20
+  public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
+
+        return (null);
+  }
+  // END CAMBIO Joseph
+    
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">

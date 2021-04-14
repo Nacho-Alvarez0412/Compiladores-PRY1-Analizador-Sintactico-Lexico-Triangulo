@@ -12,22 +12,41 @@
  * of the authors.
  */
 
+
+
 package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class WhileCommand extends Command {
+// @author        Joseph
+// @description   Cambio de while como alternativa de single-command
+// @funcionalidad Cambio en las alternativas de single-command
+// @codigo        J.5
+public class WhileLoopCommand extends Command {
+
+  public WhileLoopCommand (Expression eAST, Command cAST, SourcePosition thePosition) {
+    super (thePosition);
+    E = eAST;
+    C = cAST;
+  }
+  
+  public Object visit(Visitor v, Object o) {
+    return v.visitWhileLoopCommand(this, o);
+  }
+  /* J.5
+  public class WhileCommand extends Command {
 
   public WhileCommand (Expression eAST, Command cAST, SourcePosition thePosition) {
     super (thePosition);
     E = eAST;
     C = cAST;
   }
-
+  
   public Object visit(Visitor v, Object o) {
     return v.visitWhileCommand(this, o);
   }
-
+ */
+  //END CAMBIO Joseph
   public Expression E;
   public Command C;
 }

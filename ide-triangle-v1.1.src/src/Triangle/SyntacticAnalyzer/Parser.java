@@ -80,7 +80,16 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.16
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+/* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 import Triangle.AbstractSyntaxTrees.ElsifCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
@@ -363,7 +372,7 @@ public class Parser {
         commandAST = new IfCommand(eAST, cAST, eiAST, c2AST, commandPos);
     }
     break;
-    // END Cambio
+    // END Cambio ANDRES
         
     // TODO: Parser alternative for choose instruction
     case Token.CHOOSE:
@@ -438,6 +447,52 @@ public class Parser {
        commandAST = new EmptyCommand(commandPos);
        break;
     */
+    // END CAMBIO Andres
+    
+    // @author        Joseph
+    // @descripcion   Alternativas loop para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        J.17
+    case Token.LOOP:
+      {
+        acceptIt();
+        switch (currentToken.kind) {
+        
+        case Token.WHILE:
+          {
+            acceptIt();
+            Expression dAST = parseExpression();
+            accept(Token.DO);
+            Command eAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new WhileLoopCommand(dAST, eAST, commandPos);
+          }
+        break;
+          
+        case Token.UNTIL:
+          {
+            acceptIt();
+            Expression dAST = parseExpression();
+            accept(Token.DO);
+            Command eAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new WhileLoopCommand(dAST, eAST, commandPos);
+          }
+        break;
+        
+        default:
+          syntacticError("\"%\" cannot follow a loop command",
+           currentToken.spelling);
+        break;
+          
+        
+
+        }
+      }
+      break;
+    // END CAMBIO Joseph
 
     default:
       syntacticError("\"%\" cannot start a command",
@@ -449,6 +504,8 @@ public class Parser {
     return commandAST;
   }
 
+
+  
 ///////////////////////////////////////////////////////////////////////////////
 //
 // EXPRESSIONS

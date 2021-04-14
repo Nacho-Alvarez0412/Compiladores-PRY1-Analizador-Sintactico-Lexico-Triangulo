@@ -69,7 +69,16 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.9
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+/* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -134,9 +143,29 @@ public class TreeVisitor implements Visitor {
         return(createBinary("Sequential Command", ast.C1, ast.C2));
     }
     
+    // @author        Joseph
+    // @descripcion   Cambio de while como alternativa de single-command a alternativa de loopCommand
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        J.10
+    public Object visitWhileLoopCommand(WhileLoopCommand ast, Object obj) {
+        return(createBinary("While Loop Command", ast.E, ast.C));
+    }
+    /* J.10
     public Object visitWhileCommand(WhileCommand ast, Object obj) {
         return(createBinary("While Command", ast.E, ast.C));
     }
+     */
+    // END CAMBIO Joseph
+    
+    
+    // @author        Joseph
+    // @descripcion   Metodos encoder para visitar nuevos ASTS
+    // @funcionalidad Creacion de nuevas alternativas de no-terminales
+    // @codigo        J.21
+    public Object visitUntilLoopCommand(UntilLoopCommand ast, Object obj) {
+        return(createBinary("Until Loop Command", ast.E, ast.C));
+    }
+    // END CAMBIO Joseph
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">

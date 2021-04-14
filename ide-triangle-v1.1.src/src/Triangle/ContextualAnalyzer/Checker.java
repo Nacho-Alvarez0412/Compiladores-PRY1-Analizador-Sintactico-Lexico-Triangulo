@@ -84,10 +84,21 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
-import Triangle.AbstractSyntaxTrees.WhileCommand;
-import Triangle.SyntacticAnalyzer.SourcePosition;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Creacion de nuevas alternativas para no-terminales
+// @codigo        J.11
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+/* J.13
+import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
+import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public final class Checker implements Visitor {
 
@@ -165,6 +176,18 @@ public final class Checker implements Visitor {
     return null;
   }
 
+// @author        Joseph
+// @descripcion   Cambio de while como alternativa de single-command
+// @funcionalidad Cambio en las alternativas de single-command
+// @codigo        J.12
+  public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
+    TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+    if (! eType.equals(StdEnvironment.booleanType))
+      reporter.reportError("Boolean expression expected here", "", ast.E.position);
+    ast.C.visit(this, null);
+    return null;
+  }
+  /*J.12
   public Object visitWhileCommand(WhileCommand ast, Object o) {
     TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
     if (! eType.equals(StdEnvironment.booleanType))
@@ -172,6 +195,30 @@ public final class Checker implements Visitor {
     ast.C.visit(this, null);
     return null;
   }
+  */
+  // END CAMBIO Joseph
+  
+  // @author        Joseph
+  // @descripcion   Metodos checker para visitar nuevos ASTs de single-command
+  // @funcionalidad Creacion de nuevas alternativas de single-command
+  // @codigo        J.19
+  public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
+    TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+    if (! eType.equals(StdEnvironment.booleanType))
+      reporter.reportError("Boolean expression expected here", "", ast.E.position);
+    ast.C.visit(this, null);
+    return null;
+  }
+  
+  public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o) {
+      return null;
+  }
+  
+ public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o) {
+      return null;
+  }
+  
+  // END CAMBIO Joseph
 
   // Expressions
 
