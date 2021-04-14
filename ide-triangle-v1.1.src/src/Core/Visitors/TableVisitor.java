@@ -119,21 +119,25 @@ public class TableVisitor implements Visitor {
     }
 
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
     // @codigo        A.12
-    // TODO: Implementar funcionalidad
     public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
+        
         return (null);
     }
     // END cambio Andres
 
-    // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+     // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
     // @codigo        A.13
-    // TODO: Implementar funcionalidad
     public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+        ast.SE1.visit(this, null);
+        ast.SE2.visit(this, null);
+        
         return (null);
     }
     // END cambio Andres
