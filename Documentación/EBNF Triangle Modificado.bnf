@@ -1,0 +1,37 @@
+
+# Primer Set de cambios (Modificar single-Command)
+
+Command         ::= single-Command
+                |   Command ; single-Command
+
+single-Command  ::= "nothing"
+                |   V-name := Expression
+                |   Identifier (Actual-Parameters-Sequence)
+                |   "let" Declaration "in" Command "end"
+                |   "if" Expression "then" Command ("elsif" Expression "then" Command)*
+                        "else" Command "end" 
+                |   "choose" Expression "from" Cases "end"
+                |   "loop" "while" Expression "do" Command "end"
+                |   "loop" "until" Expression "do" Command "end"
+                |   "loop" "do" Command ("while" Expression "end" | "until" Expression "end")
+                |   "loop" "for" Identifier "from" Expression "to" Expression
+                        ("do" command "end" | "while" Expression "do" Command "end" | "until" Expression "do" Command "end")
+
+# Segundo Set de cambios (Agregar nuevas funciones)
+
+Cases           ::= Case+ [ ElseCase ] 
+Case            ::= "when" Case-Literals "then" Command 
+ElseCase        ::= "else" Command 
+Case-Literals   ::= Case-Range ("|" Case-Range)* 
+Case-Range      ::= Case-Literal [".." Case-Literal] 
+Case-Literal    ::= Integer-Literal | Character-Literal
+
+# Tercer Set de cambios (Modificar Declaration)
+
+Declaration     ::= compound-Declaration
+                |   Declaration ";" compound-Declaration 
+
+# Cuarto Set de cambios (declaración de funciones y procedimientos mutuamente recursivos, declaraciones locales)
+compound-Declaration    ::= single-Declaration
+                        |   "recursive" Proc-Funcs "end"
+                        |   "private" Declaration "in" Declaration "end"           
