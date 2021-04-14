@@ -29,7 +29,6 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -73,6 +72,7 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
@@ -130,7 +130,7 @@ public class TableVisitor implements Visitor {
     }
     // END cambio Andres
 
-     // @author        Andres
+    // @author       Andres
     // @descripcion   Metodos dibujantes para visitar ASTS nuevos
     // @funcionalidad Creacion en las alternativas de single-command
     // @codigo        A.13
@@ -141,6 +141,19 @@ public class TableVisitor implements Visitor {
         return (null);
     }
     // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
+    // @codigo        A.20
+    public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C1.visit(this, null);
+        ast.EIC.visit(this, null);
+        ast.C2.visit(this, null);
+        
+        return (null);
+    }
 
     public Object visitCallCommand(CallCommand ast, Object o) {
         ast.I.visit(this, null);
@@ -153,7 +166,7 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
-    public Object visitIfCommand(IfCommand ast, Object o) {
+    public Object visitIfCommand(CompoundIfCommand ast, Object o) {
         ast.E.visit(this, null);
         ast.C1.visit(this, null);
         ast.C2.visit(this, null);

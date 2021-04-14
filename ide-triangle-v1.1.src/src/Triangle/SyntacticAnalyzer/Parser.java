@@ -43,7 +43,7 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
 import Triangle.AbstractSyntaxTrees.IntegerLiteral;
@@ -374,10 +374,10 @@ public class Parser {
         Command c2AST = parseCommand();
         accept(Token.END);
         finish(commandPos);
-        commandAST = new IfCommand(eAST, cAST, eiAST, c2AST, commandPos);
+        commandAST = new CompoundIfCommand(eAST, cAST, eiAST, c2AST, commandPos);
     }
     break;
-    // END Cambio ANDRES
+    // END Cambio ANDRES    // END Cambio ANDRES    // END Cambio ANDRES    // END Cambio ANDRES
         
     // TODO: Parser alternative for choose instruction
     case Token.CHOOSE:

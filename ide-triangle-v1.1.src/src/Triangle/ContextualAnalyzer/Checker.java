@@ -45,7 +45,6 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -90,6 +89,7 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @codigo        J.11
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
@@ -120,7 +120,15 @@ public final class Checker implements Visitor {
   }
   
   // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @descripcion   Metodo checker para visitar CompoundIfCommand
+  // @funcionalidad AST CompoundIfCommand
+  // @codigo        A.23
+  public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+      return null;
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar SingleElsifCommand
   // @funcionalidad AST SingleElsifCommand
   // @codigo        A.8
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
@@ -129,7 +137,7 @@ public final class Checker implements Visitor {
   // END cambio Andres
   
   // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @descripcion   Metodo checker para visitar SequentialElsifCommand
   // @funcionalidad AST SequentialElsifCommand
   // @codigo        A.9
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
@@ -156,7 +164,7 @@ public final class Checker implements Visitor {
     return null;
   }
 
-  public Object visitIfCommand(IfCommand ast, Object o) {
+  public Object visitIfCommand(CompoundIfCommand ast, Object o) {
     TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
     if (! eType.equals(StdEnvironment.booleanType))
       reporter.reportError("Boolean expression expected here", "", ast.E.position);

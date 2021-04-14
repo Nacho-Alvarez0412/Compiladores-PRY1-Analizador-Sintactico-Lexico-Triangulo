@@ -16,12 +16,14 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class IfCommand extends Command {
-  // @author        Andres
-  // @descripcion   Modificacion de constructor para IfCommand
-  // @funcionalidad Parsear AST nuevo para IF
-  // @codigo        A.18 
-  public IfCommand (Expression eAST, Command c1AST, ElsifCommand eiAST, Command c2AST,
+/**
+ * @newclass 
+ * Clase para representar un AST de un CompundIfCommand
+ * A.18
+ * @author Andres
+ */
+public class CompoundIfCommand extends Command {
+  public CompoundIfCommand (Expression eAST, Command c1AST, ElsifCommand eiAST, Command c2AST,
                     SourcePosition thePosition) {
     super (thePosition);
     E = eAST;
@@ -29,27 +31,12 @@ public class IfCommand extends Command {
     EIC = eiAST;
     C2 = c2AST;
   }
-  /*
-    public IfCommand (Expression eAST, Command c1AST, Command c2AST,
-                      SourcePosition thePosition) {
-      super (thePosition);
-      E = eAST;
-      C1 = c1AST;
-      C2 = c2AST;
-    }
-  */
-  // END Cambio Andres
 
   public Object visit(Visitor v, Object o) {
-    return v.visitIfCommand(this, o);
+    return v.visitCompoundIfCommand(this, o);
   }
 
   public Expression E;
   public Command C1, C2;
-  // @author        Andres
-  // @descripcion   Agregar rama nuevo al AST del IF
-  // @funcionalidad Parsear AST nuevo para IF
-  // @codigo        A.19
   public ElsifCommand EIC;
-  // END Cambio Andres
 }

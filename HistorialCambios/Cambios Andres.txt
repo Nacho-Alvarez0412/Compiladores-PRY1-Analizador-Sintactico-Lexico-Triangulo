@@ -15,5 +15,9 @@ A.14 - TreeVisitor.java
 A.15 - TreeVisitor.java
 A.16 - Encoder.java
 A.17 - Encoder.java
-A.18 - IfCommand.java
-A.19 - IfCommand.java
+A.18 - CompoundIfCommand.java*
+A.19 - TreeVisitor.java
+A.20 - TableVisitor.java
+A.21 - LayoutVisitor.java
+A.22 - Encoder.java
+A.23 - Checker.java

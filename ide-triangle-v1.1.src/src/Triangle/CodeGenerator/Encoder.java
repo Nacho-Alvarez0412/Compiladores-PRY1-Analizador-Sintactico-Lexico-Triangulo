@@ -50,7 +50,7 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -118,8 +118,16 @@ public final class Encoder implements Visitor {
     return null;
   }
   
-  // @author        Abdres
-  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @author        Andres
+  // @descripcion   Metodo encoder para visitar CompoundIfCommand
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        A.22
+  public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+      return null;
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodo encoder para visitar SingleElsifCommand
   // @funcionalidad AST SingleElsifCommand
   // @codigo        A.16
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
@@ -128,7 +136,7 @@ public final class Encoder implements Visitor {
   // END cambio Andres
   
   // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @descripcion   Metodo encoder para visitar SequentialElsifCommand
   // @funcionalidad AST SequentialElsifCommand
   // @codigo        A.17
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
@@ -147,7 +155,7 @@ public final class Encoder implements Visitor {
     return null;
   }
 
-  public Object visitIfCommand(IfCommand ast, Object o) {
+  public Object visitIfCommand(CompoundIfCommand ast, Object o) {
     Frame frame = (Frame) o;
     int jumpifAddr, jumpAddr;
 

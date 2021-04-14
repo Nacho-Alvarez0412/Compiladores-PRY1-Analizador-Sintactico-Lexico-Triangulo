@@ -30,7 +30,6 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -74,6 +73,7 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
@@ -126,6 +126,15 @@ public class TreeVisitor implements Visitor {
     }
     // END cambio Andres
     
+    // @author        Andres
+    // @descripcion   Crea un arbol binario AST para el comando nuevo CompoundIf
+    // @funcionalidad Crear arbol AST para el comando nuevo CompoundIf
+    // @codigo        A.19
+    public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+        return(createQuaternary("Compund If Command", ast.E, ast.C1, ast.EIC, ast.C2));
+    }
+    // END Cambio Andres
+    
     public Object visitCallCommand(CallCommand ast, Object o) {
         return(createBinary("Call Command", ast.I, ast.APS));
     }
@@ -134,7 +143,7 @@ public class TreeVisitor implements Visitor {
         return(createNullary("Empty Command"));
     }
     
-    public Object visitIfCommand(IfCommand ast, Object obj) {
+    public Object visitIfCommand(CompoundIfCommand ast, Object obj) {
         return(createTernary("If Command", ast.E, ast.C1, ast.C2));
     }
     
