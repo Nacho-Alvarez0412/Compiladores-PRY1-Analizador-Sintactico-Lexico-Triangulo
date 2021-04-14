@@ -8,7 +8,8 @@ package Triangle.AbstractSyntaxTrees;
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
- *
+ * @newclass
+ * Clase para representar un AST de un elsif
  * @author Andres
  */
 public abstract class ElsifCommand extends Command {
