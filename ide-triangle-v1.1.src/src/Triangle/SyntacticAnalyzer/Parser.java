@@ -81,6 +81,9 @@ import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.ElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 
 public class Parser {
 
@@ -315,26 +318,51 @@ public class Parser {
         Declaration dAST = parseDeclaration();
         accept(Token.IN);
         Command cAST = parseCommand();
+        accept(Token.END);
         finish(commandPos);
         commandAST = new LetCommand(dAST, cAST, commandPos);
-        accept(Token.END);
     }
     break;   
     // END Cambio Andres
+        
+    // @author        Andres
+    // @descripcion   Alternativa if para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.6
     case Token.IF:
     {
         acceptIt();
+        // Parse expression for if expression
         Expression eAST = parseExpression();
         accept(Token.THEN);
+        // Parse command for if command
         Command cAST = parseCommand();
-        // TODO: Parsear elsif
-        // TODO: Parsear else
+        ElsifCommand eiAST = null;
+        // Start parsing elsif instructions
         while(currentToken.kind == Token.ELSIF) {
-
+            start(commandPos);
+            acceptIt();
+            // Parse elsif expression
+            Expression e2AST = parseExpression();
+            accept(Token.THEN);
+            // Parse elsif command
+            Command c2AST = parseCommand();
+            finish(commandPos);
+            // Create AST for the single elsif
+            SingleElsifCommand seiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
+            // Group elsif ASTs
+            eiAST = eiAST == null ? new SequentialElsifCommand(seiAST, commandPos) 
+                    : new SequentialElsifCommand(eiAST, seiAST, commandPos);
         }
-        commandAST = new IfCommand(eAST, cAST);
+        // Parse else instruction
+        accept(Token.ELSE);
+        Command c2AST = parseCommand();
+        accept(Token.END);
+        finish(commandPos);
+        commandAST = new IfCommand(eAST, cAST, eiAST, c2AST, commandPos);
     }
     break;
+    // END Cambio
         
     // TODO: Parser alternative for choose instruction
     case Token.CHOOSE:

@@ -12,7 +12,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  * AST para SingleElsifCommand
  * @author Andres
  */
-public class SingleElsifCommand extends Command {
+public class SingleElsifCommand extends ElsifCommand {
     
     public Expression E;
     public Command C;
