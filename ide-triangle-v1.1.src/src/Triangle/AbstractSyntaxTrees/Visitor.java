@@ -17,6 +17,37 @@ package Triangle.AbstractSyntaxTrees;
 public interface Visitor {
 
   // Commands
+  // @author        Andres
+  // @descripcion   Agregar metodos de visita de nuevos ASTs
+  // @funcionalidad metodos de visita para nuevos ASTs
+  // @codigo        A.7, J.6
+  public abstract Object visitAssignCommand(AssignCommand ast, Object o);
+  public abstract Object visitCallCommand(CallCommand ast, Object o);
+  public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
+  public abstract Object visitIfCommand(IfCommand ast, Object o);
+  public abstract Object visitLetCommand(LetCommand ast, Object o);
+  public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
+  public abstract Object visitWhileLoopCommand(WhileLoopCommand ast, Object o);
+  public abstract Object visitUntilLoopCommand(UntilLoopCommand ast, Object o);
+  public abstract Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o);
+  public abstract Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o);
+  public abstract Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o);
+  public abstract Object visitSingleElsifCommand(SingleElsifCommand ast, Object o);
+  public abstract Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o);
+  public abstract Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o);
+  public abstract Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o);
+  /* J.6
+   public abstract Object visitAssignCommand(AssignCommand ast, Object o);
+  public abstract Object visitCallCommand(CallCommand ast, Object o);
+  public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
+  public abstract Object visitIfCommand(IfCommand ast, Object o);
+  public abstract Object visitLetCommand(LetCommand ast, Object o);
+  public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
+  public abstract Object visitWhileCommand(WhileCommand ast, Object o);
+  public abstract Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o);
+  public abstract Object visitSingleElsifCommand(SingleElsifCommand ast, Object o);
+  */
+  /* A.7
   public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);
   public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
@@ -24,6 +55,8 @@ public interface Visitor {
   public abstract Object visitLetCommand(LetCommand ast, Object o);
   public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
   public abstract Object visitWhileCommand(WhileCommand ast, Object o);
+  */
+  // END Cambio Andres
 
 
   // Expressions

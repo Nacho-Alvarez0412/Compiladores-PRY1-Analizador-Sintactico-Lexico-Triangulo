@@ -80,7 +80,24 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.16
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.ElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+/* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 
 public class Parser {
 
@@ -292,7 +309,88 @@ public class Parser {
         }
       }
       break;
-
+        
+    // @author        Andres
+    // @descripcion   Alternativa nothing para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.4
+    case Token.NOTHING:
+    {
+        acceptIt();
+        finish(commandPos);
+        commandAST = new EmptyCommand(commandPos);
+    }
+    break;
+    // END Cambio Andres
+        
+    // @author        Andres
+    // @descripcion   Alternativa let para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.5
+    case Token.LET:
+    {
+        acceptIt();
+        Declaration dAST = parseDeclaration();
+        accept(Token.IN);
+        Command cAST = parseCommand();
+        accept(Token.END);
+        finish(commandPos);
+        commandAST = new LetCommand(dAST, cAST, commandPos);
+    }
+    break;   
+    // END Cambio Andres
+        
+    // @author        Andres
+    // @descripcion   Alternativa if para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        A.6
+    case Token.IF:
+    {
+        acceptIt();
+        // Parse expression for if expression
+        Expression eAST = parseExpression();
+        accept(Token.THEN);
+        // Parse command for if command
+        Command cAST = parseCommand();
+        ElsifCommand eiAST = null;
+        // Start parsing elsif instructions
+        while(currentToken.kind == Token.ELSIF) {
+            start(commandPos);
+            acceptIt();
+            // Parse elsif expression
+            Expression e2AST = parseExpression();
+            accept(Token.THEN);
+            // Parse elsif command
+            Command c2AST = parseCommand();
+            finish(commandPos);
+            // Create AST for the single elsif
+            SingleElsifCommand seiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
+            // Group elsif ASTs
+            eiAST = eiAST == null ? new SequentialElsifCommand(seiAST, commandPos) 
+                    : new SequentialElsifCommand(eiAST, seiAST, commandPos);
+        }
+        // Parse else instruction
+        accept(Token.ELSE);
+        Command c2AST = parseCommand();
+        accept(Token.END);
+        finish(commandPos);
+        commandAST = new IfCommand(eAST, cAST, eiAST, c2AST, commandPos);
+    }
+    break;
+    // END Cambio ANDRES
+        
+    // TODO: Parser alternative for choose instruction
+    case Token.CHOOSE:
+    {
+        acceptIt();
+        Expression eAST = parseExpression();
+        accept(Token.FROM);
+        // TODO: Parse Cases
+        // TODO: Create AST for choose instruction
+        accept(Token.END);
+    }
+    break;
+    
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
     // @funcionalidad Cambio en las alternativas de single-command
@@ -307,11 +405,11 @@ public class Parser {
     // END CAMBIO Joseph
     
     // @author        Andres
-    // @descripcion   Borrado de las alternativas let, if, while
+    // @descripcion   Borrado de las alternativas let, if, while, epsilon
     // @funcionalidad Cambio en las alternativas de single-command
     // @codigo        A.3
     /* A.3
-        case Token.LET:
+    case Token.LET:
       {
         acceptIt();
         Declaration dAST = parseDeclaration();
@@ -345,29 +443,149 @@ public class Parser {
         commandAST = new WhileCommand(eAST, cAST, commandPos);
       }
       break;
-    */
-    
-
     case Token.SEMICOLON:
     case Token.END:
     case Token.ELSE:
     case Token.IN:
     case Token.EOT:
+       finish(commandPos);
+       commandAST = new EmptyCommand(commandPos);
+       break;
+    */
+    // END CAMBIO Andres
+    
+    // @author        Joseph
+    // @descripcion   Alternativas loop para single command
+    // @funcionalidad Parsear alternativas de single-command
+    // @codigo        J.17
+    case Token.LOOP:
+      {
+        acceptIt();
+        switch (currentToken.kind) {
 
-      finish(commandPos);
-      commandAST = new EmptyCommand(commandPos);
+        case Token.WHILE:
+          {
+            acceptIt();
+            Expression eAST = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new WhileLoopCommand(eAST, cAST, commandPos);
+          }
+        break;
+          
+        case Token.UNTIL:
+          {
+            acceptIt();
+            Expression eAST = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new UntilLoopCommand(eAST, cAST, commandPos);
+          }
+        break;
+        
+        case Token.DO:
+          {
+            acceptIt();
+            Command cAST = parseCommand();
+            switch (currentToken.kind) {
+            case Token.WHILE:
+             {
+               acceptIt();
+               Expression eAST = parseExpression();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new DoLoopWhileCommand(cAST, eAST, commandPos);                
+             }
+             break;
+            case Token.UNTIL:
+             {
+               acceptIt();
+               Expression eAST = parseExpression();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new DoLoopUntilCommand(cAST, eAST, commandPos);               
+             }
+             break;
+            default:
+              syntacticError("\"%\" cannot follow a loop-do command, expected while or until",
+                currentToken.spelling);
+              break;                
+            }
+          }
+        break;
+        
+        case Token.FOR:
+          {
+            acceptIt();
+            Identifier iAST = parseIdentifier();
+            accept(Token.FROM);
+            Expression e1AST = parseExpression();
+            accept(Token.TO);
+            Expression e2AST = parseExpression();
+            switch (currentToken.kind) {
+            case Token.DO:
+             {
+               acceptIt();
+               Command cAST = parseCommand();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new ForLoopDoCommand(iAST, e1AST, e2AST, cAST, commandPos);                
+             }
+             break;
+            case Token.WHILE:
+             {
+               acceptIt();
+               Expression e3AST = parseExpression();
+               accept(Token.DO);
+               Command cAST = parseCommand();
+               finish(commandPos);
+               commandAST = new ForLoopWhileCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+             }
+             break;
+             case Token.UNTIL:
+             {
+               acceptIt();
+               Expression e3AST = parseExpression();
+               accept(Token.DO);
+               Command cAST = parseCommand();
+               finish(commandPos);
+               commandAST = new ForLoopUntilCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+             }
+             break;
+             
+            default:
+              syntacticError("\"%\" cannot follow a loop-for-from-to command, expected do, while or until",
+                currentToken.spelling);
+              break;                
+            }
+          }
+        break;
+        
+        default:
+          syntacticError("\"%\" cannot follow a loop command, expected while, until, do or for",
+           currentToken.spelling);
+        break;
+          
+        }
+      }
       break;
+    // END CAMBIO Joseph
 
     default:
       syntacticError("\"%\" cannot start a command",
         currentToken.spelling);
       break;
-
     }
 
     return commandAST;
   }
 
+
+  
 ///////////////////////////////////////////////////////////////////////////////
 //
 // EXPRESSIONS

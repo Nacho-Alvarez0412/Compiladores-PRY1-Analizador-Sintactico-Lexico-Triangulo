@@ -88,7 +88,23 @@ import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.13
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+/* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 
 public final class Encoder implements Visitor {
 
@@ -101,6 +117,24 @@ public final class Encoder implements Visitor {
 		valSize.intValue());
     return null;
   }
+  
+  // @author        Abdres
+  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @funcionalidad AST SingleElsifCommand
+  // @codigo        A.16
+  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @funcionalidad AST SequentialElsifCommand
+  // @codigo        A.17
+  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
 
   public Object visitCallCommand(CallCommand ast, Object o) {
     Frame frame = (Frame) o;
@@ -144,6 +178,26 @@ public final class Encoder implements Visitor {
     return null;
   }
 
+
+// @author        Joseph
+// @descripcion   Cambio de while como alternativa de single-command
+// @funcionalidad Cambio en las alternativas de single-command
+// @codigo        J.14
+  public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
+    Frame frame = (Frame) o;
+    int jumpAddr, loopAddr;
+
+    jumpAddr = nextInstrAddr;
+    emit(Machine.JUMPop, 0, Machine.CBr, 0);
+    loopAddr = nextInstrAddr;
+    ast.C.visit(this, frame);
+    patch(jumpAddr, nextInstrAddr);
+    ast.E.visit(this, frame);
+    emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
+    return null;
+  }
+  
+ /*J.14
   public Object visitWhileCommand(WhileCommand ast, Object o) {
     Frame frame = (Frame) o;
     int jumpAddr, loopAddr;
@@ -157,6 +211,39 @@ public final class Encoder implements Visitor {
     emit(Machine.JUMPIFop, Machine.trueRep, Machine.CBr, loopAddr);
     return null;
   }
+  */
+//END CAMBIO Joseph
+  
+  // @author        Joseph
+  // @descripcion   Metodos checker para visitar nuevos ASTs de single-command
+  // @funcionalidad Creacion de nuevas alternativas de single-command
+  // @codigo        J.18
+  public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
+      return null;
+  }
+  // END CAMBIO Joseph
+  
+  
 
 
   // Expressions

@@ -199,6 +199,7 @@ final class Token extends Object {
     "in",
     "let",
     "loop",
+    "nothing", 
     "of",
     "package",
     "private",
