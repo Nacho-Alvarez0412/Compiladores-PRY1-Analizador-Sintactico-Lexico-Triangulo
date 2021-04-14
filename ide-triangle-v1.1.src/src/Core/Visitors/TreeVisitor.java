@@ -118,12 +118,11 @@ public class TreeVisitor implements Visitor {
     // END cambio Andres
 
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Crea un arbol binario AST para el comando secuencial "elsif"
+    // @funcionalidad Crear arbol AST para el "elsif" secuencial
     // @codigo        A.15
-    // TODO: Implementar funcionalidad
     public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-        return null;
+        return(createBinary("Sequential Elsif Command", ast.SE1, ast.SE2));
     }
     // END cambio Andres
     
