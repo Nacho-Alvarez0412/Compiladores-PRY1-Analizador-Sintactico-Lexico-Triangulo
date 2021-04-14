@@ -43,3 +43,71 @@ Proc-Func       ::= "proc" Identifier "(" Formal-Parameter-Sequence ")"
                         ":" Type-denoter "~" Expression
 
 Proc-Funcs      ::= Proc-Func ("|" Proc-Func)+     
+
+
+# Sexto Set de cambios (Modificar single-Declaration) 
+
+single-Declaration ::= "const" Identifier ~ Expression
+			 |  "var" Identifier : Type-denoter
+                         |  "proc" Identifier "(" Formal-Parameter-Sequence ")" ~ 
+                                "~" Command "end"
+			 |  "func" Identifier ( Formal-Parameter-Sequence )
+				: Type-denoter ~ Expression
+			 |  "type" Identifier ~ Type-denoter
+                         | "var" Identifier ":=" Expression
+
+
+# Septimo set de cambios (Modificar Program)
+
+Program ::= (Package-Declaration ";")* Command
+
+# Octavo set de cambios (Agregar reglas Packages)
+
+Package-Declaration ::= "package" Package-Identifier "~"
+Declaration "end" Long-Identifier ::= [ Package-Identifier "$" ] Identifier
+Package-Identifier ::= Identifier
+
+# Noveno set de cambios (Modificar V-Name)
+
+V-name ::= [ Package-Identifier "$" ] Var-Name
+Var-name ::= Identifier
+                | Var-name "." Identifier
+                | Var-name "[" Expression "]"
+
+
+# Decimo set de cambios (Type Denoter)
+
+Type-denoter ::= Long-Identifier
+                | "array" Integer-Literal "of" Type-denoter
+                | "record" Record-Type-denoter "end"
+
+
+
+# Undecimo set de cambios (primary expression)
+
+primary-Expression ::= Integer-Literal
+			 |  Character-Literal
+			 |  V-name
+			 |  Long-Identifier "(" Actual-Parameter-Sequence ")"
+			 |  Operator primary-Expression
+			 |  ( Expression )
+			 |  { Record-Aggregate }
+			 |  [ Array-Aggregate ]
+
+
+# Duodecimo set de cambios (single command)
+
+single-Command  ::= "nothing"
+                |   V-name := Expression
+                |   Long-Identifier "(" Actual-Parameter-Sequence ")"
+                |   "let" Declaration "in" Command "end"
+                |   "if" Expression "then" Command ("elsif" Expression "then" Command)*
+                        "else" Command "end" 
+                |   "choose" Expression "from" Cases "end"
+                |   "loop" "while" Expression "do" Command "end"
+                |   "loop" "until" Expression "do" Command "end"
+                |   "loop" "do" Command ("while" Expression "end" | "until" Expression "end")
+                |   "loop" "for" Identifier "from" Expression "to" Expression
+                        ("do" command "end" | "while" Expression "do" Command "end" | "until" Expression "do" Command "end")
+
+
