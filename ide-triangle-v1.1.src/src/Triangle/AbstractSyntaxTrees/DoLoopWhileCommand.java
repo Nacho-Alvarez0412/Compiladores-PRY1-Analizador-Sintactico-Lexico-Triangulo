@@ -10,10 +10,10 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  */
 public class DoLoopWhileCommand extends Command {
 
-  public DoLoopWhileCommand (Expression eAST, Command cAST, SourcePosition thePosition) {
+  public DoLoopWhileCommand (Command cAST, Expression eAST, SourcePosition thePosition) {
     super (thePosition);
-    E = eAST;
     C = cAST;
+    E = eAST;
   }
   
   public Object visit(Visitor v, Object o) {

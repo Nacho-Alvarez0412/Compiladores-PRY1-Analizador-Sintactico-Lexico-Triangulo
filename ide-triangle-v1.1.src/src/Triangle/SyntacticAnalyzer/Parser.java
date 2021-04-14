@@ -86,13 +86,18 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @codigo        J.16
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.ElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
 // END CAMBIO Joseph
-import Triangle.AbstractSyntaxTrees.ElsifCommand;
-import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 
 public class Parser {
 
@@ -457,38 +462,114 @@ public class Parser {
       {
         acceptIt();
         switch (currentToken.kind) {
-        
+
         case Token.WHILE:
           {
             acceptIt();
-            Expression dAST = parseExpression();
+            Expression eAST = parseExpression();
             accept(Token.DO);
-            Command eAST = parseCommand();
+            Command cAST = parseCommand();
             accept(Token.END);
             finish(commandPos);
-            commandAST = new WhileLoopCommand(dAST, eAST, commandPos);
+            commandAST = new WhileLoopCommand(eAST, cAST, commandPos);
           }
         break;
           
         case Token.UNTIL:
           {
             acceptIt();
-            Expression dAST = parseExpression();
+            Expression eAST = parseExpression();
             accept(Token.DO);
-            Command eAST = parseCommand();
+            Command cAST = parseCommand();
             accept(Token.END);
             finish(commandPos);
-            commandAST = new WhileLoopCommand(dAST, eAST, commandPos);
+            commandAST = new UntilLoopCommand(eAST, cAST, commandPos);
+          }
+        break;
+        
+        case Token.DO:
+          {
+            acceptIt();
+            Command cAST = parseCommand();
+            switch (currentToken.kind) {
+            case Token.WHILE:
+             {
+               acceptIt();
+               Expression eAST = parseExpression();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new DoLoopWhileCommand(cAST, eAST, commandPos);                
+             }
+             break;
+            case Token.UNTIL:
+             {
+               acceptIt();
+               Expression eAST = parseExpression();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new DoLoopUntilCommand(cAST, eAST, commandPos);               
+             }
+             break;
+            default:
+              syntacticError("\"%\" cannot follow a loop-do command, expected while or until",
+                currentToken.spelling);
+              break;                
+            }
+          }
+        break;
+        
+        case Token.FOR:
+          {
+            acceptIt();
+            Identifier iAST = parseIdentifier();
+            accept(Token.FROM);
+            Expression e1AST = parseExpression();
+            accept(Token.TO);
+            Expression e2AST = parseExpression();
+            switch (currentToken.kind) {
+            case Token.DO:
+             {
+               acceptIt();
+               Command cAST = parseCommand();
+               accept(Token.END);
+               finish(commandPos);
+               commandAST = new ForLoopDoCommand(iAST, e1AST, e2AST, cAST, commandPos);                
+             }
+             break;
+            case Token.WHILE:
+             {
+               acceptIt();
+               Expression e3AST = parseExpression();
+               accept(Token.DO);
+               Command cAST = parseCommand();
+               finish(commandPos);
+               commandAST = new ForLoopWhileCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+             }
+             break;
+             case Token.UNTIL:
+             {
+               acceptIt();
+               Expression e3AST = parseExpression();
+               accept(Token.DO);
+               Command cAST = parseCommand();
+               finish(commandPos);
+               commandAST = new ForLoopUntilCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+             }
+             break;
+             
+            default:
+              syntacticError("\"%\" cannot follow a loop-for-from-to command, expected do, while or until",
+                currentToken.spelling);
+              break;                
+            }
           }
         break;
         
         default:
-          syntacticError("\"%\" cannot follow a loop command",
+          syntacticError("\"%\" cannot follow a loop command, expected while, until, do or for",
            currentToken.spelling);
         break;
           
-        
-
         }
       }
       break;
@@ -498,7 +579,6 @@ public class Parser {
       syntacticError("\"%\" cannot start a command",
         currentToken.spelling);
       break;
-
     }
 
     return commandAST;

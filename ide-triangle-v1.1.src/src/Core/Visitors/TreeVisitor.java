@@ -51,12 +51,10 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
-import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -75,6 +73,13 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @codigo        J.9
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -144,7 +149,7 @@ public class TreeVisitor implements Visitor {
     }
     
     // @author        Joseph
-    // @descripcion   Cambio de while como alternativa de single-command a alternativa de loopCommand
+    // @descripcion   Metodos dibujantes para visitar ASTS modificados
     // @funcionalidad Cambio en las alternativas de single-command
     // @codigo        J.10
     public Object visitWhileLoopCommand(WhileLoopCommand ast, Object obj) {
@@ -159,11 +164,31 @@ public class TreeVisitor implements Visitor {
     
     
     // @author        Joseph
-    // @descripcion   Metodos encoder para visitar nuevos ASTS
+    // @descripcion   Metodos dibujantes para visitar nuevos ASTS
     // @funcionalidad Creacion de nuevas alternativas de no-terminales
     // @codigo        J.21
     public Object visitUntilLoopCommand(UntilLoopCommand ast, Object obj) {
         return(createBinary("Until Loop Command", ast.E, ast.C));
+    }
+    
+    public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object obj) {
+        return(createBinary("Do Loop Until Command", ast.E, ast.C));
+    }
+    
+    public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object obj) {
+        return(createBinary("Do Loop While Command", ast.E, ast.C));
+    }
+
+    public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object obj) {
+        return(createQuaternary("For Loop Do Command", ast.I, ast.E1, ast.E2, ast.C));
+    }
+    
+    public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object obj) {
+        return(createQuinary("For Loop While Command", ast.I, ast.E1, ast.E2, ast.E3,ast.C));
+    }
+    
+    public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object obj) {
+        return(createQuinary("For Loop Until Command", ast.I, ast.E1, ast.E2, ast.E3,ast.C));
     }
     // END CAMBIO Joseph
     // </editor-fold>
@@ -487,5 +512,21 @@ public class TreeVisitor implements Visitor {
         
         return(t);             
     }
+    
+    // @author        Joseph
+    // @descripcion   Metodo de dibujo de árboles quinarios
+    // @funcionalidad Dibujo de ASTs
+    // @codigo        J.27
+    public DefaultMutableTreeNode createQuinary(String caption, AST child1, AST child2, AST child3, AST child4, AST child5) {
+        DefaultMutableTreeNode t = new DefaultMutableTreeNode(caption);
+        t.add((DefaultMutableTreeNode)child1.visit(this, null));
+        t.add((DefaultMutableTreeNode)child2.visit(this, null));
+        t.add((DefaultMutableTreeNode)child3.visit(this, null));
+        t.add((DefaultMutableTreeNode)child4.visit(this, null));
+        t.add((DefaultMutableTreeNode)child5.visit(this, null));
+        return(t);             
+    }
+    // END CAMBIO Joseph
+    
     // </editor-fold>
 }

@@ -94,6 +94,9 @@ import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -218,6 +221,17 @@ public final class Checker implements Visitor {
       return null;
   }
   
+  public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
+      return null;
+  } 
   // END CAMBIO Joseph
 
   // Expressions

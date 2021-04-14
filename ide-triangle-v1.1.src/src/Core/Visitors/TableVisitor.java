@@ -74,6 +74,11 @@ import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -167,7 +172,7 @@ public class TableVisitor implements Visitor {
     }
     
     // @author        Joseph
-    // @descripcion   Cambio de while como alternativa de single-command
+    // @descripcion   Metodos dibujantes para visitar ASTS modificados
     // @funcionalidad Cambio en las alternativas de single-command
     // @codigo        J.7
     public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
@@ -187,7 +192,7 @@ public class TableVisitor implements Visitor {
     // END CAMBIO Joseph
     
 // @author        Joseph
-// @descripcion   Metodos encoder para visitar nuevos ASTS
+// @descripcion   Metodos para visitar nuevos ASTS
 // @funcionalidad Creacion de nuevas alternativas de no-terminales
 // @codigo        J.20
   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
@@ -196,6 +201,48 @@ public class TableVisitor implements Visitor {
 
         return (null);
   }
+  
+   public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o) {
+        ast.C.visit(this, null);
+        ast.E.visit(this, null);
+
+        return (null);
+  }
+   
+   public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o) {
+        ast.C.visit(this, null);
+        ast.E.visit(this, null);
+        return (null);
+  }
+   
+   public Object visitForLoopDoCommand (ForLoopDoCommand ast, Object o) {
+        ast.I.visit(this, null);
+        ast.E1.visit(this, null);
+        ast.E2.visit(this, null);
+        ast.C.visit(this, null);
+        return (null);
+  }
+  
+   public Object visitForLoopWhileCommand (ForLoopWhileCommand ast, Object o) {
+        ast.I.visit(this, null);
+        ast.E1.visit(this, null);
+        ast.E2.visit(this, null);
+        ast.E3.visit(this, null);
+        ast.C.visit(this, null);
+        return (null);
+  }
+ 
+   public Object visitForLoopUntilCommand (ForLoopUntilCommand ast, Object o) {
+        ast.I.visit(this, null);
+        ast.E1.visit(this, null);
+        ast.E2.visit(this, null);
+        ast.E3.visit(this, null);
+        ast.C.visit(this, null);
+        return (null);
+  }
+   
+   
+  
   // END CAMBIO Joseph
     
   // </editor-fold>

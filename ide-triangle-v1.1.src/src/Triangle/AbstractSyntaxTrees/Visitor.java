@@ -33,6 +33,9 @@ public interface Visitor {
   public abstract Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o);
   public abstract Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o);
   public abstract Object visitSingleElsifCommand(SingleElsifCommand ast, Object o);
+  public abstract Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o);
+  public abstract Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o);
+  public abstract Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o);
   /* J.6
    public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);

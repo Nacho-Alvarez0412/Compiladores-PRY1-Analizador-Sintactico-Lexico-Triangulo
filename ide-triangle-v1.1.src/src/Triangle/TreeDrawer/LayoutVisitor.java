@@ -63,12 +63,10 @@ import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
 import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
-import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SimpleVname;
 import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
@@ -81,7 +79,23 @@ import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
+// @author        Joseph
+// @descripcion   Importacion de nuevos ASTs
+// @funcionalidad Parseo de nuevos ASTs
+// @codigo        J.29
+import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
+import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
+import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
+import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+/* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+*/
+// END CAMBIO Joseph
 
 public class LayoutVisitor implements Visitor {
 
@@ -118,6 +132,7 @@ public class LayoutVisitor implements Visitor {
       return null;
   }
   // END cambio Andres
+  
 
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
@@ -139,9 +154,48 @@ public class LayoutVisitor implements Visitor {
     return layoutBinary("Seq.Com.", ast.C1, ast.C2);
   }
 
+  // @author        Joseph
+  // @descripcion   Metodos dibujantes para visitar layouts de ASTs modificados
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.30
+  public Object visitWhileLoopCommand(WhileLoopCommand ast, Object obj) {
+    return layoutBinary("WhileCom.", ast.E, ast.C);
+  }
+  /* J.30
   public Object visitWhileCommand(WhileCommand ast, Object obj) {
     return layoutBinary("WhileCom.", ast.E, ast.C);
   }
+  */
+  // END CAMBIO Joseph
+  
+  // @author        Joseph
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @funcionalidad Creacion de nuevas alternativas de no-terminales
+  // @codigo        J.31
+   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object obj) {
+     return layoutBinary("UntilCom.", ast.E, ast.C);
+   }
+    
+   public Object visitDoLoopUntilCommand (DoLoopUntilCommand ast, Object obj) {
+     return layoutBinary("DoUntilCom.", ast.C, ast.E);
+   }
+    
+   public Object visitDoLoopWhileCommand (DoLoopWhileCommand ast, Object obj) {
+     return layoutBinary("DoWhileCom.", ast.C, ast.E);
+   }
+
+   public Object visitForLoopDoCommand (ForLoopDoCommand ast, Object obj) {
+     return layoutQuaternary("ForDoCommand.", ast.I, ast.E1, ast.E2, ast.C);
+   }
+    
+   public Object visitForLoopWhileCommand (ForLoopWhileCommand ast, Object obj) {
+     return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
+   }
+    
+   public Object visitForLoopUntilCommand (ForLoopUntilCommand ast, Object obj) {
+     return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
+   }
+    // END CAMBIO Joseph
 
 
   // Expressions
@@ -441,6 +495,26 @@ public class LayoutVisitor implements Visitor {
     attachParent(dt, join(dt));
     return dt;
   }
+  
+    // @author        Joseph
+    // @descripcion   Metodo de dibujo de layout de árboles quinarios
+    // @funcionalidad Dibujo de ASTs
+    // @codigo        J.28
+  
+    private DrawingTree layoutQuinary (String name, AST child1, AST child2,
+                                        AST child3, AST child4, AST child5) {
+    DrawingTree dt = layoutCaption(name);
+    DrawingTree d1 = (DrawingTree) child1.visit(this, null);
+    DrawingTree d2 = (DrawingTree) child2.visit(this, null);
+    DrawingTree d3 = (DrawingTree) child3.visit(this, null);
+    DrawingTree d4 = (DrawingTree) child4.visit(this, null);
+    DrawingTree d5 = (DrawingTree) child5.visit(this, null);
+    dt.setChildren(new DrawingTree[] {d1, d2, d3, d4, d5});
+    attachParent(dt, join(dt));
+    return dt;
+  }
+  
+   // END CAMBIO Joseph
 
   private void attachParent(DrawingTree dt, int w) {
     int y = PARENT_SEP;
