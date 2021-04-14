@@ -34,4 +34,12 @@ Declaration     ::= compound-Declaration
 # Cuarto Set de cambios (declaración de funciones y procedimientos mutuamente recursivos, declaraciones locales)
 compound-Declaration    ::= single-Declaration
                         |   "recursive" Proc-Funcs "end"
-                        |   "private" Declaration "in" Declaration "end"           
+                        |   "private" Declaration "in" Declaration "end"    
+
+# Quinto Set de cambios (Agregar reglas Proc-Func)  
+Proc-Func       ::= "proc" Identifier "(" Formal-Parameter-Sequence ")" 
+                        "~" Command "end"
+                |   "func" Identifier "(" Formal-Parameter-Sequence ")" 
+                        ":" Type-denoter "~" Expression
+
+Proc-Funcs      ::= Proc-Func ("|" Proc-Func)+     
