@@ -602,12 +602,16 @@ public class Parser {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-  ProcFuncs parseDeclaration() throws SyntaxError {
-    Declaration declarationAST = null; // in case there's a syntactic error
+  ProcFuncs parseProcFuncs() throws SyntaxError {
+    ProcFuncs procfuncsAST = null; // in case there's a syntactic error
 
-    SourcePosition declarationPos = new SourcePosition();
-    start(declarationPos);
-    declarationAST = parseSingleDeclaration();
+    SourcePosition procfuncsPos = new SourcePosition();
+    start(procfuncsPos);
+    procfuncsAST = parseProcFunc();
+    accept(Token.PIPE);
+    ProcFuncs procfucs2AST = parseProcFunc();
+    finish(procfuncsPos);
+    procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfucs2AST, procfuncsPos);
     while (currentToken.kind == Token.SEMICOLON) {
       acceptIt();
       Declaration d2AST = parseSingleDeclaration();
@@ -628,13 +632,9 @@ public class Parser {
   
   ProcFunc parseProcFunc() throws SyntaxError {
     ProcFunc procfuncAST = null; // in case there's a syntactic error
-
     SourcePosition procfuncPos = new SourcePosition();
-
     start (procfuncPos);
-
     switch (currentToken.kind) {
-
     case Token.PROC:
       {
         acceptIt();

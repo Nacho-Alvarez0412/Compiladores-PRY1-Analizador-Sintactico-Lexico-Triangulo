@@ -82,6 +82,7 @@ import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -283,6 +284,12 @@ public class TableVisitor implements Visitor {
         ast.FPS.visit(this, null);
         ast.TD.visit(this, null);
         ast.E.visit(this, null);
+        return (null);
+  }
+   
+   public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object o) {
+        ast.PF1.visit(this, null);
+        ast.PF2.visit(this, null);
         return (null);
   }
    
