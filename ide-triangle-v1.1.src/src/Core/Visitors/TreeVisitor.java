@@ -74,6 +74,7 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
@@ -109,24 +110,31 @@ public class TreeVisitor implements Visitor {
     }
     
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Crea un arbol binario AST para el comando "elsif"
+    // @funcionalidad Crear arbol AST para el "elsif"
     // @codigo        A.14
-    // TODO: Implementar funcionalidad
     public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-        return null;
+        return(createBinary("Elsif Command", ast.E, ast.C));
     }
     // END cambio Andres
 
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Crea un arbol binario AST para el comando secuencial "elsif"
+    // @funcionalidad Crear arbol AST para el "elsif" secuencial
     // @codigo        A.15
-    // TODO: Implementar funcionalidad
     public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-        return null;
+        return(createBinary("Sequential Elsif Command", ast.SE1, ast.SE2));
     }
     // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Crea un arbol binario AST para el comando nuevo CompoundIf
+    // @funcionalidad Crear arbol AST para el comando nuevo CompoundIf
+    // @codigo        A.19
+    public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+        return(createQuaternary("Compund If Command", ast.E, ast.C1, ast.EIC, ast.C2));
+    }
+    // END Cambio Andres
     
     public Object visitCallCommand(CallCommand ast, Object o) {
         return(createBinary("Call Command", ast.I, ast.APS));

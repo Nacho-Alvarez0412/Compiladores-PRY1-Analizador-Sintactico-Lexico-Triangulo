@@ -11,6 +11,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  * @newclass
  * AST para SequentialElsifCommand
  * @author Andres
+ * A.24
  */
 public class SequentialElsifCommand extends ElsifCommand {
     public ElsifCommand SE1;

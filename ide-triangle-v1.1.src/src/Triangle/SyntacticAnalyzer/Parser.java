@@ -43,6 +43,7 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -374,7 +375,9 @@ public class Parser {
         Command c2AST = parseCommand();
         accept(Token.END);
         finish(commandPos);
-        commandAST = new IfCommand(eAST, cAST, eiAST, c2AST, commandPos);
+        // Check if compound if or simple if
+        commandAST = eiAST != null ? new CompoundIfCommand(eAST, cAST, eiAST, c2AST, commandPos)
+                : new IfCommand(eAST, cAST, c2AST, commandPos);
     }
     break;
     // END Cambio ANDRES

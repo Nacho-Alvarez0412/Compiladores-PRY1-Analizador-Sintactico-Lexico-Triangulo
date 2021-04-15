@@ -1,9 +1,12 @@
+CAMBIOS LEXICOX
 A.1 - Token.java
 A.2 - Token.java
+CAMBIOS IF, LET Y NOTHING PARSER
 A.3 - Parser.java
 A.4 - Parser.java
 A.5 - Parser.java
 A.6 - Parser.java
+IMPLEMENTACION SINGLEIF, SEQUENTIALIF, COMPOUNDIF ASTS
 A.7 - Visitor.java
 A.8 - Checker.java
 A.9 - Checker.java
@@ -15,5 +18,11 @@ A.14 - TreeVisitor.java
 A.15 - TreeVisitor.java
 A.16 - Encoder.java
 A.17 - Encoder.java
-A.18 - IfCommand.java
-A.19 - IfCommand.java
+A.18 - CompoundIfCommand.java*
+A.19 - TreeVisitor.java
+A.20 - TableVisitor.java
+A.21 - LayoutVisitor.java
+A.22 - Encoder.java
+A.23 - Checker.java
+A.24 - SequentialElsifCommand.java*
+A.25 - SingleElsifCommand.java*

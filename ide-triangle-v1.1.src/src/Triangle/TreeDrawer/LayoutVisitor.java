@@ -42,6 +42,7 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
@@ -114,22 +115,28 @@ public class LayoutVisitor implements Visitor {
   }
   
   // @author        Andres
-  // @descripcion   
-  // @funcionalidad 
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @funcionalidad Creacion de nuevos ASTs para single-command
+  // @codigo        A.21
+  public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+      return layoutQuaternary("Comp.If.Com", ast.E, ast.C1, ast.EIC, ast.C2);
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.10
-  // TODO: Agregar funcionalidad para dibujar
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-      return null;
+      return layoutBinary("Sing.Elsif.Com", ast.E, ast.C);
   }
   // END cambio Andres
   
   // @author        Andres
-  // @descripcion   
-  // @funcionalidad 
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.11
-  // TODO: Agregar funcionalidad para dibujar
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-      return null;
+      return layoutBinary("Seq.Elsif.Com", ast.SE1, ast.SE2);
   }
   // END cambio Andres
   
