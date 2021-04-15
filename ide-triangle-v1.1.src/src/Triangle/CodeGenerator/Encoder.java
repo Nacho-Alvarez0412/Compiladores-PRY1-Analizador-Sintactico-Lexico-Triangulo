@@ -107,6 +107,11 @@ import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -285,7 +290,7 @@ public final class Encoder implements Visitor {
   }
   // END cambio Andres
   
-  // @author        Andres
+    // @author        Andres
     // @descripcion   Metodo encoder para visitar visitCaseLiterals
     // @funcionalidad AST visitCaseLiterals
     // @codigo        A.58
@@ -302,6 +307,51 @@ public final class Encoder implements Visitor {
         return null;
     }
     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos encoder para visitar ASTS nuevos
+    // @funcionalidad ElseCase AST
+    // @codigo        A.83
+    public Object visitElseCase(ElseCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos encoder para visitar ASTS nuevos
+    // @funcionalidad CompoundCases AST
+    // @codigo        A.84
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos encoder para visitar ASTS nuevos
+    // @funcionalidad SequentialCase AST
+    // @codigo        A.85
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos encoder para visitar ASTS nuevos
+    // @funcionalidad SimpleCases AST
+    // @codigo        A.86
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos encoder para visitar ASTS nuevos
+    // @funcionalidad SingleCase AST
+    // @codigo        A.87
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object o) {

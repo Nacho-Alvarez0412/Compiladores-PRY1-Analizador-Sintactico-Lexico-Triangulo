@@ -85,6 +85,11 @@ import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -327,6 +332,64 @@ public class TableVisitor implements Visitor {
         return (null);
     }
     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de else case
+    // @codigo        A.68
+    public Object visitElseCase(ElseCase ast, Object o) {
+        ast.C.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.69
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+        ast.C.visit(this, null);
+        ast.EC.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.70
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+        ast.C1.visit(this, null);
+        ast.C2.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.71
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        ast.C.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case
+    // @codigo        A.72
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        ast.CL.visit(this, null);
+        ast.C.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
     
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions

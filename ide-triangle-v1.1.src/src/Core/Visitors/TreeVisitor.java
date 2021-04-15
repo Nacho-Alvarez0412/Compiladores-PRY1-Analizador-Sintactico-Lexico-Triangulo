@@ -86,6 +86,11 @@ import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -251,6 +256,51 @@ public class TreeVisitor implements Visitor {
         return(createBinary("Sequential Case Range", ast.CR1, ast.CR2));
     }
     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de else case
+    // @codigo        A.73
+    public Object visitElseCase(ElseCase ast, Object o) {
+        return(createUnary("Else Case", ast.C));
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.74
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+       return(createBinary("Compound Cases", ast.C, ast.EC));
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.75
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+       return(createBinary("Sequential Case", ast.C1, ast.C2));
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.76
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        return(createUnary("Simple Cases", ast.C));
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case
+    // @codigo        A.77
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        return(createBinary("Single Case", ast.CL, ast.C));
+    }
+     // END Cambio Andres
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions

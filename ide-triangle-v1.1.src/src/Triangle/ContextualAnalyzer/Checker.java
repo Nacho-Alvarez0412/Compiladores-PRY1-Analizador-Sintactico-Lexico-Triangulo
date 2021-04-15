@@ -103,6 +103,11 @@ import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -293,7 +298,52 @@ public final class Checker implements Visitor {
         return null;
     }
     // END Cambio Andres
-  
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de else case
+    // @codigo        A.78
+    public Object visitElseCase(ElseCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad CompoundCases AST
+    // @codigo        A.79
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SequentialCase AST
+    // @codigo        A.80
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SimpleCases AST
+    // @codigo        A.81
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SingleCase AST
+    // @codigo        A.82
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
   // Expressions
 
   // Returns the TypeDenoter denoting the type of the expression. Does
