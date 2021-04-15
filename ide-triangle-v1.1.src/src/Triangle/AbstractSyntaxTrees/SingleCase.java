@@ -12,7 +12,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  *
  * @author Andres
  */
-public class SingleCase extends AST {
+public class SingleCase extends Case {
     
     public SingleCase(CaseLiterals clAST, Command cAST, SourcePosition thePosition) {
         super(thePosition);

@@ -102,7 +102,9 @@ import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.Case;
 import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.Cases;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
@@ -695,7 +697,27 @@ public class Parser {
         elseCaseAST = new ElseCase(cAST, elseCasePos);
         return elseCaseAST;
     }
-  
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear el case
+    // @funcionalidad Parsear comando case
+    // @codigo        A.94
+    Case parseCase() throws SyntaxError {
+        Case caseAST = null;
+        SourcePosition casePos = new SourcePosition();
+        start(casePos);
+        
+        accept(Token.WHEN);
+        CaseLiterals clAST = parseCaseLiterals();
+        accept(Token.THEN);
+        Command cAST = parseCommand();
+        finish(casePos);
+        
+        caseAST = new SingleCase(clAST, cAST, casePos);     
+        return caseAST;
+    }
+    
+    
   
 ///////////////////////////////////////////////////////////////////////////////
 //
