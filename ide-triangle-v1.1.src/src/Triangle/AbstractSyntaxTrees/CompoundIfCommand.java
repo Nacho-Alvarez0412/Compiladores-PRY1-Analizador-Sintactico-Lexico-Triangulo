@@ -16,19 +16,27 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class IfCommand extends Command {
-    public IfCommand (Expression eAST, Command c1AST, Command c2AST,
-                      SourcePosition thePosition) {
-      super (thePosition);
-      E = eAST;
-      C1 = c1AST;
-      C2 = c2AST;
-    }
+/**
+ * @newclass 
+ * Clase para representar un AST de un CompundIfCommand
+ * A.18
+ * @author Andres
+ */
+public class CompoundIfCommand extends Command {
+  public CompoundIfCommand (Expression eAST, Command c1AST, ElsifCommand eiAST, Command c2AST,
+                    SourcePosition thePosition) {
+    super (thePosition);
+    E = eAST;
+    C1 = c1AST;
+    EIC = eiAST;
+    C2 = c2AST;
+  }
 
   public Object visit(Visitor v, Object o) {
-    return v.visitIfCommand(this, o);
+    return v.visitCompoundIfCommand(this, o);
   }
 
   public Expression E;
   public Command C1, C2;
+  public ElsifCommand EIC;
 }

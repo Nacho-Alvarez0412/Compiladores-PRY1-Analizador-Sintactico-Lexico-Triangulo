@@ -73,6 +73,7 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
+import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
 import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
@@ -121,24 +122,41 @@ public class TableVisitor implements Visitor {
     }
 
     // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
     // @codigo        A.12
-    // TODO: Implementar funcionalidad
     public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C.visit(this, null);
+        
         return (null);
     }
     // END cambio Andres
 
-    // @author        Andres
-    // @descripcion   
-    // @funcionalidad 
+    // @author       Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
     // @codigo        A.13
-    // TODO: Implementar funcionalidad
     public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+        ast.SE1.visit(this, null);
+        ast.SE2.visit(this, null);
+        
         return (null);
     }
     // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de single-command
+    // @codigo        A.20
+    public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.C1.visit(this, null);
+        ast.EIC.visit(this, null);
+        ast.C2.visit(this, null);
+        
+        return (null);
+    }
 
     public Object visitCallCommand(CallCommand ast, Object o) {
         ast.I.visit(this, null);
