@@ -637,6 +637,7 @@ public class Parser {
         }
         return caseLiteralAST;
     }
+    // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear case range
@@ -659,6 +660,7 @@ public class Parser {
                 : new CompoundCaseRange(clAST, c2AST, caseRangePos);
         return caseRangeAST;
     }
+     // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear case literals
@@ -676,9 +678,13 @@ public class Parser {
             finish(caseLiteralsPos);
             cr1AST = new SequentialCaseRange(cr1AST, cr2AST, caseLiteralsPos);
         }
+        finish(caseLiteralsPos);
+        
+        caseLiteralsAST = new CaseLiterals(cr1AST, caseLiteralsPos);
         
         return caseLiteralsAST;
     }
+     // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear else case
@@ -697,6 +703,7 @@ public class Parser {
         elseCaseAST = new ElseCase(cAST, elseCasePos);
         return elseCaseAST;
     }
+     // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear el case
@@ -716,8 +723,36 @@ public class Parser {
         caseAST = new SingleCase(clAST, cAST, casePos);     
         return caseAST;
     }
+     // END cambio Andres
     
-    
+    // @author        Andres
+    // @descripcion   Metodo para parsear el cases
+    // @funcionalidad Parsear comando cases
+    // @codigo        A.95
+    Cases parseCases() throws SyntaxError {
+        Cases casesAST = null;
+        SourcePosition casesPos = new SourcePosition();
+        start(casesPos);
+        
+        Case case1AST = parseCase();
+        while(currentToken.kind == Token.WHEN) {
+            Case case2AST = parseCase();
+            finish(casesPos);
+            case1AST = new SequentialCase(case1AST, case2AST, casesPos);
+        }
+        
+        ElseCase elseCaseAST = null;
+        if (currentToken.kind == Token.ELSE) {
+            elseCaseAST = parseElseCase();
+        }
+        finish(casesPos);
+        
+        casesAST = elseCaseAST == null ? new SimpleCases(case1AST, casesPos)
+                : new CompoundCases(case1AST, elseCaseAST, casesPos);
+        
+        return casesAST;
+    }
+     // END cambio Andres
   
 ///////////////////////////////////////////////////////////////////////////////
 //
