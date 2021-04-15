@@ -96,6 +96,9 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.CaseRange;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -589,6 +592,65 @@ public class Parser {
   }
 
 
+    ///////////////////////////////////////////////////////////////////////////////
+  //
+  // CASES
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+    // @author        Andres
+    // @descripcion   Metodo para parsear case literal
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.33
+    CaseLiteral parseCaseLiteral() throws SyntaxError {
+        CaseLiteral caseLiteralAST = null;
+        SourcePosition caseLiteralSourcePos = new SourcePosition();
+        start(caseLiteralSourcePos);
+        
+        switch (currentToken.kind) {
+            case Token.INTLITERAL:
+            {
+                IntegerLiteral ilAST = parseIntegerLiteral();
+                finish(caseLiteralSourcePos);
+                caseLiteralAST = new CaseLiteral(ilAST, caseLiteralSourcePos);
+            }
+            break;
+            case Token.CHARLITERAL:
+            {
+                CharacterLiteral clAST = parseCharacterLiteral();
+                finish(caseLiteralSourcePos);
+                caseLiteralAST = new CaseLiteral(clAST, caseLiteralSourcePos);
+            }
+            break;
+            default:
+                syntacticError("\"%\" cannot start a case literal",
+                    currentToken.spelling);
+                break;
+        }
+        return caseLiteralAST;
+    }
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear case range
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.47
+    CaseRange parseCaseRange() throws SyntaxError {
+        CaseRange caseRangeAST = null;
+        SourcePosition caseRangePos = new SourcePosition();
+        start(caseRangePos);
+        
+        CaseLiteral clAST = parseCaseLiteral();
+        CaseLiteral c2AST = null;
+        // Check for more case literals
+        if (currentToken.kind == Token.DOUBLEDOT) {
+            accept(Token.DOUBLEDOT);
+            c2AST = parseCaseLiteral();
+        }
+        finish(caseRangePos);
+        caseRangeAST = c2AST == null ? new SimpleCaseRange(clAST, caseRangePos)
+                : new CompoundCaseRange(clAST, c2AST, caseRangePos);
+        return caseRangeAST;
+    }
+  
   
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -1194,36 +1256,6 @@ public class Parser {
     }
     return fieldAST;
   }
-    ///////////////////////////////////////////////////////////////////////////////
-  //
-  // CASES
-  //
-  ///////////////////////////////////////////////////////////////////////////////
-    // @author        Andres
-    // @descripcion   Metodo para parsear case literal
-    // @funcionalidad Parsear comando Case
-    // @codigo        A.33
-    CaseLiteral parseCaseLiteral() throws SyntaxError {
-        CaseLiteral caseLiteralAST = null;
-        switch (currentToken.kind) {
-            case Token.INTLITERAL:
-            {
-                IntegerLiteral ilAST = parseIntegerLiteral();
-                caseLiteralAST = new CaseLiteral(ilAST, previousTokenPosition);
-            }
-            break;
-            case Token.CHARLITERAL:
-            {
-                CharacterLiteral clAST = parseCharacterLiteral();
-                caseLiteralAST = new CaseLiteral(clAST, previousTokenPosition);
-            }
-            break;
-            default:
-                syntacticError("\"%\" cannot start a case literal",
-                    currentToken.spelling);
-                break;
-        }
-        return caseLiteralAST;
-    }
+  
 }
 
