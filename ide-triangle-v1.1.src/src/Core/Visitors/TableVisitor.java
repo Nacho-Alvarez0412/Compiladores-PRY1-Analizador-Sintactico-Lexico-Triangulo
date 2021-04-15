@@ -80,6 +80,11 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
@@ -102,7 +107,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * Generates a DefaultTableModel, used to draw a Jable.
  *
- * @author Luis Leopoldo Pérez <luiperpe@ns.isi.ulatina.ac.cr>
+ * @author Luis Leopoldo Pï¿½rez <luiperpe@ns.isi.ulatina.ac.cr>
  */
 public class TableVisitor implements Visitor {
 
@@ -291,6 +296,64 @@ public class TableVisitor implements Visitor {
    
    // </editor-fold>
 
+    // Cases
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case-literal
+    // @codigo        A.28
+    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+        ast.T.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.37
+    public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+        ast.CL.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.38
+    public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+        ast.CL1.visit(this, null);
+        ast.CL2.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.50
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        ast.CR.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.51
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        ast.CR1.visit(this, null);
+        ast.CR2.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
     public Object visitArrayExpression(ArrayExpression ast, Object o) {
@@ -731,8 +794,8 @@ public class TableVisitor implements Visitor {
 
         return (null);
     }
-  // </editor-fold>
-
+  // </editor-fold>  
+    
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
     // Programs
     public Object visitProgram(Program ast, Object o) {
