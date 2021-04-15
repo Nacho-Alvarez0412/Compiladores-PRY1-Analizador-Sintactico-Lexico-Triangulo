@@ -27,4 +27,10 @@ A.23 - Checker.java
 A.24 - SequentialElsifCommand.java*
 A.25 - SingleElsifCommand.java*
 Cases
-A.27 - CaseLiteral.java
+A.26 - CaseLiteral.java*
+A.27 - Visitor.java
+A.28 - TableVisitor.java
+A.29 - TreeVisitor.java
+A.30 - LayoutVisitor.java
+A.31 - Checker.java
+A.32 - Encoder.java

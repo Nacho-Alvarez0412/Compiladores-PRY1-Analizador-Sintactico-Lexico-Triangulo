@@ -65,6 +65,7 @@ public interface Visitor {
   // @codigo        A.27
   // Cases
   public abstract Object visitCaseLiteral(CaseLiteral ast, Object o);
+  // End Cambio Andres
   
   // Expressions
   public abstract Object visitArrayExpression(ArrayExpression ast, Object o);

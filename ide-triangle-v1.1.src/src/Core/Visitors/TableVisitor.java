@@ -80,6 +80,7 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -706,7 +707,19 @@ public class TableVisitor implements Visitor {
         return (null);
     }
   // </editor-fold>
-
+  
+    // Cases
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case-literal
+    // @codigo        A.28
+    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+        ast.T.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
     // Programs
     public Object visitProgram(Program ast, Object o) {

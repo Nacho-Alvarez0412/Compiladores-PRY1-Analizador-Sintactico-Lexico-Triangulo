@@ -81,6 +81,7 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -443,7 +444,17 @@ public class TreeVisitor implements Visitor {
         return(createUnary("Program", ast.C));
     }
     // </editor-fold>
-
+    
+    // Cases
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case-literal
+    // @codigo        A.29
+    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+        return(createUnary("Case Literal", ast.T));
+    }
+    // END Cambio Andres
+    
     // <editor-fold defaultstate="collapsed" desc=" Tree Creation Methods ">
     
     /**

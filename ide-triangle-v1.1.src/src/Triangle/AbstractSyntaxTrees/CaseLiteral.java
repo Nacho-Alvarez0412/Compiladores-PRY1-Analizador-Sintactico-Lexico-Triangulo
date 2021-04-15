@@ -22,7 +22,7 @@ public class CaseLiteral extends AST {
     
     
     public Object visit(Visitor v, Object o) {
-        return null;
+        return v.visitCaseLiteral(this, o);
     }
     
     public Terminal T;

@@ -93,6 +93,7 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -441,6 +442,16 @@ public class LayoutVisitor implements Visitor {
     return layoutBinary("Sub.Vname",
         ast.V, ast.E);
   }
+  
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de case-literal
+  // @codigo        A.30
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return layoutUnary("Case.Lit", ast.T);
+  }
+  // End cambio Andres
 
 
   // Programs

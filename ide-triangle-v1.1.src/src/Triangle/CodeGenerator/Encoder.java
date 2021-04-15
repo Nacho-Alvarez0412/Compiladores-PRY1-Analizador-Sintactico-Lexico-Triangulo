@@ -102,6 +102,7 @@ import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -808,6 +809,15 @@ public final class Encoder implements Visitor {
     return baseObject;
   }
 
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodo encoder para visitar CaseLiteral
+  // @funcionalidad AST CaseLiteral
+  // @codigo        A.31
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
 
   // Programs
   public Object visitProgram(Program ast, Object o) {
