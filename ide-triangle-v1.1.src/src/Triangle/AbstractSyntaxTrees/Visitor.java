@@ -67,6 +67,8 @@ public interface Visitor {
   public abstract Object visitCaseLiteral(CaseLiteral ast, Object o);
   public abstract Object visitSimpleCaseRange(SimpleCaseRange ast, Object o);
   public abstract Object visitCompoundCaseRange(CompoundCaseRange ast, Object o);
+  public abstract Object visitSequentialCaseRange(SequentialCaseRange ast, Object o);
+  public abstract Object visitCaseLiterals(CaseLiterals ast, Object o);
   // End Cambio Andres
   
   // Expressions
