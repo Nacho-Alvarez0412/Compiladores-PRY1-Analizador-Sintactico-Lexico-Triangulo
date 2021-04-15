@@ -9,7 +9,7 @@ A.6 - Parser.java
 IMPLEMENTACION SINGLEIF, SEQUENTIALIF, COMPOUNDIF ASTS
 A.7 - Visitor.java
 A.8 - Checker.java
-A.9 - Checker.java
+A.9 - Checker.javaa
 A.10 - LayoutVisitor.java
 A.11 - LayoutVisitor.java
 A.12 - TableVisitor.java
@@ -26,3 +26,5 @@ A.22 - Encoder.java
 A.23 - Checker.java
 A.24 - SequentialElsifCommand.java*
 A.25 - SingleElsifCommand.java*
+Cases
+A.26 - CaseLiteral.java
