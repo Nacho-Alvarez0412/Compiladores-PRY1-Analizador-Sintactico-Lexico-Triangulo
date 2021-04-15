@@ -25,6 +25,7 @@ public interface Visitor {
   public abstract Object visitCallCommand(CallCommand ast, Object o);
   public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
   public abstract Object visitCompoundIfCommand(CompoundIfCommand ast, Object o);
+  public abstract Object visitIfCommand(IfCommand ast, Object o);
   public abstract Object visitLetCommand(LetCommand ast, Object o);
   public abstract Object visitSequentialCommand(SequentialCommand ast, Object o);
   public abstract Object visitWhileLoopCommand(WhileLoopCommand ast, Object o);

@@ -29,6 +29,7 @@ import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
 import Triangle.AbstractSyntaxTrees.Identifier;
+import Triangle.AbstractSyntaxTrees.IfCommand;
 import Triangle.AbstractSyntaxTrees.IfExpression;
 import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
 import Triangle.AbstractSyntaxTrees.IntegerExpression;
@@ -166,7 +167,7 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
-    public Object visitIfCommand(CompoundIfCommand ast, Object o) {
+    public Object visitIfCommand(IfCommand ast, Object o) {
         ast.E.visit(this, null);
         ast.C1.visit(this, null);
         ast.C2.visit(this, null);
