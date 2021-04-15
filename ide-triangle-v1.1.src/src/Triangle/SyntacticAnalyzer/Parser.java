@@ -95,6 +95,7 @@ import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -1193,4 +1194,36 @@ public class Parser {
     }
     return fieldAST;
   }
+    ///////////////////////////////////////////////////////////////////////////////
+  //
+  // CASES
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+    // @author        Andres
+    // @descripcion   Metodo para parsear case literal
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.33
+    CaseLiteral parseCaseLiteral() throws SyntaxError {
+        CaseLiteral caseLiteralAST = null;
+        switch (currentToken.kind) {
+            case Token.INTLITERAL:
+            {
+                IntegerLiteral ilAST = parseIntegerLiteral();
+                caseLiteralAST = new CaseLiteral(ilAST, previousTokenPosition);
+            }
+            break;
+            case Token.CHARLITERAL:
+            {
+                CharacterLiteral clAST = parseCharacterLiteral();
+                caseLiteralAST = new CaseLiteral(clAST, previousTokenPosition);
+            }
+            break;
+            default:
+                syntacticError("\"%\" cannot start a case literal",
+                    currentToken.spelling);
+                break;
+        }
+        return caseLiteralAST;
+    }
 }
+

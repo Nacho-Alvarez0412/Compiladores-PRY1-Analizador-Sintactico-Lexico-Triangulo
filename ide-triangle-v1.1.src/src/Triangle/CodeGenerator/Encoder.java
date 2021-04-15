@@ -813,7 +813,7 @@ public final class Encoder implements Visitor {
   // @author        Andres
   // @descripcion   Metodo encoder para visitar CaseLiteral
   // @funcionalidad AST CaseLiteral
-  // @codigo        A.31
+  // @codigo        A.32
   public Object visitCaseLiteral(CaseLiteral ast, Object o) {
     return null;
   }
