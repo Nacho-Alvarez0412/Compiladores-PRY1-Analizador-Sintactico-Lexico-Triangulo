@@ -94,6 +94,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -205,6 +207,31 @@ public class LayoutVisitor implements Visitor {
    }
     // END CAMBIO Joseph
 
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de case-literal
+  // @codigo        A.30
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return layoutUnary("Case.Lit", ast.T);
+  }
+  // End cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de simple case range
+  // @codigo        A.45
+  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+      return layoutUnary("Sim.Case.Ran", ast.CL);
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de compound case range
+  // @codigo        A.46
+  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+      return layoutBinary("Comp.Case.Ran", ast.CL1, ast.CL2);
+  }
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {
@@ -442,17 +469,6 @@ public class LayoutVisitor implements Visitor {
     return layoutBinary("Sub.Vname",
         ast.V, ast.E);
   }
-  
-  // Cases
-  // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-  // @funcionalidad Creacion en las alternativas de case-literal
-  // @codigo        A.30
-  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    return layoutUnary("Case.Lit", ast.T);
-  }
-  // End cambio Andres
-
 
   // Programs
   public Object visitProgram(Program ast, Object obj) {

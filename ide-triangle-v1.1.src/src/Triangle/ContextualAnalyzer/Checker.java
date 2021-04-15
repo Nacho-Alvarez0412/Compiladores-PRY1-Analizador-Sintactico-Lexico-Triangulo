@@ -99,6 +99,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -243,7 +245,35 @@ public final class Checker implements Visitor {
       return null;
   } 
   // END CAMBIO Joseph
-
+  
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar CaseLiteral
+  // @funcionalidad AST CaseLiteral
+  // @codigo        A.31
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar SimpleCaseRange
+  // @funcionalidad AST SimpleCaseRange
+  // @codigo        A.41
+  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar CompoundCaseRange
+  // @funcionalidad AST CompoundCaseRange
+  // @codigo        A.42
+  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+  
   // Expressions
 
   // Returns the TypeDenoter denoting the type of the expression. Does
@@ -826,16 +856,6 @@ public final class Checker implements Visitor {
     }
     return ast.type;
   }
-  
-   // Cases
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar CaseLiteral
-  // @funcionalidad AST CaseLiteral
-  // @codigo        A.31
-  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
 
   // Programs
 
