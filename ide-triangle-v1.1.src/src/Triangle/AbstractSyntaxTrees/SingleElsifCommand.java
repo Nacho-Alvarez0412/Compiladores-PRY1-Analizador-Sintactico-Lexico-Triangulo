@@ -14,9 +14,6 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  */
 public class SingleElsifCommand extends ElsifCommand {
     
-    public Expression E;
-    public Command C;
-    
     public SingleElsifCommand(Expression eAST, Command cAST, 
             SourcePosition thePosition) {
         super(thePosition);
@@ -27,4 +24,8 @@ public class SingleElsifCommand extends ElsifCommand {
     public Object visit(Visitor v, Object o) {
         return v.visitSingleElsifCommand(this, o);
     }
+    
+    public Expression E;
+    public Command C;
+    
 }
