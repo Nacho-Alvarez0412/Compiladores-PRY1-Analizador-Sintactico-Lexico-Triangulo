@@ -367,7 +367,7 @@ public class Parser {
             // Create AST for the single elsif
             SingleElsifCommand seiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
             // Group elsif ASTs
-            eiAST = eiAST == null ? new SequentialElsifCommand(seiAST, commandPos) 
+            eiAST = eiAST == null ? seiAST
                     : new SequentialElsifCommand(eiAST, seiAST, commandPos);
         }
         // Parse else instruction
@@ -577,7 +577,7 @@ public class Parser {
       }
       break;
     // END CAMBIO Joseph
-
+        
     default:
       syntacticError("\"%\" cannot start a command",
         currentToken.spelling);
