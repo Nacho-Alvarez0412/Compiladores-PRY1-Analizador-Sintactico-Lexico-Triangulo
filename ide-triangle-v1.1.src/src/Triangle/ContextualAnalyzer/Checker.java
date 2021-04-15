@@ -97,6 +97,8 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -119,24 +121,6 @@ public final class Checker implements Visitor {
     return null;
   }
   
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
-  // @funcionalidad AST SingleElsifCommand
-  // @codigo        A.8
-  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
-  // @funcionalidad AST SequentialElsifCommand
-  // @codigo        A.9
-  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-
   public Object visitCallCommand(CallCommand ast, Object o) {
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
@@ -200,6 +184,8 @@ public final class Checker implements Visitor {
   }
   */
   // END CAMBIO Joseph
+   
+  // New ASTS
   
   // @author        Joseph
   // @descripcion   Metodos checker para visitar nuevos ASTs de single-command
@@ -232,7 +218,35 @@ public final class Checker implements Visitor {
   public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
       return null;
   } 
+  
+    
+  public Object visitProcedure(Procedure ast, Object o) {
+      return null;
+  } 
+  
+   public Object visitFunction(Function ast, Object o) {
+      return null;
+  } 
+  
   // END CAMBIO Joseph
+  
+    // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
+  // @funcionalidad AST SingleElsifCommand
+  // @codigo        A.8
+  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
+  // @funcionalidad AST SequentialElsifCommand
+  // @codigo        A.9
+  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
+      return null;
+  }
+  // END cambio Andres
 
   // Expressions
 

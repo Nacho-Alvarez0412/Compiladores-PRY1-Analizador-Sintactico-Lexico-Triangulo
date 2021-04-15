@@ -92,6 +92,8 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -196,7 +198,24 @@ public class LayoutVisitor implements Visitor {
      return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
    }
     // END CAMBIO Joseph
-
+   
+   
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.37
+   
+   // ProcFuncs
+   
+   public Object visitProcedure (Procedure ast, Object obj) {
+     return layoutTernary("Proc.", ast.I, ast.FPS, ast.C);
+   }
+   
+   public Object visitFunction (Function ast, Object obj) {
+     return layoutQuaternary("Func.", ast.I, ast.FPS, ast.TD, ast.E);
+   }
+   
+   //END CAMBIO Joseph
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {

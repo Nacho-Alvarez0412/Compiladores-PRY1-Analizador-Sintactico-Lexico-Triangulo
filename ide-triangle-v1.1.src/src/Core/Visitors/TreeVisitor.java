@@ -80,6 +80,8 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -162,7 +164,6 @@ public class TreeVisitor implements Visitor {
      */
     // END CAMBIO Joseph
     
-    
     // @author        Joseph
     // @descripcion   Metodos dibujantes para visitar nuevos ASTS
     // @funcionalidad Creacion de nuevas alternativas de no-terminales
@@ -172,11 +173,11 @@ public class TreeVisitor implements Visitor {
     }
     
     public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object obj) {
-        return(createBinary("Do Loop Until Command", ast.E, ast.C));
+        return(createBinary("Do Loop Until Command", ast.C, ast.E));
     }
     
     public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object obj) {
-        return(createBinary("Do Loop While Command", ast.E, ast.C));
+        return(createBinary("Do Loop While Command", ast.C, ast.E));
     }
 
     public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object obj) {
@@ -192,6 +193,23 @@ public class TreeVisitor implements Visitor {
     }
     // END CAMBIO Joseph
     // </editor-fold>
+    
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.36
+    // <editor-fold defaultstate="collapsed" desc=" ProcFuncs ">
+    
+    public Object visitProcedure (Procedure ast, Object obj) {
+        return(createTernary("Procedure", ast.I, ast.FPS, ast.C));
+    }
+    
+    public Object visitFunction (Function ast, Object obj) {
+        return(createQuaternary("Procedure", ast.I, ast.FPS, ast.TD, ast.E));
+    }
+    
+    //END CAMBIO Joseph
+   // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions

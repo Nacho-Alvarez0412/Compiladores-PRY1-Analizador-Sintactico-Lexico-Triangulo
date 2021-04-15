@@ -79,6 +79,8 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -191,10 +193,10 @@ public class TableVisitor implements Visitor {
     */
     // END CAMBIO Joseph
     
-// @author        Joseph
-// @descripcion   Metodos para visitar nuevos ASTS
-// @funcionalidad Creacion de nuevas alternativas de no-terminales
-// @codigo        J.20
+    // @author        Joseph
+    // @descripcion   Metodos para visitar nuevos ASTS
+    // @funcionalidad Creacion de nuevas alternativas de no-terminales
+    // @codigo        J.20
   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
         ast.E.visit(this, null);
         ast.C.visit(this, null);
@@ -240,12 +242,36 @@ public class TableVisitor implements Visitor {
         ast.C.visit(this, null);
         return (null);
   }
-   
-   
-  
   // END CAMBIO Joseph
     
   // </editor-fold>
+   
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.35
+   
+   // <editor-fold defaultstate="collapsed" desc=" ProcFuncs ">
+   
+   public Object visitProcedure (Procedure ast, Object o) {
+        ast.I.visit(this, null);
+        ast.FPS.visit(this, null);
+        ast.C.visit(this, null);
+        return (null);
+  }
+   
+   public Object visitFunction (Function ast, Object o) {
+        ast.I.visit(this, null);
+        ast.FPS.visit(this, null);
+        ast.TD.visit(this, null);
+        ast.E.visit(this, null);
+        return (null);
+  }
+   
+   //END CAMBIO Joseph
+   
+   
+   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
