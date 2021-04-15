@@ -37,3 +37,21 @@ J.36: TreeVisitor.java
 J.37: LayoutVisitor.java
 J.38: Parser.java
 J.39: SequentialProcFuncs.java*
+J.40: Parser.java
+J.41: Parser.java
+J.42: VarTDDeclaration.java
+J.43: VarExpDeclaration.java*
+J.44: VarExpDeclaration.java
+J.45: Encoder.java
+J.46: Checker.java
+J.47: Checker.java
+J.48: LayoutVisitor.java
+J.49: TableVisitor.java
+J.50: TreeVisitor.java
+
+// @author        Joseph
+// @description   Cambio de var como alternativa de single-declaration
+// @funcionalidad Cambio en las alternativas de single declaration
+// @codigo        J.
+/**/
+// END CAMBIO Joseph

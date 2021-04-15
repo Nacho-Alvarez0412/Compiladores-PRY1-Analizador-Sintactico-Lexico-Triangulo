@@ -77,7 +77,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.TypeDenoter;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -85,6 +84,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.16
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.ElsifCommand;
@@ -102,6 +103,7 @@ import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 
@@ -933,7 +935,42 @@ public class Parser {
         declarationAST = new ConstDeclaration(iAST, eAST, declarationPos);
       }
       break;
-
+      
+// @author        Joseph
+// @description   Cambio en el parsing de la declaracion de variables 
+// @funcionalidad Modificaciones en las alternativas de single-declaration
+// @codigo        J.41
+    case Token.VAR:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        switch (currentToken.kind) {
+            
+        case Token.COLON:
+          {
+           acceptIt();
+           TypeDenoter tAST = parseTypeDenoter();
+           finish(declarationPos);
+           declarationAST = new VarTDDeclaration(iAST, tAST, declarationPos);
+            
+          }
+          break;
+        case Token.BECOMES:
+          {
+           acceptIt();
+           Expression eAST = parseExpression();
+           finish(declarationPos);
+           declarationAST = new VarExpDeclaration(iAST, eAST, declarationPos);
+          }
+          break;
+        default:
+          syntacticError("\"%\" cannot follow var declaration",
+           currentToken.spelling);
+          break;                       
+        } 
+      }
+      break;
+/*
     case Token.VAR:
       {
         acceptIt();
@@ -943,8 +980,31 @@ public class Parser {
         finish(declarationPos);
         declarationAST = new VarDeclaration(iAST, tAST, declarationPos);
       }
-      break;
+      break;      
 
+ */      
+// END CAMBIO Joseph
+
+// @author        Joseph
+// @description   Cambio en el parsing de la declaracion de procedures 
+// @funcionalidad Modificaciones en las alternativas de single-declaration
+// @codigo        J.40
+    case Token.PROC:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.IS);
+        Command cAST = parseSingleCommand();
+        accept(Token.END);
+        finish(declarationPos);
+        declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
+      }
+      break;
+      
+/* J.40
     case Token.PROC:
       {
         acceptIt();
@@ -957,7 +1017,9 @@ public class Parser {
         finish(declarationPos);
         declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
       }
-      break;
+      break;    
+*/     
+//END Cambio Joseph
 
     case Token.FUNC:
       {
@@ -986,6 +1048,9 @@ public class Parser {
         declarationAST = new TypeDeclaration(iAST, tAST, declarationPos);
       }
       break;
+
+      
+  
 
     default:
       syntacticError("\"%\" cannot start a declaration",

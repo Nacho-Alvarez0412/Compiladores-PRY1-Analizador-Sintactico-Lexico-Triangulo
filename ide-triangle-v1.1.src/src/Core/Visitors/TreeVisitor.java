@@ -63,7 +63,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -71,6 +70,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.9
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
@@ -86,6 +87,7 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -301,9 +303,25 @@ public class TreeVisitor implements Visitor {
         return(createTernary("Unary Operator Declaration", ast.O, ast.ARG, ast.RES));
     }
     
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.50
+    public Object visitVarTDDeclaration(VarTDDeclaration ast, Object obj) {
+        return(createBinary("Variable TD. Declaration", ast.I, ast.T));
+    }
+    
+    public Object visitVarExpDeclaration(VarExpDeclaration ast, Object obj) {
+        return(createBinary("Variable Exp. Declaration", ast.I, ast.E));
+    }
+    /*
     public Object visitVarDeclaration(VarDeclaration ast, Object obj) {
         return(createBinary("Variable Declaration", ast.I, ast.T));
     }
+    
+    */
+    //END CAMBIO Joseph
+    
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Aggregates ">

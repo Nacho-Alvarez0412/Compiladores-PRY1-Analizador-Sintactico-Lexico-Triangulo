@@ -77,6 +77,20 @@ public interface Visitor {
   public abstract Object visitVnameExpression(VnameExpression ast, Object o);
 
   // Declarations
+  // @author        Joseph
+  // @descripcion   Agregar metodos de visita de nuevos ASTs
+  // @funcionalidad metodos de visita para nuevos ASTs
+  // @codigo        J.44 
+  public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
+  public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
+  public abstract Object visitFuncDeclaration(FuncDeclaration ast, Object o);
+  public abstract Object visitProcDeclaration(ProcDeclaration ast, Object o);
+  public abstract Object visitSequentialDeclaration(SequentialDeclaration ast, Object o);
+  public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
+  public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
+  public abstract Object visitVarTDDeclaration(VarTDDeclaration ast, Object o);
+  public abstract Object visitVarExpDeclaration(VarExpDeclaration ast, Object o);
+  /* J.44
   public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
   public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
   public abstract Object visitFuncDeclaration(FuncDeclaration ast, Object o);
@@ -85,7 +99,8 @@ public interface Visitor {
   public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
   public abstract Object visitVarDeclaration(VarDeclaration ast, Object o);
-
+  */
+  // END CAMBIO Joseph
   // Array Aggregates
   public abstract Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o);
   public abstract Object visitSingleArrayAggregate(SingleArrayAggregate ast, Object o);

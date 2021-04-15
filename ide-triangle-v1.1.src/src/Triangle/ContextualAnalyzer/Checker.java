@@ -80,7 +80,6 @@ import Triangle.AbstractSyntaxTrees.TypeDenoter;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -88,6 +87,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Creacion de nuevas alternativas para no-terminales
 // @codigo        J.11
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
@@ -103,6 +104,7 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 import Triangle.SyntacticAnalyzer.SourcePosition;
@@ -257,6 +259,10 @@ public final class Checker implements Visitor {
   } 
   
   public Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o) {
+      return null;
+  }
+  
+  public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
       return null;
   } 
   // END CAMBIO Joseph
@@ -450,6 +456,22 @@ public final class Checker implements Visitor {
     return null;
   }
 
+  
+   // @author        Joseph
+   // @descripcion   Cambio de var como alternativa de single-declaration
+   // @funcionalidad Cambio en las alternativas de single-declaration
+   // @codigo        J.46
+  
+   public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
+    ast.T = (TypeDenoter) ast.T.visit(this, null);
+    idTable.enter (ast.I.spelling, ast);
+    if (ast.duplicated)
+      reporter.reportError ("identifier \"%\" already declared",
+                            ast.I.spelling, ast.position);
+    return null;
+  } 
+  
+  /*J.46
   public Object visitVarDeclaration(VarDeclaration ast, Object o) {
     ast.T = (TypeDenoter) ast.T.visit(this, null);
     idTable.enter (ast.I.spelling, ast);
@@ -459,6 +481,8 @@ public final class Checker implements Visitor {
 
     return null;
   }
+  */
+  // END Cambio Joseph
 
   // Array Aggregates
 
@@ -812,9 +836,19 @@ public final class Checker implements Visitor {
       if (binding instanceof ConstDeclaration) {
         ast.type = ((ConstDeclaration) binding).E.type;
         ast.variable = false;
+      // @author        Joseph
+      // @description   Cambio de var como alternativa de single-declaration
+      // @funcionalidad Cambio en las alternativas de single declaration
+      // @codigo        J.47
+      } else if (binding instanceof VarTDDeclaration) {
+        ast.type = ((VarTDDeclaration) binding).T;
+        ast.variable = true;
+       /* J.47
       } else if (binding instanceof VarDeclaration) {
         ast.type = ((VarDeclaration) binding).T;
-        ast.variable = true;
+        ast.variable = true;        
+        */ 
+      // END CAMBIO Joseph
       } else if (binding instanceof ConstFormalParameter) {
         ast.type = ((ConstFormalParameter) binding).T;
         ast.variable = false;
