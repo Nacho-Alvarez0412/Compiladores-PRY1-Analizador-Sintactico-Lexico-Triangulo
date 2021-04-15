@@ -101,6 +101,11 @@ import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 import Triangle.AbstractSyntaxTrees.CaseLiterals;
 import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -671,6 +676,24 @@ public class Parser {
         }
         
         return caseLiteralsAST;
+    }
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear else case
+    // @funcionalidad Parsear comando else case
+    // @codigo        A.93
+    ElseCase parseElseCase() throws SyntaxError {
+        ElseCase elseCaseAST = null;
+        SourcePosition elseCasePos = new SourcePosition();
+        start(elseCasePos);
+        
+        // Parse else case
+        accept(Token.ELSE);
+        Command cAST = parseCommand();
+        finish(elseCasePos);
+        
+        elseCaseAST = new ElseCase(cAST, elseCasePos);
+        return elseCaseAST;
     }
   
   
