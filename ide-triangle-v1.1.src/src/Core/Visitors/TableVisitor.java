@@ -81,6 +81,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -266,6 +268,41 @@ public class TableVisitor implements Visitor {
     
   // </editor-fold>
 
+    // Cases
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case-literal
+    // @codigo        A.28
+    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+        ast.T.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.37
+    public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+        ast.CL.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.38
+    public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+        ast.CL1.visit(this, null);
+        ast.CL2.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+   
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
     public Object visitArrayExpression(ArrayExpression ast, Object o) {
@@ -706,19 +743,7 @@ public class TableVisitor implements Visitor {
 
         return (null);
     }
-  // </editor-fold>
-  
-    // Cases
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case-literal
-    // @codigo        A.28
-    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-        ast.T.visit(this, null);
-        
-        return (null);
-    }
-    // END Cambio Andres
+  // </editor-fold>  
     
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
     // Programs

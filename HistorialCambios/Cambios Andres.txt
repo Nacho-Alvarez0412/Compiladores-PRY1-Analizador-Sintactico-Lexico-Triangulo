@@ -38,3 +38,7 @@ A.33 - Parser.java
 A.34 - CaseRange.java*
 A.35 - SimpleCaseRange.java*
 A.36 - CompoundCaseRange.java*
+A.37 - TableVisitor.java
+A.38 - TableVisitor.java
+A.39 - TreeVisitor.java
+A.40 - TreeVisitor.java

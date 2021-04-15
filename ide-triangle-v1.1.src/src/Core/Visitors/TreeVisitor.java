@@ -82,6 +82,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -201,6 +203,34 @@ public class TreeVisitor implements Visitor {
     }
     // END CAMBIO Joseph
     // </editor-fold>
+    
+     // Cases
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case-literal
+    // @codigo        A.29
+    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+        return(createUnary("Case Literal", ast.T));
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.39
+    public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+        return(createUnary("Simple Case Range", ast.CL));
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case range
+    // @codigo        A.40
+    public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+      return(createBinary("Compound Case Range", ast.CL1, ast.CL2));
+    }
+    // END Cambio Andres
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
@@ -444,16 +474,6 @@ public class TreeVisitor implements Visitor {
         return(createUnary("Program", ast.C));
     }
     // </editor-fold>
-    
-    // Cases
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case-literal
-    // @codigo        A.29
-    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-        return(createUnary("Case Literal", ast.T));
-    }
-    // END Cambio Andres
     
     // <editor-fold defaultstate="collapsed" desc=" Tree Creation Methods ">
     
