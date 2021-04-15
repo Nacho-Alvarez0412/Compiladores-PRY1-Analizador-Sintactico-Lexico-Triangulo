@@ -104,6 +104,7 @@ import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -264,6 +265,10 @@ public final class Encoder implements Visitor {
   }
   
   public Object visitProcedure(Procedure ast, Object o) {
+      return null;
+  }
+ 
+  public Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o) {
       return null;
   }
   // END CAMBIO Joseph

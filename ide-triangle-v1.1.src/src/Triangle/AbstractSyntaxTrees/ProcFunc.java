@@ -8,7 +8,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  * @author Joseph
  * @codigo J.32
  */
-public abstract class ProcFunc extends AST {
+public abstract class ProcFunc extends ProcFuncs {
 
   public ProcFunc (SourcePosition thePosition) {
     super (thePosition);

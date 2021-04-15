@@ -100,6 +100,7 @@ import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -251,10 +252,13 @@ public final class Checker implements Visitor {
       return null;
   } 
   
-   public Object visitFunction(Function ast, Object o) {
+  public Object visitFunction(Function ast, Object o) {
       return null;
   } 
   
+  public Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o) {
+      return null;
+  } 
   // END CAMBIO Joseph
 
   // Expressions

@@ -39,6 +39,7 @@ public interface Visitor {
   public abstract Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o);
   public abstract Object visitProcedure(Procedure ast, Object o);
   public abstract Object visitFunction(Function ast, Object o);
+  public abstract Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o);
   /* J.6
    public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);

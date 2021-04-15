@@ -95,6 +95,7 @@ import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -220,6 +221,10 @@ public class LayoutVisitor implements Visitor {
    
    public Object visitFunction (Function ast, Object obj) {
      return layoutQuaternary("Func.", ast.I, ast.FPS, ast.TD, ast.E);
+   }
+   
+   public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object obj) {
+     return layoutBinary("Seq.ProcFunc.", ast.PF1, ast.PF2);
    }
    
    //END CAMBIO Joseph

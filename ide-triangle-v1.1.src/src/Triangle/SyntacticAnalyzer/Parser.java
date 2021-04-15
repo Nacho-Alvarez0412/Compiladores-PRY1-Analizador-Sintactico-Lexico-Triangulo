@@ -96,6 +96,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.ProcFunc;
+import Triangle.AbstractSyntaxTrees.ProcFuncs;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.16
@@ -599,7 +601,32 @@ public class Parser {
 // ProcFuncs
 //
 ///////////////////////////////////////////////////////////////////////////////
-   ProcFunc parseProcFunc() throws SyntaxError {
+
+  ProcFuncs parseDeclaration() throws SyntaxError {
+    Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos);
+    declarationAST = parseSingleDeclaration();
+    while (currentToken.kind == Token.SEMICOLON) {
+      acceptIt();
+      Declaration d2AST = parseSingleDeclaration();
+      finish(declarationPos);
+      declarationAST = new SequentialDeclaration(declarationAST, d2AST,
+        declarationPos);
+    }
+    return declarationAST;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ProcFunc parseProcFunc() throws SyntaxError {
     ProcFunc procfuncAST = null; // in case there's a syntactic error
 
     SourcePosition procfuncPos = new SourcePosition();
@@ -647,10 +674,7 @@ public class Parser {
     return procfuncAST;
   }
   
-  
-  
-  
-  
+
  // END Cambio  
   
   

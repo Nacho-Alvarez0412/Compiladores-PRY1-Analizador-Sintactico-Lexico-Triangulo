@@ -83,6 +83,7 @@ import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -214,6 +215,10 @@ public class TreeVisitor implements Visitor {
     
     public Object visitFunction (Function ast, Object obj) {
         return(createQuaternary("Procedure", ast.I, ast.FPS, ast.TD, ast.E));
+    }
+
+    public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object obj) {
+        return(createBinary("ProcFuncs", ast.PF1, ast.PF2));
     }
     
     //END CAMBIO Joseph
