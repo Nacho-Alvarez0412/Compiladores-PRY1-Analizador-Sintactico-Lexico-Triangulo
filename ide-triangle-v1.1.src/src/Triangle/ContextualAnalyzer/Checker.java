@@ -98,11 +98,6 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.13
@@ -261,71 +256,7 @@ public final class Checker implements Visitor {
   } 
   
   // END CAMBIO Joseph
-  
-    // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
-  // @funcionalidad AST SingleElsifCommand
-  // @codigo        A.8
-  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
-  // @funcionalidad AST SequentialElsifCommand
-  // @codigo        A.9
-  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-  
-  // Cases
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar CaseLiteral
-  // @funcionalidad AST CaseLiteral
-  // @codigo        A.31
-  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar SimpleCaseRange
-  // @funcionalidad AST SimpleCaseRange
-  // @codigo        A.41
-  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar CompoundCaseRange
-  // @funcionalidad AST CompoundCaseRange
-  // @codigo        A.42
-  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
-  
-    // @author        Andres
-    // @descripcion   Metodo checker para visitar visitCaseLiterals
-    // @funcionalidad AST visitCaseLiterals
-    // @codigo        A.56
-    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-        return null;
-    }
-     // END Cambio Andres
 
-    // @author        Andres
-    // @descripcion   Metodo checker para visitar SequentialCaseRange
-    // @funcionalidad AST SequentialCaseRange
-    // @codigo        A.57
-    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-        return null;
-    }
-    // END Cambio Andres
-  
   // Expressions
 
   // Returns the TypeDenoter denoting the type of the expression. Does

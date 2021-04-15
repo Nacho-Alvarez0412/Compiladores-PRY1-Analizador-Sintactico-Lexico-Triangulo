@@ -95,12 +95,6 @@ import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.CaseRange;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -373,7 +367,7 @@ public class Parser {
             // Create AST for the single elsif
             SingleElsifCommand seiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
             // Group elsif ASTs
-            eiAST = eiAST == null ? seiAST
+            eiAST = eiAST == null ? new SequentialElsifCommand(seiAST, commandPos) 
                     : new SequentialElsifCommand(eiAST, seiAST, commandPos);
         }
         // Parse else instruction
@@ -583,7 +577,7 @@ public class Parser {
       }
       break;
     // END CAMBIO Joseph
-        
+
     default:
       syntacticError("\"%\" cannot start a command",
         currentToken.spelling);
@@ -594,85 +588,6 @@ public class Parser {
   }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
-  //
-  // CASES
-  //
-  ///////////////////////////////////////////////////////////////////////////////
-    // @author        Andres
-    // @descripcion   Metodo para parsear case literal
-    // @funcionalidad Parsear comando Case
-    // @codigo        A.33
-    CaseLiteral parseCaseLiteral() throws SyntaxError {
-        CaseLiteral caseLiteralAST = null;
-        SourcePosition caseLiteralSourcePos = new SourcePosition();
-        start(caseLiteralSourcePos);
-        
-        switch (currentToken.kind) {
-            case Token.INTLITERAL:
-            {
-                IntegerLiteral ilAST = parseIntegerLiteral();
-                finish(caseLiteralSourcePos);
-                caseLiteralAST = new CaseLiteral(ilAST, caseLiteralSourcePos);
-            }
-            break;
-            case Token.CHARLITERAL:
-            {
-                CharacterLiteral clAST = parseCharacterLiteral();
-                finish(caseLiteralSourcePos);
-                caseLiteralAST = new CaseLiteral(clAST, caseLiteralSourcePos);
-            }
-            break;
-            default:
-                syntacticError("\"%\" cannot start a case literal",
-                    currentToken.spelling);
-                break;
-        }
-        return caseLiteralAST;
-    }
-    
-    // @author        Andres
-    // @descripcion   Metodo para parsear case range
-    // @funcionalidad Parsear comando Case
-    // @codigo        A.47
-    CaseRange parseCaseRange() throws SyntaxError {
-        CaseRange caseRangeAST = null;
-        SourcePosition caseRangePos = new SourcePosition();
-        start(caseRangePos);
-        
-        CaseLiteral clAST = parseCaseLiteral();
-        CaseLiteral c2AST = null;
-        // Check for more case literals
-        if (currentToken.kind == Token.DOUBLEDOT) {
-            accept(Token.DOUBLEDOT);
-            c2AST = parseCaseLiteral();
-        }
-        finish(caseRangePos);
-        caseRangeAST = c2AST == null ? new SimpleCaseRange(clAST, caseRangePos)
-                : new CompoundCaseRange(clAST, c2AST, caseRangePos);
-        return caseRangeAST;
-    }
-    
-    // @author        Andres
-    // @descripcion   Metodo para parsear case literals
-    // @funcionalidad Parsear comando Case
-    // @codigo        A.60
-    CaseLiterals parseCaseLiterals() throws SyntaxError {
-        CaseLiterals caseLiteralsAST = null;
-        SourcePosition caseLiteralsPos = new SourcePosition();
-        start(caseLiteralsPos);
-        
-        CaseRange cr1AST = parseCaseRange();
-        while(currentToken.kind == Token.PIPE) {
-            accept(Token.PIPE);
-            CaseRange cr2AST = parseCaseRange();
-            finish(caseLiteralsPos);
-            cr1AST = new SequentialCaseRange(cr1AST, cr2AST, caseLiteralsPos);
-        }
-        
-        return caseLiteralsAST;
-    }
-  
   
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -1278,6 +1193,4 @@ public class Parser {
     }
     return fieldAST;
   }
-  
 }
-

@@ -81,11 +81,6 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
@@ -100,7 +95,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  *
  * Generates DefaultMutableTreeNodes, used to draw a JTree.
  *
- * @author Luis Leopoldo Pï¿½rez <luiperpe@ns.isi.ulatina.ac.cr>
+ * @author Luis Leopoldo Pérez <luiperpe@ns.isi.ulatina.ac.cr>
  */
 public class TreeVisitor implements Visitor {
       
@@ -223,52 +218,6 @@ public class TreeVisitor implements Visitor {
     
     //END CAMBIO Joseph
    // </editor-fold>
-    
-     // Cases
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case-literal
-    // @codigo        A.29
-    public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-        return(createUnary("Case Literal", ast.T));
-    }
-    // END Cambio Andres
-    
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case range
-    // @codigo        A.39
-    public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-        return(createUnary("Simple Case Range", ast.CL));
-    }
-    // END Cambio Andres
-    
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case range
-    // @codigo        A.40
-    public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-      return(createBinary("Compound Case Range", ast.CL1, ast.CL2));
-    }
-    // END Cambio Andres
-    
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case literals
-    // @codigo        A.52
-    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-        return(createUnary("Case Literals", ast.CR));
-    }
-     // END Cambio Andres
-    
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case literals
-    // @codigo        A.53
-    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-        return(createBinary("Sequential Case Range", ast.CR1, ast.CR2));
-    }
-    // END Cambio Andres
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
@@ -512,7 +461,7 @@ public class TreeVisitor implements Visitor {
         return(createUnary("Program", ast.C));
     }
     // </editor-fold>
-    
+
     // <editor-fold defaultstate="collapsed" desc=" Tree Creation Methods ">
     
     /**
@@ -591,7 +540,7 @@ public class TreeVisitor implements Visitor {
     }
     
     // @author        Joseph
-    // @descripcion   Metodo de dibujo de ï¿½rboles quinarios
+    // @descripcion   Metodo de dibujo de árboles quinarios
     // @funcionalidad Dibujo de ASTs
     // @codigo        J.27
     public DefaultMutableTreeNode createQuinary(String caption, AST child1, AST child2, AST child3, AST child4, AST child5) {

@@ -102,11 +102,6 @@ import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.13
@@ -273,60 +268,7 @@ public final class Encoder implements Visitor {
   }
   // END CAMBIO Joseph
   
-    // @author        Abdres
-  // @descripcion   Metodo checker para visitar visitSingleElsifCommand
-  // @funcionalidad AST SingleElsifCommand
-  // @codigo        A.16
-  public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo encoder para visitar SimpleCaseRange
-  // @funcionalidad AST SimpleCaseRange
-  // @codigo        A.43
-  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodo encoder para visitar CompoundCaseRange
-  // @funcionalidad AST CompoundCaseRange
-  // @codigo        A.44
-  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-    return null;
-  }
-  // END cambio Andres
-  
-  // @author        Andres
-    // @descripcion   Metodo encoder para visitar visitCaseLiterals
-    // @funcionalidad AST visitCaseLiterals
-    // @codigo        A.58
-    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-        return null;
-    }
-     // END Cambio Andres
-  // @author        Andres
-  // @descripcion   Metodo checker para visitar visitSequentialElsifCommand
-  // @funcionalidad AST SequentialElsifCommand
-  // @codigo        A.17
-  public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-      return null;
-  }
-  // END cambio Andres
-  
-  
 
-    // @author        Andres
-    // @descripcion   Metodo encoder para visitar SequentialCaseRange
-    // @funcionalidad AST SequentialCaseRange
-    // @codigo        A.59
-    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-        return null;
-    }
-    // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object o) {
@@ -880,6 +822,7 @@ public final class Encoder implements Visitor {
     }
     return baseObject;
   }
+
 
   // Programs
   public Object visitProgram(Program ast, Object o) {

@@ -93,11 +93,6 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 /* J.8
@@ -130,7 +125,7 @@ public class LayoutVisitor implements Visitor {
   }
   
   // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar layouts nuevos ASTS
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
   // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.10
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
@@ -139,13 +134,14 @@ public class LayoutVisitor implements Visitor {
   // END cambio Andres
   
   // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar layouts  nuevos ASTS
+  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
   // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.11
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
       return layoutBinary("Seq.Elsif.Com", ast.SE1, ast.SE2);
   }
   // END cambio Andres
+  
 
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
@@ -227,50 +223,6 @@ public class LayoutVisitor implements Visitor {
    }
    
    //END CAMBIO Joseph
-
-  // Cases
-  // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-  // @funcionalidad Creacion en las alternativas de case-literal
-  // @codigo        A.30
-  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    return layoutUnary("Case.Lit", ast.T);
-  }
-  // End cambio Andres
-  
-  // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-  // @funcionalidad Creacion en las alternativas de simple case range
-  // @codigo        A.45
-  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-      return layoutUnary("Sim.Case.Ran", ast.CL);
-  }
-  
-  // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-  // @funcionalidad Creacion en las alternativas de compound case range
-  // @codigo        A.46
-  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-      return layoutBinary("Comp.Case.Ran", ast.CL1, ast.CL2);
-  }
-  
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case literals
-    // @codigo        A.54
-    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-        return layoutUnary("Case.Lit", ast.CR);
-    }
-     // END Cambio Andres
-
-    // @author        Andres
-    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
-    // @funcionalidad Creacion en las alternativas de case literals
-    // @codigo        A.55
-    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-        return layoutBinary("Seq.Cas.Ran", ast.CR1, ast.CR2);
-    }
-    // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {
@@ -509,6 +461,7 @@ public class LayoutVisitor implements Visitor {
         ast.V, ast.E);
   }
 
+
   // Programs
   public Object visitProgram(Program ast, Object obj) {
     return layoutUnary("Program", ast.C);
@@ -570,7 +523,7 @@ public class LayoutVisitor implements Visitor {
   }
   
     // @author        Joseph
-    // @descripcion   Metodo de dibujo de layout de ï¿½rboles quinarios
+    // @descripcion   Metodo de dibujo de layout de árboles quinarios
     // @funcionalidad Dibujo de ASTs
     // @codigo        J.28
   
