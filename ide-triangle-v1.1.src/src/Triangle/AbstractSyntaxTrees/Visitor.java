@@ -58,8 +58,14 @@ public interface Visitor {
   public abstract Object visitWhileCommand(WhileCommand ast, Object o);
   */
   // END Cambio Andres
-
-
+  
+  // @author        Andres
+  // @descripcion   Agregar metodos de visita para AST Cases
+  // @funcionalidad metodos de visita ASTs de Cases
+  // @codigo        A.27
+  // Cases
+  public abstract Object visitCaseLiteral(CaseLiteral ast, Object o);
+  
   // Expressions
   public abstract Object visitArrayExpression(ArrayExpression ast, Object o);
   public abstract Object visitBinaryExpression(BinaryExpression ast, Object o);

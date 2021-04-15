@@ -27,4 +27,4 @@ A.23 - Checker.java
 A.24 - SequentialElsifCommand.java*
 A.25 - SingleElsifCommand.java*
 Cases
-A.26 - CaseLiteral.java
+A.27 - CaseLiteral.java
