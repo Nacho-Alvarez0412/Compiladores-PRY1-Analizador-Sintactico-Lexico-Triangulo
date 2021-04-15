@@ -1,9 +1,12 @@
+CAMBIOS LEXICOX
 A.1 - Token.java
 A.2 - Token.java
+CAMBIOS IF, LET Y NOTHING PARSER
 A.3 - Parser.java
 A.4 - Parser.java
 A.5 - Parser.java
 A.6 - Parser.java
+IMPLEMENTACION SINGLEIF, SEQUENTIALIF, COMPOUNDIF ASTS
 A.7 - Visitor.java
 A.8 - Checker.java
 A.9 - Checker.java
