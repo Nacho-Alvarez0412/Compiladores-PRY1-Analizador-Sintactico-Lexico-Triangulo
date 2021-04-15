@@ -361,7 +361,6 @@ public class Parser {
         ElsifCommand eiAST = null;
         // Start parsing elsif instructions
         while(currentToken.kind == Token.ELSIF) {
-            start(commandPos);
             acceptIt();
             // Parse elsif expression
             Expression e2AST = parseExpression();
@@ -609,26 +608,17 @@ public class Parser {
     start(procfuncsPos);
     procfuncsAST = parseProcFunc();
     accept(Token.PIPE);
-    ProcFuncs procfucs2AST = parseProcFunc();
+    ProcFuncs procfuncs2AST = parseProcFunc();
     finish(procfuncsPos);
-    procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfucs2AST, procfuncsPos);
-    while (currentToken.kind == Token.SEMICOLON) {
+    procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfuncs2AST, procfuncsPos);
+    while (currentToken.kind == Token.PIPE) {
       acceptIt();
-      Declaration d2AST = parseSingleDeclaration();
-      finish(declarationPos);
-      declarationAST = new SequentialDeclaration(declarationAST, d2AST,
-        declarationPos);
+      procfuncs2AST = parseProcFunc();
+      finish(procfuncsPos);
+      procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfuncs2AST, procfuncsPos);
     }
-    return declarationAST;
+    return procfuncsAST;
   }
-  
-  
-  
-  
-  
-  
-  
-  
   
   ProcFunc parseProcFunc() throws SyntaxError {
     ProcFunc procfuncAST = null; // in case there's a syntactic error
