@@ -1,9 +1,1 @@
-! Calculates the fibonnaci sequence.
-! Luis Leopoldo Pérez, Sep. 2005
-let
-var i:Integer;
-var j:Integer
-in
-i:=1;
-loop do putint(i); i:=i-1 until i < -5 end
-end
+1 .. 2

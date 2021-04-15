@@ -286,18 +286,18 @@ public final class Encoder implements Visitor {
   // END cambio Andres
   
   // @author        Andres
-    // @descripcion   Metodo checker para visitar visitCaseLiterals
+    // @descripcion   Metodo encoder para visitar visitCaseLiterals
     // @funcionalidad AST visitCaseLiterals
-    // @codigo        A.56
+    // @codigo        A.58
     public Object visitCaseLiterals(CaseLiterals ast, Object o) {
         return null;
     }
      // END Cambio Andres
 
     // @author        Andres
-    // @descripcion   Metodo checker para visitar SequentialCaseRange
+    // @descripcion   Metodo encoder para visitar SequentialCaseRange
     // @funcionalidad AST SequentialCaseRange
-    // @codigo        A.57
+    // @codigo        A.59
     public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
         return null;
     }

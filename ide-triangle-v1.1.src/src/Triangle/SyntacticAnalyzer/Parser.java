@@ -99,6 +99,8 @@ import Triangle.AbstractSyntaxTrees.CaseLiteral;
 import Triangle.AbstractSyntaxTrees.CaseRange;
 import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -649,6 +651,26 @@ public class Parser {
         caseRangeAST = c2AST == null ? new SimpleCaseRange(clAST, caseRangePos)
                 : new CompoundCaseRange(clAST, c2AST, caseRangePos);
         return caseRangeAST;
+    }
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear case literals
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.60
+    CaseLiterals parseCaseLiterals() throws SyntaxError {
+        CaseLiterals caseLiteralsAST = null;
+        SourcePosition caseLiteralsPos = new SourcePosition();
+        start(caseLiteralsPos);
+        
+        CaseRange cr1AST = parseCaseRange();
+        while(currentToken.kind == Token.PIPE) {
+            accept(Token.PIPE);
+            CaseRange cr2AST = parseCaseRange();
+            finish(caseLiteralsPos);
+            cr1AST = new SequentialCaseRange(cr1AST, cr2AST, caseLiteralsPos);
+        }
+        
+        return caseLiteralsAST;
     }
   
   
