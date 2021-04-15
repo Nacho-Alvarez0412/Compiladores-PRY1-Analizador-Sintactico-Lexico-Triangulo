@@ -84,6 +84,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
 import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -229,6 +231,24 @@ public class TreeVisitor implements Visitor {
     // @codigo        A.40
     public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
       return(createBinary("Compound Case Range", ast.CL1, ast.CL2));
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.52
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        return(createUnary("Case Literals", ast.CR));
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.53
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        return(createBinary("Sequential Case Range", ast.CR1, ast.CR2));
     }
     // END Cambio Andres
     

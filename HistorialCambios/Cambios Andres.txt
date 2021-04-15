@@ -51,3 +51,9 @@ A.46 - LayoutVisitor.java
 A.47 - Parser.java
 A.48 - CaseLiterals.java*
 A.49 - SequentialCaseRange.java*
+A.50 - TableVisitor.java
+A.51 - TableVisitor.java
+A.52 - TreeVisitor.java
+A.53 - TreeVisitor.java
+A.54 - LayoutVisitor.java
+A.55 - LayoutVisitor.java

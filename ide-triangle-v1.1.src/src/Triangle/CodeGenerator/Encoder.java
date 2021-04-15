@@ -105,6 +105,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
 import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -282,6 +284,24 @@ public final class Encoder implements Visitor {
     return null;
   }
   // END cambio Andres
+  
+  // @author        Andres
+    // @descripcion   Metodo checker para visitar visitCaseLiterals
+    // @funcionalidad AST visitCaseLiterals
+    // @codigo        A.56
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+
+    // @author        Andres
+    // @descripcion   Metodo checker para visitar SequentialCaseRange
+    // @funcionalidad AST SequentialCaseRange
+    // @codigo        A.57
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        return null;
+    }
+    // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object o) {

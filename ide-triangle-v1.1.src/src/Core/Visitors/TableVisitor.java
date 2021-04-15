@@ -83,6 +83,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
 import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -302,7 +304,30 @@ public class TableVisitor implements Visitor {
         return (null);
     }
     // END Cambio Andres
-   
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.50
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        ast.CR.visit(this, null);
+        
+        return (null);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.51
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        ast.CR1.visit(this, null);
+        ast.CR2.visit(this, null);
+        
+        return (null);
+    }
+    // END Cambio Andres
+    
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
     public Object visitArrayExpression(ArrayExpression ast, Object o) {

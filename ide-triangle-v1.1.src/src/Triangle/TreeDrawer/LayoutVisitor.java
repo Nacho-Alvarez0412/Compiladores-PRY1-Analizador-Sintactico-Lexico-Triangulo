@@ -96,6 +96,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.CaseLiteral;
 import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
 import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -126,7 +128,7 @@ public class LayoutVisitor implements Visitor {
   }
   
   // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @descripcion   Metodos dibujantes para visitar layouts nuevos ASTS
   // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.10
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
@@ -135,14 +137,13 @@ public class LayoutVisitor implements Visitor {
   // END cambio Andres
   
   // @author        Andres
-  // @descripcion   Metodos dibujantes para visitar layouts de nuevos nuevos ASTS
+  // @descripcion   Metodos dibujantes para visitar layouts  nuevos ASTS
   // @funcionalidad Creacion de nuevos ASTs para single-command
   // @codigo        A.11
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
       return layoutBinary("Seq.Elsif.Com", ast.SE1, ast.SE2);
   }
   // END cambio Andres
-  
 
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
@@ -232,6 +233,24 @@ public class LayoutVisitor implements Visitor {
   public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
       return layoutBinary("Comp.Case.Ran", ast.CL1, ast.CL2);
   }
+  
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.54
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        return layoutUnary("Case.Lit", ast.CR);
+    }
+     // END Cambio Andres
+
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.55
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        return layoutBinary("Seq.Cas.Ran", ast.CR1, ast.CR2);
+    }
+    // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {
