@@ -62,3 +62,10 @@ A.57 - Checker.java
 A.58 - Encoder.java
 A.59 - Encoder.java
 A.60 - Parser.java
+A.61 - ElseCase.java*
+A.62 - Case.java*
+A.63 - Cases.java*
+A.64 - CompoundCases.java*
+A.65 - SequentialCase.java*
+A.66 - SimpleCases.java*
+A.67 - SingleCase.java*
