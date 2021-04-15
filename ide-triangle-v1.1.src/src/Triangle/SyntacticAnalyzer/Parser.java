@@ -95,6 +95,9 @@ import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.ProcFunc;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -587,7 +590,69 @@ public class Parser {
     return commandAST;
   }
 
+// @author        Joseph
+// @description   Metodos de parseo de ProcFuncs
+// @funcionalidad Añadido de los ProcFuncs al parser
+// @codigo        J.38
+///////////////////////////////////////////////////////////////////////////////
+//
+// ProcFuncs
+//
+///////////////////////////////////////////////////////////////////////////////
+   ProcFunc parseProcFunc() throws SyntaxError {
+    ProcFunc procfuncAST = null; // in case there's a syntactic error
 
+    SourcePosition procfuncPos = new SourcePosition();
+
+    start (procfuncPos);
+
+    switch (currentToken.kind) {
+
+    case Token.PROC:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.IS);
+        Command cAST = parseCommand();
+        accept(Token.END);
+        finish(procfuncPos);
+        procfuncAST = new Procedure(iAST, fpsAST, cAST, procfuncPos);
+      }
+      break;
+
+    case Token.IF:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.COLON);
+        TypeDenoter tdAST = parseTypeDenoter();
+        accept(Token.IS);
+        Expression eAST = parseExpression();
+        finish(procfuncPos);
+        procfuncAST = new Function(iAST, fpsAST, tdAST, eAST, procfuncPos);
+      }
+      break;
+
+    default:
+      syntacticError("\"%\" cannot start a procedure or a function",
+        currentToken.spelling);
+      break;
+    }
+    return procfuncAST;
+  }
+  
+  
+  
+  
+  
+ // END Cambio  
+  
   
 ///////////////////////////////////////////////////////////////////////////////
 //
