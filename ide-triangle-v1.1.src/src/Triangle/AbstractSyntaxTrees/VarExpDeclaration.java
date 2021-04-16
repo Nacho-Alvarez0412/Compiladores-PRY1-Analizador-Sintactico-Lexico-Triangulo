@@ -1,6 +1,6 @@
 /**
  * @newclass
- * @description Clase para representar la alternativa co expression de var en single-declaration
+ * @description Clase para representar la alternativa con expression de var en single-declaration
  * @author Joseph
  * @codigo J.43
  */
@@ -8,7 +8,7 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class VarExpDeclaration extends Declaration {
+public class VarExpDeclaration extends SingleDeclaration {
 
   public VarExpDeclaration (Identifier iAST, Expression eAST,
                          SourcePosition thePosition) {

@@ -85,6 +85,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -304,15 +306,23 @@ public class TreeVisitor implements Visitor {
     }
     
    // @author        Joseph
-   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @descripcion   Metodos para visitar nuevas alternativas de single y compound declarations
    // @funcionalidad Creacion de nuevas alternativas de no-terminales
    // @codigo        J.50
     public Object visitVarTDDeclaration(VarTDDeclaration ast, Object obj) {
-        return(createBinary("Variable TD. Declaration", ast.I, ast.T));
+        return(createBinary("Variable Typed-denoted Declaration", ast.I, ast.T));
     }
     
     public Object visitVarExpDeclaration(VarExpDeclaration ast, Object obj) {
-        return(createBinary("Variable Exp. Declaration", ast.I, ast.E));
+        return(createBinary("Initialized Variable Declaration", ast.I, ast.E));
+    }
+    
+    public Object visitRecDeclaration(RecDeclaration ast, Object obj) {
+        return(createUnary("Recursive declaration", ast.PFs));
+    }
+    
+    public Object visitPrivDeclaration(PrivDeclaration ast, Object obj) {
+        return(createBinary("Private declaration", ast.D1, ast.D2));
     }
     /*
     public Object visitVarDeclaration(VarDeclaration ast, Object obj) {

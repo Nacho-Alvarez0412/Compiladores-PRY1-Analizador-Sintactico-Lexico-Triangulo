@@ -106,6 +106,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -276,6 +278,15 @@ public final class Encoder implements Visitor {
   public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
       return null;
   }
+  
+  public Object visitRecDeclaration(RecDeclaration ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
+      return null;
+  }  
+    
   // END CAMBIO Joseph
   
 

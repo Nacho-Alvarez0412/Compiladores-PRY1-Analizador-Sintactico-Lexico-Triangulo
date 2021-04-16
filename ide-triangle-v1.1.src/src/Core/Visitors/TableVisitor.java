@@ -67,7 +67,7 @@ import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @author        Joseph
 // @descripcion   Importacion de nuevos ASTs
-// @funcionalidad Parseo de nuevos ASTs
+// @funcionalidad Visitado de nuevos ASTs
 // @codigo        J.8
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
@@ -84,6 +84,8 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
 import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -377,7 +379,8 @@ public class TableVisitor implements Visitor {
     public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {
         return (null);
     }
-
+    
+    //Single Declarations
     public Object visitConstDeclaration(ConstDeclaration ast, Object o) {
         String name = ast.I.spelling;
         String type = "N/A";
@@ -456,36 +459,51 @@ public class TableVisitor implements Visitor {
     }
 
     // @author        Joseph
-    // @description   Cambio en el metodo de dibujado de la alternativa var de single-declaration
-    // @funcionalidad Cambio en las alternativas de single declaration
+    // @description   Cambio en el metodo de visitado de tabla de alternativas de Declaration
+    // @funcionalidad Cambio en las alternativas de declaration
     // @codigo        J.49
-        public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
-            try {
-            addIdentifier(ast.I.spelling,
-                    "KnownAddress",
-                    (ast.entity != null ? ast.entity.size : 0),
-                    ((KnownAddress) ast.entity).address.level,
-                    ((KnownAddress) ast.entity).address.displacement,
-                    -1);
-            } catch (NullPointerException e) {
-            }
-            ast.T.visit(this, null);
-            return (null);
+    public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
+        try {
+        addIdentifier(ast.I.spelling,
+                "KnownAddress",
+                (ast.entity != null ? ast.entity.size : 0),
+                ((KnownAddress) ast.entity).address.level,
+                ((KnownAddress) ast.entity).address.displacement,
+                -1);
+        } catch (NullPointerException e) {
         }
+        ast.T.visit(this, null);
+        return (null);
+    }
         
-        public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
-            try {
-            addIdentifier(ast.I.spelling,
-                    "KnownAddress",
-                    (ast.entity != null ? ast.entity.size : 0),
-                    ((KnownAddress) ast.entity).address.level,
-                    ((KnownAddress) ast.entity).address.displacement,
-                    -1);
-            } catch (NullPointerException e) {
-            }
-            ast.E.visit(this, null);
-            return (null);
+    public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
+        try {
+        addIdentifier(ast.I.spelling,
+                "KnownAddress",
+                (ast.entity != null ? ast.entity.size : 0),
+                ((KnownAddress) ast.entity).address.level,
+                ((KnownAddress) ast.entity).address.displacement,
+                -1);
+        } catch (NullPointerException e) {
         }
+        ast.E.visit(this, null);
+        return (null);
+    }
+
+    // Non-single declarations
+    
+    public Object visitRecDeclaration(RecDeclaration ast, Object o) {
+        ast.PFs.visit(this, null);
+        return (null);
+    }
+    
+    public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
+        ast.D1.visit(this, null);
+        ast.D2.visit(this, null);
+        return (null);
+    }
+    
+    
     /* J.49
         public Object visitVarDeclaration(VarDeclaration ast, Object o) {
             try {

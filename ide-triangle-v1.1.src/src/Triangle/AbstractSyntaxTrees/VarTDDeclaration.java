@@ -20,7 +20,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 // @description   Cambio de var como alternativa de single-declaration
 // @funcionalidad Cambio en las alternativas de single declaration
 // @codigo        J.42
-public class VarTDDeclaration extends Declaration {
+public class VarTDDeclaration extends SingleDeclaration {
 
   public VarTDDeclaration (Identifier iAST, TypeDenoter tAST,
                          SourcePosition thePosition) {

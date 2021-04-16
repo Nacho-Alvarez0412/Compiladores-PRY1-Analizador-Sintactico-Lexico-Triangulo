@@ -97,6 +97,8 @@ import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -305,18 +307,26 @@ public class LayoutVisitor implements Visitor {
   public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object obj) {
     return layoutTernary("UnaryOp.Decl.", ast.O, ast.ARG, ast.RES);
   }
-
  
 // @author        Joseph
-// @description   Cambio en el metodo de dibujado de la alternativa var de single-declaration
-// @funcionalidad Cambio en las alternativas de single declaration
+// @description   Cambio en el metodo de dibujado de la alternativas de declaration y single-declaration
+// @funcionalidad Cambio en las alternativas de declaration
 // @codigo        J.48
   
   public Object visitVarTDDeclaration(VarTDDeclaration ast, Object obj) {
     return layoutBinary("VarDecl.", ast.I, ast.T);
   } 
+  
   public Object visitVarExpDeclaration(VarExpDeclaration ast, Object obj) {
-    return layoutBinary("VarDecl.", ast.I, ast.E);
+    return layoutBinary("Init.VarDecl.", ast.I, ast.E);
+  } 
+  
+  public Object visitRecDeclaration(RecDeclaration ast, Object obj) {
+    return layoutUnary("RecDecl.", ast.PFs);
+  } 
+  
+  public Object visitPrivDeclaration(PrivDeclaration ast, Object obj) {
+    return layoutBinary("PrivDecl.", ast.D1, ast.D2);
   } 
 /* J.48
   public Object visitVarDeclaration(VarDeclaration ast, Object obj) {

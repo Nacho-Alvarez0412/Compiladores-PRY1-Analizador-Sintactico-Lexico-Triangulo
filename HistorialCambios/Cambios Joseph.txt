@@ -48,6 +48,14 @@ J.47: Checker.java
 J.48: LayoutVisitor.java
 J.49: TableVisitor.java
 J.50: TreeVisitor.java
+J.51: SingleDeclaration.java*
+J.52: ConstDeclaration.java
+J.53: ProcDeclaration.java
+J.54: FuncDeclaration.java
+J.55: TypeDeclaration.java
+J.56: RecDeclaration.java*
+J.57: PrivDeclaration.java*
+J.58: Parser.java
 
 // @author        Joseph
 // @description   Cambio de var como alternativa de single-declaration

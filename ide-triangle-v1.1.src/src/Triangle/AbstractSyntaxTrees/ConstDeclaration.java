@@ -16,6 +16,28 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+
+// @author        Joseph
+// @description   Agrupacion de alternativas de single-command bajo nueva clase abstracta
+// @funcionalidad Cambio en las alternativas de single declaration
+// @codigo        J.52
+public class ConstDeclaration extends SingleDeclaration {
+
+  public ConstDeclaration (Identifier iAST, Expression eAST,
+                    SourcePosition thePosition) {
+    super (thePosition);
+    I = iAST;
+    E = eAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitConstDeclaration(this, o);
+  }
+
+  public Identifier I;
+  public Expression E;
+}
+/*
 public class ConstDeclaration extends Declaration {
 
   public ConstDeclaration (Identifier iAST, Expression eAST,
@@ -32,3 +54,5 @@ public class ConstDeclaration extends Declaration {
   public Identifier I;
   public Expression E;
 }
+*/
+// END CAMBIO Joseph

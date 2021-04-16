@@ -90,6 +90,8 @@ public interface Visitor {
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
   public abstract Object visitVarTDDeclaration(VarTDDeclaration ast, Object o);
   public abstract Object visitVarExpDeclaration(VarExpDeclaration ast, Object o);
+  public abstract Object visitRecDeclaration(RecDeclaration ast, Object o);
+  public abstract Object visitPrivDeclaration(PrivDeclaration ast, Object o);
   /* J.44
   public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
   public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
