@@ -1,0 +1,6 @@
+if 1 > 2
+then
+	putint(3)
+else
+	putint(2)
+end
