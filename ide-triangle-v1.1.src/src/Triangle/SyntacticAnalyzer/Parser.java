@@ -108,6 +108,7 @@ import Triangle.AbstractSyntaxTrees.Cases;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -395,17 +396,22 @@ public class Parser {
     break;
     // END Cambio ANDRES
         
-    // TODO: Parser alternative for choose instruction
+    // @author        Andres
+    // @description   Creacion de la alternativa choose
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.102
     case Token.CHOOSE:
     {
         acceptIt();
         Expression eAST = parseExpression();
         accept(Token.FROM);
-        // TODO: Parse Cases
-        // TODO: Create AST for choose instruction
+        Cases csAST = parseCases();
         accept(Token.END);
+        finish(commandPos);
+        commandAST = new ChooseCommand(eAST, csAST, commandPos);
     }
     break;
+    // END CAMBIO Andres
     
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
@@ -601,7 +607,7 @@ public class Parser {
   }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////
   //
   // CASES
   //
@@ -660,7 +666,7 @@ public class Parser {
                 : new CompoundCaseRange(clAST, c2AST, caseRangePos);
         return caseRangeAST;
     }
-     // END cambio Andres
+    // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear case literals
@@ -684,7 +690,7 @@ public class Parser {
         
         return caseLiteralsAST;
     }
-     // END cambio Andres
+    // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear else case
@@ -723,7 +729,7 @@ public class Parser {
         caseAST = new SingleCase(clAST, cAST, casePos);     
         return caseAST;
     }
-     // END cambio Andres
+    // END cambio Andres
     
     // @author        Andres
     // @descripcion   Metodo para parsear el cases
@@ -752,7 +758,7 @@ public class Parser {
         
         return casesAST;
     }
-     // END cambio Andres
+    // END cambio Andres
   
 ///////////////////////////////////////////////////////////////////////////////
 //

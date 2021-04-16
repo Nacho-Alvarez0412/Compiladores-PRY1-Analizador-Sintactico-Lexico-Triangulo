@@ -17,6 +17,7 @@ public class CaseLiterals extends AST {
     
     public CaseLiterals(CaseRange crAST, SourcePosition thePosition) {
         super(thePosition);
+        CR = crAST;
     }
     
     public Object visit(Visitor v, Object o) {

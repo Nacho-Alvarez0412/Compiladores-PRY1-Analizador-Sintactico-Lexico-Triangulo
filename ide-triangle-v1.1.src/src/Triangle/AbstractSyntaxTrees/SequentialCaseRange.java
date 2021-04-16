@@ -19,6 +19,8 @@ public class SequentialCaseRange extends CaseRange {
             SourcePosition thePosition) {
         super(thePosition);
         
+        CR1 = cr1AST;
+        CR2 = cr2AST;
     }
     
     public Object visit(Visitor v, Object o) {
