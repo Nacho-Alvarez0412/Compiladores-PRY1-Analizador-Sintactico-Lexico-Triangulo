@@ -59,6 +59,7 @@ J.58: Parser.java
 J.59: Parser.java
 J.60: Parser.java
 J.61: ForFromCommand.java*
+J.62: Parser.java
 
 // @author        Joseph
 // @description   Cambio de var como alternativa de single-declaration
