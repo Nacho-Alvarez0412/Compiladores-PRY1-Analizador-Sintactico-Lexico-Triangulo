@@ -2,3 +2,5 @@
 /ide-triangle-v1.1.src/build/
 /ide-triangle-v1.1.src/dist/
 *.properties
+/HTMLs/HTM Generator/nbproject/private/
+/HTMLs/HTM Generator/build/
