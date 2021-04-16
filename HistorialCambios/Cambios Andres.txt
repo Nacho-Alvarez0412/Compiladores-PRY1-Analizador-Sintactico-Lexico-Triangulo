@@ -97,3 +97,9 @@ A.92 - LayoutVisitor.java
 A.93 - Parser.java
 A.94 - Parser.java
 A.95 - Parser.java
+A.96 - ChooseCommand.java*
+A.97 - TableVisitor.java
+A.98 - TreeVisitor.java
+A.99 - LayoutVisitor.java
+A.100 - Encoder.java
+A.101 - Checker.java

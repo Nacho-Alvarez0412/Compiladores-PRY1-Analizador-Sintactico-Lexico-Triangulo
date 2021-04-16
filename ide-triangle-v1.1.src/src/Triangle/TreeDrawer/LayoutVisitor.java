@@ -103,6 +103,7 @@ import Triangle.AbstractSyntaxTrees.SingleCase;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -212,7 +213,16 @@ public class LayoutVisitor implements Visitor {
      return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
    }
     // END CAMBIO Joseph
-
+   
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.99
+    public Object visitChooseCommand(ChooseCommand ast, Object o) {
+        return layoutBinary("Ch.Com", ast.E, ast.CS);
+    }
+    // End cambio Andres
+   
   // Cases
   // @author        Andres
   // @descripcion   Metodos dibujantes para visitar ASTS nuevos

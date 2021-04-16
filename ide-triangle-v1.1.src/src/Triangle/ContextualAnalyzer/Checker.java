@@ -108,6 +108,7 @@ import Triangle.AbstractSyntaxTrees.SingleCase;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -252,6 +253,15 @@ public final class Checker implements Visitor {
       return null;
   } 
   // END CAMBIO Joseph
+  
+   // @author        Andres
+   // @descripcion   Metodo checker para visitar Choose command
+   // @funcionalidad AST ChooseCommand
+   // @codigo        A.101
+   public Object visitChooseCommand(ChooseCommand ast, Object o) {
+      return null;
+   }
+   // END cambio Andres
   
   // Cases
   // @author        Andres

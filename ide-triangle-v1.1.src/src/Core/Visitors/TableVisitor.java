@@ -90,6 +90,7 @@ import Triangle.AbstractSyntaxTrees.SingleCase;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -272,7 +273,18 @@ public class TableVisitor implements Visitor {
    
   
   // END CAMBIO Joseph
-    
+  
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.97
+    public Object visitChooseCommand(ChooseCommand ast, Object o) {
+        ast.E.visit(this, null);
+        ast.CS.visit(this, null);
+        
+        return (null);
+    }
+   
   // </editor-fold>
 
     // Cases

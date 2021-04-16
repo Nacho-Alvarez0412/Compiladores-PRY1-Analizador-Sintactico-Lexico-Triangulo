@@ -112,6 +112,7 @@ import Triangle.AbstractSyntaxTrees.SingleCase;
 import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 */
@@ -262,7 +263,16 @@ public final class Encoder implements Visitor {
   }
   // END CAMBIO Joseph
   
-    // Cases
+    // @author        Andres
+    // @descripcion   Metodo encoder para visitar Choose command
+    // @funcionalidad AST ChooseCommand
+    // @codigo        A.100
+    public Object visitChooseCommand(ChooseCommand ast, Object o) {
+      return null;
+    }
+    // END cambio Andres
+  
+  // Cases
   // @author        Andres
   // @descripcion   Metodo encoder para visitar CaseLiteral
   // @funcionalidad AST CaseLiteral
