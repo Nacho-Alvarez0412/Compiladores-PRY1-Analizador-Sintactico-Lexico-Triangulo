@@ -56,6 +56,8 @@ J.55: TypeDeclaration.java
 J.56: RecDeclaration.java*
 J.57: PrivDeclaration.java*
 J.58: Parser.java
+J.59: Parser.java
+J.60: Parser.java
 
 // @author        Joseph
 // @description   Cambio de var como alternativa de single-declaration
