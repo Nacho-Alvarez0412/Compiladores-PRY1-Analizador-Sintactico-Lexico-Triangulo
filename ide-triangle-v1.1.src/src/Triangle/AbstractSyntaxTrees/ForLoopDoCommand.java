@@ -10,11 +10,10 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  */
 public class ForLoopDoCommand extends Command {
 
-  public ForLoopDoCommand (Identifier iAST, Expression e1AST, Expression e2AST,Command cAST, SourcePosition thePosition) {
+  public ForLoopDoCommand (ForFromCommand ffcAST, Expression e1AST, Command cAST, SourcePosition thePosition) {
     super (thePosition);
-    I = iAST;
-    E1 = e1AST;
-    E2 = e2AST;
+    FFC = ffcAST;
+    E = e1AST;
     C = cAST;
   }
   
@@ -22,7 +21,7 @@ public class ForLoopDoCommand extends Command {
     return v.visitForLoopDoCommand(this, o);
   }
   
-  public Identifier I;
-  public Expression E1,E2;
+  public ForFromCommand FFC;
+  public Expression E;
   public Command C;
 }

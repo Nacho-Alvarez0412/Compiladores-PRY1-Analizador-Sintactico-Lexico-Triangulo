@@ -98,6 +98,7 @@ import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
+import Triangle.AbstractSyntaxTrees.ForFromCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -205,15 +206,19 @@ public class TreeVisitor implements Visitor {
     }
 
     public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object obj) {
-        return(createQuaternary("For Loop Do Command", ast.I, ast.E1, ast.E2, ast.C));
+        return(createTernary("For Loop Do Command", ast.FFC, ast.E, ast.C));
     }
     
     public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object obj) {
-        return(createQuinary("For Loop While Command", ast.I, ast.E1, ast.E2, ast.E3,ast.C));
+        return(createQuaternary("For Loop While Command", ast.FFC, ast.E1, ast.E2, ast.C));
     }
     
     public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object obj) {
-        return(createQuinary("For Loop Until Command", ast.I, ast.E1, ast.E2, ast.E3,ast.C));
+        return(createQuaternary("For Loop Until Command", ast.FFC, ast.E1, ast.E2,ast.C));
+    }
+    
+    public Object visitForFromCommand(ForFromCommand ast, Object obj) {
+        return(createBinary("For From Command", ast.I, ast.E));
     }
     // END CAMBIO Joseph
     

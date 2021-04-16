@@ -115,6 +115,7 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
+import Triangle.AbstractSyntaxTrees.ForFromCommand;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -284,6 +285,10 @@ public final class Checker implements Visitor {
   }
   
   public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
+      return null;
+  }
+  
+  public Object visitForFromCommand(ForFromCommand ast, Object o) {
       return null;
   }
   // END CAMBIO Joseph

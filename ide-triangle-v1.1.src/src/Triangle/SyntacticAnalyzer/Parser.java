@@ -118,6 +118,7 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SingleDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.ForFromCommand;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -551,12 +552,8 @@ public class Parser {
         
         case Token.FOR:
           {
-            acceptIt();
-            Identifier iAST = parseIdentifier();
-            accept(Token.FROM);
+            ForFromCommand ffcAST = parseForFromCommand();
             Expression e1AST = parseExpression();
-            accept(Token.TO);
-            Expression e2AST = parseExpression();
             switch (currentToken.kind) {
             case Token.DO:
              {
@@ -564,27 +561,27 @@ public class Parser {
                Command cAST = parseCommand();
                accept(Token.END);
                finish(commandPos);
-               commandAST = new ForLoopDoCommand(iAST, e1AST, e2AST, cAST, commandPos);                
+               commandAST = new ForLoopDoCommand(ffcAST, e1AST, cAST, commandPos);                
              }
              break;
             case Token.WHILE:
              {
                acceptIt();
-               Expression e3AST = parseExpression();
+               Expression e2AST = parseExpression();
                accept(Token.DO);
                Command cAST = parseCommand();
                finish(commandPos);
-               commandAST = new ForLoopWhileCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+               commandAST = new ForLoopWhileCommand(ffcAST, e1AST ,e2AST, cAST, commandPos);               
              }
              break;
              case Token.UNTIL:
              {
                acceptIt();
-               Expression e3AST = parseExpression();
+               Expression e2AST = parseExpression();
                accept(Token.DO);
                Command cAST = parseCommand();
                finish(commandPos);
-               commandAST = new ForLoopUntilCommand(iAST, e1AST ,e2AST ,e3AST, cAST, commandPos);               
+               commandAST = new ForLoopUntilCommand(ffcAST, e2AST, e2AST, cAST, commandPos);               
              }
              break;
              
@@ -614,6 +611,26 @@ public class Parser {
 
     return commandAST;
   }
+  
+   // @author        Joseph
+   // @descripcion   Parseo de ForFromCommand
+   // @funcionalidad Parsear alternativas de ForFromCommand
+   // @codigo        J.62
+   ForFromCommand parseForFromCommand() throws SyntaxError {
+    ForFromCommand ffcAST = null; // in case there's a syntactic error
+
+    SourcePosition ffcPos = new SourcePosition();
+    start(ffcPos);
+    accept(Token.FOR);
+    Identifier iAST = parseIdentifier();
+    accept(Token.FROM);
+    Expression eAST = parseExpression();
+    finish(ffcPos);
+    ffcAST = new ForFromCommand (iAST,eAST, ffcPos);
+    return ffcAST;
+  }
+  // END CAMBIO Joseph
+  
 
  /////////////////////////////////////////////////////////////////////////////////
   //

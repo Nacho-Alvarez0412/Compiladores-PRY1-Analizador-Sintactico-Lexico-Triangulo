@@ -97,6 +97,7 @@ import Triangle.AbstractSyntaxTrees.SequentialCase;
 import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
+import Triangle.AbstractSyntaxTrees.ForFromCommand;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -252,30 +253,33 @@ public class TableVisitor implements Visitor {
   }
    
    public Object visitForLoopDoCommand (ForLoopDoCommand ast, Object o) {
-        ast.I.visit(this, null);
-        ast.E1.visit(this, null);
-        ast.E2.visit(this, null);
+        ast.FFC.visit(this, null);
+        ast.E.visit(this, null);
         ast.C.visit(this, null);
         return (null);
   }
   
    public Object visitForLoopWhileCommand (ForLoopWhileCommand ast, Object o) {
-        ast.I.visit(this, null);
+        ast.FFC.visit(this, null);
         ast.E1.visit(this, null);
         ast.E2.visit(this, null);
-        ast.E3.visit(this, null);
         ast.C.visit(this, null);
         return (null);
   }
  
    public Object visitForLoopUntilCommand (ForLoopUntilCommand ast, Object o) {
-        ast.I.visit(this, null);
+        ast.FFC.visit(this, null);
         ast.E1.visit(this, null);
         ast.E2.visit(this, null);
-        ast.E3.visit(this, null);
         ast.C.visit(this, null);
         return (null);
-  }
+   }
+   
+    public Object visitForFromCommand(ForFromCommand ast, Object o) {
+        ast.I.visit(this, null);
+        ast.E.visit(this, null);
+        return (null);
+   }
   // END CAMBIO Joseph
   
     // @author        Andres

@@ -110,6 +110,7 @@ import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.ForFromCommand ;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -210,17 +211,21 @@ public class LayoutVisitor implements Visitor {
    }
 
    public Object visitForLoopDoCommand (ForLoopDoCommand ast, Object obj) {
-     return layoutQuaternary("ForDoCommand.", ast.I, ast.E1, ast.E2, ast.C);
+     return layoutTernary ("ForDoCommand.", ast.FFC, ast.E, ast.C);
    }
     
    public Object visitForLoopWhileCommand (ForLoopWhileCommand ast, Object obj) {
-     return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
+     return layoutQuaternary("ForWhileCommand.", ast.FFC, ast.E1, ast.E2,ast.C);
    }
     
    public Object visitForLoopUntilCommand (ForLoopUntilCommand ast, Object obj) {
-     return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
+     return layoutQuaternary("ForWhileCommand.", ast.FFC, ast.E1, ast.E2, ast.C);
    }
-    // END CAMBIO Joseph
+   
+   public Object visitForFromCommand (ForFromCommand ast, Object obj) {
+     return layoutBinary("ForWhileCommand.", ast.I, ast.E);
+   }
+   // END CAMBIO Joseph
    
    
    // @author        Joseph
