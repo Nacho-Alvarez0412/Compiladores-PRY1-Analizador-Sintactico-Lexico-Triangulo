@@ -40,6 +40,7 @@ public interface Visitor {
   public abstract Object visitProcedure(Procedure ast, Object o);
   public abstract Object visitFunction(Function ast, Object o);
   public abstract Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o);
+  public abstract Object visitChooseCommand(ChooseCommand ast, Object o);
   /* J.6
    public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);
@@ -61,8 +62,24 @@ public interface Visitor {
   public abstract Object visitWhileCommand(WhileCommand ast, Object o);
   */
   // END Cambio Andres
-
-
+  
+  // @author        Andres
+  // @descripcion   Agregar metodos de visita para AST Cases
+  // @funcionalidad metodos de visita ASTs de Cases
+  // @codigo        A.27
+  // Cases
+  public abstract Object visitCaseLiteral(CaseLiteral ast, Object o);
+  public abstract Object visitSimpleCaseRange(SimpleCaseRange ast, Object o);
+  public abstract Object visitCompoundCaseRange(CompoundCaseRange ast, Object o);
+  public abstract Object visitSequentialCaseRange(SequentialCaseRange ast, Object o);
+  public abstract Object visitCaseLiterals(CaseLiterals ast, Object o);
+  public abstract Object visitCompoundCases(CompoundCases ast, Object o);
+  public abstract Object visitElseCase(ElseCase ast, Object o);
+  public abstract Object visitSequentialCase(SequentialCase ast, Object o);
+  public abstract Object visitSimpleCases(SimpleCases ast, Object o);
+  public abstract Object visitSingleCase(SingleCase ast, Object o);
+  // End Cambio Andres
+  
   // Expressions
   public abstract Object visitArrayExpression(ArrayExpression ast, Object o);
   public abstract Object visitBinaryExpression(BinaryExpression ast, Object o);

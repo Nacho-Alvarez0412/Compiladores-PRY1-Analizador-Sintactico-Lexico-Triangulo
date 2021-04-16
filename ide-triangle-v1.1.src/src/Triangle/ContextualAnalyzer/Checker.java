@@ -99,6 +99,17 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
@@ -277,6 +288,106 @@ public final class Checker implements Visitor {
   }
   // END CAMBIO Joseph
 
+// @author        Andres
+   // @descripcion   Metodo checker para visitar Choose command
+   // @funcionalidad AST ChooseCommand
+   // @codigo        A.101
+   public Object visitChooseCommand(ChooseCommand ast, Object o) {
+      return null;
+   }
+   // END cambio Andres
+
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar CaseLiteral
+  // @funcionalidad AST CaseLiteral
+  // @codigo        A.31
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar SimpleCaseRange
+  // @funcionalidad AST SimpleCaseRange
+  // @codigo        A.41
+  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+
+  // @author        Andres
+  // @descripcion   Metodo checker para visitar CompoundCaseRange
+  // @funcionalidad AST CompoundCaseRange
+  // @codigo        A.42
+  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+    return null;
+  }
+  // END cambio Andres
+
+    // @author        Andres
+    // @descripcion   Metodo checker para visitar visitCaseLiterals
+    // @funcionalidad AST visitCaseLiterals
+    // @codigo        A.56
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+
+    // @author        Andres
+    // @descripcion   Metodo checker para visitar SequentialCaseRange
+    // @funcionalidad AST SequentialCaseRange
+    // @codigo        A.57
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        return null;
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de else case
+    // @codigo        A.78
+    public Object visitElseCase(ElseCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad CompoundCases AST
+    // @codigo        A.79
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SequentialCase AST
+    // @codigo        A.80
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+       return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SimpleCases AST
+    // @codigo        A.81
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos checker para visitar ASTS nuevos
+    // @funcionalidad SingleCase AST
+    // @codigo        A.82
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        return null;
+    }
+     // END Cambio Andres
+    
   // Expressions
 
   // Returns the TypeDenoter denoting the type of the expression. Does

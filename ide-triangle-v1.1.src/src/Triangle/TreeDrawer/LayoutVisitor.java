@@ -94,6 +94,17 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.Procedure;
 import Triangle.AbstractSyntaxTrees.Function;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
@@ -232,6 +243,105 @@ public class LayoutVisitor implements Visitor {
    }
    
    //END CAMBIO Joseph
+
+   
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.99
+    public Object visitChooseCommand(ChooseCommand ast, Object o) {
+        return layoutBinary("Ch.Com", ast.E, ast.CS);
+    }
+    // End cambio Andres
+   
+  // Cases
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de case-literal
+  // @codigo        A.30
+  public Object visitCaseLiteral(CaseLiteral ast, Object o) {
+    return layoutUnary("Case.Lit", ast.T);
+  }
+  // End cambio Andres
+  
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de simple case range
+  // @codigo        A.45
+  public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
+      return layoutUnary("Sim.Case.Ran", ast.CL);
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+  // @funcionalidad Creacion en las alternativas de compound case range
+  // @codigo        A.46
+  public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
+      return layoutBinary("Comp.Case.Ran", ast.CL1, ast.CL2);
+  }
+  
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.54
+    public Object visitCaseLiterals(CaseLiterals ast, Object o) {
+        return layoutUnary("Case.Lit", ast.CR);
+    }
+     // END Cambio Andres
+
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case literals
+    // @codigo        A.55
+    public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
+        return layoutBinary("Seq.Cas.Ran", ast.CR1, ast.CR2);
+    }
+    // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de else case
+    // @codigo        A.88
+    public Object visitElseCase(ElseCase ast, Object o) {
+        return layoutUnary("Els.Cas", ast.C);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.89
+    public Object visitCompoundCases(CompoundCases ast, Object o) {
+       return layoutBinary("Comp.Case", ast.C, ast.EC);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.90
+    public Object visitSequentialCase(SequentialCase ast, Object o) {
+       return layoutBinary("Seq.Cas", ast.C1, ast.C2);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de cases
+    // @codigo        A.91
+    public Object visitSimpleCases(SimpleCases ast, Object o) {
+        return layoutUnary("Simp.Cas", ast.C);
+    }
+     // END Cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodos dibujantes para visitar ASTS nuevos
+    // @funcionalidad Creacion en las alternativas de case
+    // @codigo        A.92
+    public Object visitSingleCase(SingleCase ast, Object o) {
+        return layoutBinary("Sing.Cas", ast.CL, ast.C);
+    }
+     // END Cambio Andres
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {
@@ -554,7 +664,7 @@ public class LayoutVisitor implements Visitor {
   }
   
     // @author        Joseph
-    // @descripcion   Metodo de dibujo de layout de árboles quinarios
+    // @descripcion   Metodo de dibujo de layout de ï¿½rboles quinarios
     // @funcionalidad Dibujo de ASTs
     // @codigo        J.28
   

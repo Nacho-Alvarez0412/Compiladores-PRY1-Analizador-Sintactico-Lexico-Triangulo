@@ -96,6 +96,20 @@ import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.CaseLiteral;
+import Triangle.AbstractSyntaxTrees.CaseRange;
+import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
+import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
+import Triangle.AbstractSyntaxTrees.CaseLiterals;
+import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
+import Triangle.AbstractSyntaxTrees.ElseCase;
+import Triangle.AbstractSyntaxTrees.Case;
+import Triangle.AbstractSyntaxTrees.SingleCase;
+import Triangle.AbstractSyntaxTrees.Cases;
+import Triangle.AbstractSyntaxTrees.SequentialCase;
+import Triangle.AbstractSyntaxTrees.SimpleCases;
+import Triangle.AbstractSyntaxTrees.CompoundCases;
+import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.ProcFunc;
 import Triangle.AbstractSyntaxTrees.ProcFuncs;
 import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
@@ -391,17 +405,22 @@ public class Parser {
     break;
     // END Cambio ANDRES
         
-    // TODO: Parser alternative for choose instruction
+    // @author        Andres
+    // @description   Creacion de la alternativa choose
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        A.102
     case Token.CHOOSE:
     {
         acceptIt();
         Expression eAST = parseExpression();
         accept(Token.FROM);
-        // TODO: Parse Cases
-        // TODO: Create AST for choose instruction
+        Cases csAST = parseCases();
         accept(Token.END);
+        finish(commandPos);
+        commandAST = new ChooseCommand(eAST, csAST, commandPos);
     }
     break;
+    // END CAMBIO Andres
     
     // @author        Joseph
     // @description   Borrado de la alternativa: "begin" Command "end"
@@ -596,9 +615,164 @@ public class Parser {
     return commandAST;
   }
 
+ /////////////////////////////////////////////////////////////////////////////////
+  //
+  // CASES
+  //
+  ///////////////////////////////////////////////////////////////////////////////
+    // @author        Andres
+    // @descripcion   Metodo para parsear case literal
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.33
+    CaseLiteral parseCaseLiteral() throws SyntaxError {
+        CaseLiteral caseLiteralAST = null;
+        SourcePosition caseLiteralSourcePos = new SourcePosition();
+        start(caseLiteralSourcePos);
+        
+        switch (currentToken.kind) {
+            case Token.INTLITERAL:
+            {
+                IntegerLiteral ilAST = parseIntegerLiteral();
+                finish(caseLiteralSourcePos);
+                caseLiteralAST = new CaseLiteral(ilAST, caseLiteralSourcePos);
+            }
+            break;
+            case Token.CHARLITERAL:
+            {
+                CharacterLiteral clAST = parseCharacterLiteral();
+                finish(caseLiteralSourcePos);
+                caseLiteralAST = new CaseLiteral(clAST, caseLiteralSourcePos);
+            }
+            break;
+            default:
+                syntacticError("\"%\" cannot start a case literal",
+                    currentToken.spelling);
+                break;
+        }
+        return caseLiteralAST;
+    }
+    // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear case range
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.47
+    CaseRange parseCaseRange() throws SyntaxError {
+        CaseRange caseRangeAST = null;
+        SourcePosition caseRangePos = new SourcePosition();
+        start(caseRangePos);
+        
+        CaseLiteral clAST = parseCaseLiteral();
+        CaseLiteral c2AST = null;
+        // Check for more case literals
+        if (currentToken.kind == Token.DOUBLEDOT) {
+            accept(Token.DOUBLEDOT);
+            c2AST = parseCaseLiteral();
+        }
+        finish(caseRangePos);
+        caseRangeAST = c2AST == null ? new SimpleCaseRange(clAST, caseRangePos)
+                : new CompoundCaseRange(clAST, c2AST, caseRangePos);
+        return caseRangeAST;
+    }
+    // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear case literals
+    // @funcionalidad Parsear comando Case
+    // @codigo        A.60
+    CaseLiterals parseCaseLiterals() throws SyntaxError {
+        CaseLiterals caseLiteralsAST = null;
+        SourcePosition caseLiteralsPos = new SourcePosition();
+        start(caseLiteralsPos);
+        
+        CaseRange cr1AST = parseCaseRange();
+        while(currentToken.kind == Token.PIPE) {
+            accept(Token.PIPE);
+            CaseRange cr2AST = parseCaseRange();
+            finish(caseLiteralsPos);
+            cr1AST = new SequentialCaseRange(cr1AST, cr2AST, caseLiteralsPos);
+        }
+        finish(caseLiteralsPos);
+        
+        caseLiteralsAST = new CaseLiterals(cr1AST, caseLiteralsPos);
+        
+        return caseLiteralsAST;
+    }
+    // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear else case
+    // @funcionalidad Parsear comando else case
+    // @codigo        A.93
+    ElseCase parseElseCase() throws SyntaxError {
+        ElseCase elseCaseAST = null;
+        SourcePosition elseCasePos = new SourcePosition();
+        start(elseCasePos);
+        
+        // Parse else case
+        accept(Token.ELSE);
+        Command cAST = parseCommand();
+        finish(elseCasePos);
+        
+        elseCaseAST = new ElseCase(cAST, elseCasePos);
+        return elseCaseAST;
+    }
+     // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear el case
+    // @funcionalidad Parsear comando case
+    // @codigo        A.94
+    Case parseCase() throws SyntaxError {
+        Case caseAST = null;
+        SourcePosition casePos = new SourcePosition();
+        start(casePos);
+        
+        accept(Token.WHEN);
+        CaseLiterals clAST = parseCaseLiterals();
+        accept(Token.THEN);
+        Command cAST = parseCommand();
+        finish(casePos);
+        
+        caseAST = new SingleCase(clAST, cAST, casePos);     
+        return caseAST;
+    }
+    // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Metodo para parsear el cases
+    // @funcionalidad Parsear comando cases
+    // @codigo        A.95
+    Cases parseCases() throws SyntaxError {
+        Cases casesAST = null;
+        SourcePosition casesPos = new SourcePosition();
+        start(casesPos);
+        
+        Case case1AST = parseCase();
+        while(currentToken.kind == Token.WHEN) {
+            Case case2AST = parseCase();
+            finish(casesPos);
+            case1AST = new SequentialCase(case1AST, case2AST, casesPos);
+        }
+        
+        ElseCase elseCaseAST = null;
+        if (currentToken.kind == Token.ELSE) {
+            elseCaseAST = parseElseCase();
+        }
+        finish(casesPos);
+        
+        casesAST = elseCaseAST == null ? new SimpleCases(case1AST, casesPos)
+                : new CompoundCases(case1AST, elseCaseAST, casesPos);
+        
+        return casesAST;
+    }
+    // END cambio Andres
+
+
+
 // @author        Joseph
 // @description   Metodos de parseo de ProcFuncs
-// @funcionalidad Añadido de los ProcFuncs al parser
+// @funcionalidad Aï¿½adido de los ProcFuncs al parser
 // @codigo        J.38
   
 ///////////////////////////////////////////////////////////////////////////////
@@ -670,7 +844,6 @@ public class Parser {
     return procfuncAST;
   }
  // END Cambio  
-  
   
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -995,7 +1168,7 @@ public class Parser {
   
   // @author        Joseph
   // @description   Cambio del tipo de salida del metodo de parseo de single declaration a SingleDeclaration
-  // además se aplica el cambio de nombre de las variables al resto del método
+  // ademï¿½s se aplica el cambio de nombre de las variables al resto del mï¿½todo
   // @funcionalidad Cambio en las alternativas de single declaration
   // @codigo        J.58
   SingleDeclaration parseSingleDeclaration() throws SyntaxError {
