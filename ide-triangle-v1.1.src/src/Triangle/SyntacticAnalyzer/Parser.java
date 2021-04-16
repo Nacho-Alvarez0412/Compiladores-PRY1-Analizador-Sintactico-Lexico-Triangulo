@@ -77,7 +77,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.TypeDenoter;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Vname;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -85,6 +84,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.16
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.ElsifCommand;
@@ -95,8 +96,17 @@ import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.ProcFunc;
+import Triangle.AbstractSyntaxTrees.ProcFuncs;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SingleDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 
@@ -356,7 +366,6 @@ public class Parser {
         ElsifCommand eiAST = null;
         // Start parsing elsif instructions
         while(currentToken.kind == Token.ELSIF) {
-            start(commandPos);
             acceptIt();
             // Parse elsif expression
             Expression e2AST = parseExpression();
@@ -587,7 +596,81 @@ public class Parser {
     return commandAST;
   }
 
+// @author        Joseph
+// @description   Metodos de parseo de ProcFuncs
+// @funcionalidad Añadido de los ProcFuncs al parser
+// @codigo        J.38
+  
+///////////////////////////////////////////////////////////////////////////////
+//
+// ProcFuncs
+//
+///////////////////////////////////////////////////////////////////////////////
 
+  ProcFuncs parseProcFuncs() throws SyntaxError {
+    ProcFuncs procfuncsAST = null; // in case there's a syntactic error
+
+    SourcePosition procfuncsPos = new SourcePosition();
+    start(procfuncsPos);
+    procfuncsAST = parseProcFunc();
+    accept(Token.PIPE);
+    ProcFuncs procfuncs2AST = parseProcFunc();
+    finish(procfuncsPos);
+    procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfuncs2AST, procfuncsPos);
+    while (currentToken.kind == Token.PIPE) {
+      acceptIt();
+      procfuncs2AST = parseProcFunc();
+      finish(procfuncsPos);
+      procfuncsAST = new SequentialProcFuncs(procfuncsAST, procfuncs2AST, procfuncsPos);
+    }
+    return procfuncsAST;
+  }
+  
+  ProcFunc parseProcFunc() throws SyntaxError {
+    ProcFunc procfuncAST = null; // in case there's a syntactic error
+    SourcePosition procfuncPos = new SourcePosition();
+    start (procfuncPos);
+    switch (currentToken.kind) {
+    case Token.PROC:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.IS);
+        Command cAST = parseCommand();
+        accept(Token.END);
+        finish(procfuncPos);
+        procfuncAST = new Procedure(iAST, fpsAST, cAST, procfuncPos);
+      }
+      break;
+
+    case Token.IF:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.COLON);
+        TypeDenoter tdAST = parseTypeDenoter();
+        accept(Token.IS);
+        Expression eAST = parseExpression();
+        finish(procfuncPos);
+        procfuncAST = new Function(iAST, fpsAST, tdAST, eAST, procfuncPos);
+      }
+      break;
+
+    default:
+      syntacticError("\"%\" cannot start a procedure or a function",
+        currentToken.spelling);
+      break;
+    }
+    return procfuncAST;
+  }
+ // END Cambio  
+  
   
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -820,8 +903,27 @@ public class Parser {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+  // @author        Joseph
+  // @description   Cambio en las alternativas de Declaration para que concatene compound declarations en lugar del single declarations
+  // @funcionalidad Cambio en las alternativas de Declaration
+  // @codigo        J.60
   Declaration parseDeclaration() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos);
+    declarationAST = parseCompoundDeclaration();
+    while (currentToken.kind == Token.SEMICOLON) {
+      acceptIt();
+      Declaration d2AST = parseCompoundDeclaration();
+      finish(declarationPos);
+      declarationAST = new SequentialDeclaration(declarationAST, d2AST,
+        declarationPos);
+    }
+    return declarationAST;
+  }
+  /*J.60
+  Declaration declarationAST = null; // in case there's a syntactic error
 
     SourcePosition declarationPos = new SourcePosition();
     start(declarationPos);
@@ -834,13 +936,81 @@ public class Parser {
         declarationPos);
     }
     return declarationAST;
-  }
-
-  Declaration parseSingleDeclaration() throws SyntaxError {
+  */
+  //END CAMBIO Joseph 
+  
+  // @author        Joseph
+  // @description   Creacion del metodo de parseo de compound declarations
+  // @funcionalidad Creacion del no terminal compound declarations
+  // @codigo        J.59
+   Declaration parseCompoundDeclaration() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
 
     SourcePosition declarationPos = new SourcePosition();
     start(declarationPos);
+    
+    switch (currentToken.kind) {
+
+    case Token.CONST:
+    case Token.VAR:
+    case Token.PROC:
+    case Token.FUNC:
+    case Token.TYPE:
+      {
+        declarationAST = parseSingleDeclaration();
+      }
+      break;
+      
+    case Token.RECURSIVE:
+      {
+        acceptIt();
+        ProcFuncs pfsAST = parseProcFuncs();
+        accept(Token.END);
+        finish(declarationPos);
+        declarationAST = new RecDeclaration(pfsAST, declarationPos);
+      }
+      break;
+      
+    case Token.PRIVATE:
+      {
+        acceptIt();
+        Declaration d1AST = parseDeclaration();
+        accept(Token.IN);
+        Declaration d2AST = parseDeclaration();
+        finish(declarationPos);
+        declarationAST = new PrivDeclaration(d1AST, d2AST, declarationPos);
+      }
+      break;  
+    default:
+      syntacticError("\"%\" cannot start a declaration",
+        currentToken.spelling);
+      break;
+
+    }
+    return declarationAST;
+  }
+  // END CAMBIO Joseph
+  
+  
+  
+  // @author        Joseph
+  // @description   Cambio del tipo de salida del metodo de parseo de single declaration a SingleDeclaration
+  // además se aplica el cambio de nombre de las variables al resto del método
+  // @funcionalidad Cambio en las alternativas de single declaration
+  // @codigo        J.58
+  SingleDeclaration parseSingleDeclaration() throws SyntaxError {
+    SingleDeclaration singleDeclarationAST = null; // in case there's a syntactic error
+
+    SourcePosition singleDeclarationPos = new SourcePosition();
+    start(singleDeclarationPos);
+  /* J.58
+  Declaration parseSingleDeclaration() throws SyntaxError {
+    Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos); 
+  */
+  //END CAMBIO Joseph
 
     switch (currentToken.kind) {
 
@@ -850,11 +1020,46 @@ public class Parser {
         Identifier iAST = parseIdentifier();
         accept(Token.IS);
         Expression eAST = parseExpression();
-        finish(declarationPos);
-        declarationAST = new ConstDeclaration(iAST, eAST, declarationPos);
+        finish(singleDeclarationPos);
+        singleDeclarationAST = new ConstDeclaration(iAST, eAST, singleDeclarationPos);
       }
       break;
-
+      
+    // @author        Joseph
+    // @description   Cambio en el parsing de la declaracion de variables 
+    // @funcionalidad Modificaciones en las alternativas de single-declaration
+    // @codigo        J.41
+    case Token.VAR:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        switch (currentToken.kind) {
+            
+        case Token.COLON:
+          {
+           acceptIt();
+           TypeDenoter tAST = parseTypeDenoter();
+           finish(singleDeclarationPos);
+           singleDeclarationAST = new VarTDDeclaration(iAST, tAST, singleDeclarationPos);
+            
+          }
+          break;
+        case Token.BECOMES:
+          {
+           acceptIt();
+           Expression eAST = parseExpression();
+           finish(singleDeclarationPos);
+           singleDeclarationAST = new VarExpDeclaration(iAST, eAST, singleDeclarationPos);
+          }
+          break;
+        default:
+          syntacticError("\"%\" cannot follow var declaration",
+           currentToken.spelling);
+          break;                       
+        } 
+      }
+      break;
+    /* J.41
     case Token.VAR:
       {
         acceptIt();
@@ -864,8 +1069,29 @@ public class Parser {
         finish(declarationPos);
         declarationAST = new VarDeclaration(iAST, tAST, declarationPos);
       }
-      break;
+      break;      
+    */      
+    // END CAMBIO Joseph
 
+    // @author        Joseph
+    // @description   Cambio en el parsing de la declaracion de procedures 
+    // @funcionalidad Modificaciones en las alternativas de single-declaration
+    // @codigo        J.40
+    case Token.PROC:
+      {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        accept(Token.LPAREN);
+        FormalParameterSequence fpsAST = parseFormalParameterSequence();
+        accept(Token.RPAREN);
+        accept(Token.IS);
+        Command cAST = parseSingleCommand();
+        accept(Token.END);
+        finish(singleDeclarationPos);
+        singleDeclarationAST = new ProcDeclaration(iAST, fpsAST, cAST, singleDeclarationPos);
+      }
+      break;
+    /* J.40
     case Token.PROC:
       {
         acceptIt();
@@ -878,7 +1104,9 @@ public class Parser {
         finish(declarationPos);
         declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
       }
-      break;
+      break;    
+    */     
+    //END Cambio Joseph
 
     case Token.FUNC:
       {
@@ -891,9 +1119,9 @@ public class Parser {
         TypeDenoter tAST = parseTypeDenoter();
         accept(Token.IS);
         Expression eAST = parseExpression();
-        finish(declarationPos);
-        declarationAST = new FuncDeclaration(iAST, fpsAST, tAST, eAST,
-          declarationPos);
+        finish(singleDeclarationPos);
+        singleDeclarationAST = new FuncDeclaration(iAST, fpsAST, tAST, eAST,
+          singleDeclarationPos);
       }
       break;
 
@@ -903,8 +1131,8 @@ public class Parser {
         Identifier iAST = parseIdentifier();
         accept(Token.IS);
         TypeDenoter tAST = parseTypeDenoter();
-        finish(declarationPos);
-        declarationAST = new TypeDeclaration(iAST, tAST, declarationPos);
+        finish(singleDeclarationPos);
+        singleDeclarationAST = new TypeDeclaration(iAST, tAST, singleDeclarationPos);
       }
       break;
 
@@ -914,7 +1142,7 @@ public class Parser {
       break;
 
     }
-    return declarationAST;
+    return singleDeclarationAST;
   }
 
 ///////////////////////////////////////////////////////////////////////////////

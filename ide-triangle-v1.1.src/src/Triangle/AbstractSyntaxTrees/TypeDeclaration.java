@@ -16,6 +16,27 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+// @author        Joseph
+// @description   Agrupacion de alternativas de single-command bajo nueva clase abstracta
+// @funcionalidad Cambio en las alternativas de single declaration
+// @codigo        J.55
+public class TypeDeclaration extends SingleDeclaration {
+
+  public TypeDeclaration(Identifier iAST, TypeDenoter tAST,
+                         SourcePosition thePosition) {
+    super (thePosition);
+    I = iAST;
+    T = tAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitTypeDeclaration(this, o);
+  }
+
+  public Identifier I;
+  public TypeDenoter T;
+}
+/* J.55
 public class TypeDeclaration extends Declaration {
 
   public TypeDeclaration(Identifier iAST, TypeDenoter tAST,
@@ -32,3 +53,5 @@ public class TypeDeclaration extends Declaration {
   public Identifier I;
   public TypeDenoter T;
 }
+*/
+// END CAMBIO Joseph

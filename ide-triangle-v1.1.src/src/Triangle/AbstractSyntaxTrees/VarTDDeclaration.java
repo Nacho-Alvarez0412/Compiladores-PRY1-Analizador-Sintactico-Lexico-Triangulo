@@ -16,6 +16,25 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+// @author        Joseph
+// @description   Cambio de var como alternativa de single-declaration
+// @funcionalidad Cambio en las alternativas de single declaration
+// @codigo        J.42
+public class VarTDDeclaration extends SingleDeclaration {
+
+  public VarTDDeclaration (Identifier iAST, TypeDenoter tAST,
+                         SourcePosition thePosition) {
+    super (thePosition);
+    I = iAST;
+    T = tAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitVarTDDeclaration(this, o);
+  }
+
+
+/* J.42
 public class VarDeclaration extends Declaration {
 
   public VarDeclaration (Identifier iAST, TypeDenoter tAST,
@@ -28,6 +47,8 @@ public class VarDeclaration extends Declaration {
   public Object visit(Visitor v, Object o) {
     return v.visitVarDeclaration(this, o);
   }
+*/
+  // END CAMBIO Joseph
 
   public Identifier I;
   public TypeDenoter T;

@@ -48,11 +48,10 @@ Proc-Funcs      ::= Proc-Func ("|" Proc-Func)+
 # Sexto Set de cambios (Modificar single-Declaration) 
 
 single-Declaration ::= "const" Identifier "~" Expression
-			 |  "var" Identifier ":" Type-denoter
+			 |  "var" Identifier  (":" Type-denoter | ":=" Expression)
                          |  "proc" Identifier "(" Formal-Parameter-Sequence ")" "~" Command "end"
 			 |  "func" Identifier "(" Formal-Parameter-Sequence ")" ":" Type-denoter "~" Expression
 			 |  "type" Identifier "~" Type-denoter
-                         |  "var" Identifier ":=" Expression
 
 
 # Septimo set de cambios (Modificar Program)

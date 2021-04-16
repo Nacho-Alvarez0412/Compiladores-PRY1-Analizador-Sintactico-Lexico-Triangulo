@@ -84,7 +84,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.Vname;
@@ -93,6 +92,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.13
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
@@ -102,8 +103,14 @@ import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 
@@ -223,6 +230,11 @@ public final class Encoder implements Visitor {
   */
 //END CAMBIO Joseph
   
+  
+  
+  
+ // New ASTs
+ 
   // @author        Joseph
   // @descripcion   Metodos checker para visitar nuevos ASTs de single-command
   // @funcionalidad Creacion de nuevas alternativas de single-command
@@ -250,8 +262,32 @@ public final class Encoder implements Visitor {
   public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
       return null;
   }
-  // END CAMBIO Joseph
   
+  public Object visitFunction(Function ast, Object o) {
+      return null;
+  }
+  
+  public Object visitProcedure(Procedure ast, Object o) {
+      return null;
+  }
+ 
+  public Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o) {
+      return null;
+  }
+  
+  public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
+      return null;
+  }
+  
+  public Object visitRecDeclaration(RecDeclaration ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
+      return null;
+  }  
+    
+  // END CAMBIO Joseph
   
 
 
@@ -440,17 +476,34 @@ public final class Encoder implements Visitor {
     return new Integer(0);
   }
 
-  public Object visitVarDeclaration(VarDeclaration ast, Object o) {
-    Frame frame = (Frame) o;
-    int extraSize;
+   // @author        Joseph
+   // @descripcion   Cambio de var como alternativa de single-declaration
+   // @funcionalidad Cambio en las alternativas de single-declaration
+   // @codigo        J.45
 
-    extraSize = ((Integer) ast.T.visit(this, null)).intValue();
-    emit(Machine.PUSHop, 0, 0, extraSize);
-    ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
-    writeTableDetails(ast);
-    return new Integer(extraSize);
-  }
+   public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
+       Frame frame = (Frame) o;
+       int extraSize;
+       extraSize = ((Integer) ast.T.visit(this, null)).intValue();
+       emit(Machine.PUSHop, 0, 0, extraSize);
+       ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
+       writeTableDetails(ast);
+       return new Integer(extraSize);
+     }
 
+
+   /* J.45
+      public Object visitVarDeclaration(VarDeclaration ast, Object o) {
+       Frame frame = (Frame) o;
+       int extraSize;
+       extraSize = (Integer) ast.T.visit(this, null)).intValue();
+       emit(Machine.PUSHop, 0, 0, extraSize);
+       ast.entity = new KnownAddress(Machine.addressSize, frame.level, frame.size);
+       writeTableDetails(ast);
+       return new Integer(extraSize);
+     }
+    */
+  // END CAMBIO Joseph
 
   // Array Aggregates
   public Object visitMultipleArrayAggregate(MultipleArrayAggregate ast,

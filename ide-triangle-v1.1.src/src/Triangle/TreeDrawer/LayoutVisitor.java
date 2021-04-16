@@ -76,7 +76,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -84,6 +83,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.29
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
@@ -93,8 +94,14 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 
@@ -203,7 +210,28 @@ public class LayoutVisitor implements Visitor {
      return layoutQuinary("ForWhileCommand.", ast.I, ast.E1, ast.E2,ast.E3 ,ast.C);
    }
     // END CAMBIO Joseph
-
+   
+   
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.37
+   
+   // ProcFuncs
+   
+   public Object visitProcedure (Procedure ast, Object obj) {
+     return layoutTernary("Proc.", ast.I, ast.FPS, ast.C);
+   }
+   
+   public Object visitFunction (Function ast, Object obj) {
+     return layoutQuaternary("Func.", ast.I, ast.FPS, ast.TD, ast.E);
+   }
+   
+   public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object obj) {
+     return layoutBinary("Seq.ProcFunc.", ast.PF1, ast.PF2);
+   }
+   
+   //END CAMBIO Joseph
 
   // Expressions
   public Object visitArrayExpression(ArrayExpression ast, Object obj) {
@@ -279,11 +307,33 @@ public class LayoutVisitor implements Visitor {
   public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object obj) {
     return layoutTernary("UnaryOp.Decl.", ast.O, ast.ARG, ast.RES);
   }
-
+ 
+// @author        Joseph
+// @description   Cambio en el metodo de dibujado de la alternativas de declaration y single-declaration
+// @funcionalidad Cambio en las alternativas de declaration
+// @codigo        J.48
+  
+  public Object visitVarTDDeclaration(VarTDDeclaration ast, Object obj) {
+    return layoutBinary("VarDecl.", ast.I, ast.T);
+  } 
+  
+  public Object visitVarExpDeclaration(VarExpDeclaration ast, Object obj) {
+    return layoutBinary("Init.VarDecl.", ast.I, ast.E);
+  } 
+  
+  public Object visitRecDeclaration(RecDeclaration ast, Object obj) {
+    return layoutUnary("RecDecl.", ast.PFs);
+  } 
+  
+  public Object visitPrivDeclaration(PrivDeclaration ast, Object obj) {
+    return layoutBinary("PrivDecl.", ast.D1, ast.D2);
+  } 
+/* J.48
   public Object visitVarDeclaration(VarDeclaration ast, Object obj) {
     return layoutBinary("VarDecl.", ast.I, ast.T);
-  }
-
+  }  
+*/
+// END CAMBIO Joseph
 
   // Array Aggregates
   public Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object obj) {

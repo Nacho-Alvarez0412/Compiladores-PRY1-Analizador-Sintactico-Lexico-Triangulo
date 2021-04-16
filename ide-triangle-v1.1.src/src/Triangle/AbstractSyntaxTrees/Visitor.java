@@ -37,6 +37,9 @@ public interface Visitor {
   public abstract Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o);
   public abstract Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o);
   public abstract Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o);
+  public abstract Object visitProcedure(Procedure ast, Object o);
+  public abstract Object visitFunction(Function ast, Object o);
+  public abstract Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o);
   /* J.6
    public abstract Object visitAssignCommand(AssignCommand ast, Object o);
   public abstract Object visitCallCommand(CallCommand ast, Object o);
@@ -74,6 +77,22 @@ public interface Visitor {
   public abstract Object visitVnameExpression(VnameExpression ast, Object o);
 
   // Declarations
+  // @author        Joseph
+  // @descripcion   Agregar metodos de visita de nuevos ASTs
+  // @funcionalidad metodos de visita para nuevos ASTs
+  // @codigo        J.44 
+  public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
+  public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
+  public abstract Object visitFuncDeclaration(FuncDeclaration ast, Object o);
+  public abstract Object visitProcDeclaration(ProcDeclaration ast, Object o);
+  public abstract Object visitSequentialDeclaration(SequentialDeclaration ast, Object o);
+  public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
+  public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
+  public abstract Object visitVarTDDeclaration(VarTDDeclaration ast, Object o);
+  public abstract Object visitVarExpDeclaration(VarExpDeclaration ast, Object o);
+  public abstract Object visitRecDeclaration(RecDeclaration ast, Object o);
+  public abstract Object visitPrivDeclaration(PrivDeclaration ast, Object o);
+  /* J.44
   public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
   public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
   public abstract Object visitFuncDeclaration(FuncDeclaration ast, Object o);
@@ -82,7 +101,8 @@ public interface Visitor {
   public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
   public abstract Object visitVarDeclaration(VarDeclaration ast, Object o);
-
+  */
+  // END CAMBIO Joseph
   // Array Aggregates
   public abstract Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o);
   public abstract Object visitSingleArrayAggregate(SingleArrayAggregate ast, Object o);

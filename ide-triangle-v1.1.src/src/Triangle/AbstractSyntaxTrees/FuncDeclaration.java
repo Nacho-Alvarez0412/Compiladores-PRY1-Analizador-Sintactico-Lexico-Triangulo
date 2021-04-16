@@ -16,6 +16,33 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+
+// @author        Joseph
+// @description   Agrupacion de alternativas de single-command bajo nueva clase abstracta
+// @funcionalidad Cambio en las alternativas de single declaration
+// @codigo        J.54
+public class FuncDeclaration extends SingleDeclaration {
+
+  public FuncDeclaration (Identifier iAST, FormalParameterSequence fpsAST,
+  		   TypeDenoter tAST, Expression eAST,
+                   SourcePosition thePosition) {
+    super (thePosition);
+    I = iAST;
+    FPS = fpsAST;
+    T = tAST;
+    E = eAST;
+  }
+
+  public Object visit (Visitor v, Object o) {
+    return v.visitFuncDeclaration(this, o);
+  }
+
+  public Identifier I;
+  public FormalParameterSequence FPS;
+  public TypeDenoter T;
+  public Expression E;
+}
+/* J.54
 public class FuncDeclaration extends Declaration {
 
   public FuncDeclaration (Identifier iAST, FormalParameterSequence fpsAST,
@@ -37,3 +64,5 @@ public class FuncDeclaration extends Declaration {
   public TypeDenoter T;
   public Expression E;
 }
+*/
+// END CAMBIO Joseph

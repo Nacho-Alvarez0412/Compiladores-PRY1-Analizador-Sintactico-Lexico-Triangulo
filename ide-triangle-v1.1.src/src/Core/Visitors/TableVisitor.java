@@ -62,13 +62,12 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @author        Joseph
 // @descripcion   Importacion de nuevos ASTs
-// @funcionalidad Parseo de nuevos ASTs
+// @funcionalidad Visitado de nuevos ASTs
 // @codigo        J.8
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
@@ -80,8 +79,16 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 import Triangle.CodeGenerator.Field;
@@ -209,10 +216,10 @@ public class TableVisitor implements Visitor {
     */
     // END CAMBIO Joseph
     
-// @author        Joseph
-// @descripcion   Metodos para visitar nuevos ASTS
-// @funcionalidad Creacion de nuevas alternativas de no-terminales
-// @codigo        J.20
+    // @author        Joseph
+    // @descripcion   Metodos para visitar nuevos ASTS
+    // @funcionalidad Creacion de nuevas alternativas de no-terminales
+    // @codigo        J.20
   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
         ast.E.visit(this, null);
         ast.C.visit(this, null);
@@ -258,12 +265,42 @@ public class TableVisitor implements Visitor {
         ast.C.visit(this, null);
         return (null);
   }
-   
-   
-  
   // END CAMBIO Joseph
     
   // </editor-fold>
+   
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.35
+   
+  // <editor-fold defaultstate="collapsed" desc=" ProcFuncs ">
+   
+   public Object visitProcedure (Procedure ast, Object o) {
+        ast.I.visit(this, null);
+        ast.FPS.visit(this, null);
+        ast.C.visit(this, null);
+        return (null);
+  }
+   
+   public Object visitFunction (Function ast, Object o) {
+        ast.I.visit(this, null);
+        ast.FPS.visit(this, null);
+        ast.TD.visit(this, null);
+        ast.E.visit(this, null);
+        return (null);
+  }
+   
+   public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object o) {
+        ast.PF1.visit(this, null);
+        ast.PF2.visit(this, null);
+        return (null);
+  }
+   
+   //END CAMBIO Joseph
+   
+   
+   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
@@ -342,7 +379,8 @@ public class TableVisitor implements Visitor {
     public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {
         return (null);
     }
-
+    
+    //Single Declarations
     public Object visitConstDeclaration(ConstDeclaration ast, Object o) {
         String name = ast.I.spelling;
         String type = "N/A";
@@ -420,22 +458,71 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
-    public Object visitVarDeclaration(VarDeclaration ast, Object o) {
+    // @author        Joseph
+    // @description   Cambio en el metodo de visitado de tabla de alternativas de Declaration
+    // @funcionalidad Cambio en las alternativas de declaration
+    // @codigo        J.49
+    public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
         try {
+        addIdentifier(ast.I.spelling,
+                "KnownAddress",
+                (ast.entity != null ? ast.entity.size : 0),
+                ((KnownAddress) ast.entity).address.level,
+                ((KnownAddress) ast.entity).address.displacement,
+                -1);
+        } catch (NullPointerException e) {
+        }
+        ast.T.visit(this, null);
+        return (null);
+    }
+        
+    public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
+        try {
+        addIdentifier(ast.I.spelling,
+                "KnownAddress",
+                (ast.entity != null ? ast.entity.size : 0),
+                ((KnownAddress) ast.entity).address.level,
+                ((KnownAddress) ast.entity).address.displacement,
+                -1);
+        } catch (NullPointerException e) {
+        }
+        ast.E.visit(this, null);
+        return (null);
+    }
+
+    // Non-single declarations
+    
+    public Object visitRecDeclaration(RecDeclaration ast, Object o) {
+        ast.PFs.visit(this, null);
+        return (null);
+    }
+    
+    public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
+        ast.D1.visit(this, null);
+        ast.D2.visit(this, null);
+        return (null);
+    }
+    
+    
+    /* J.49
+        public Object visitVarDeclaration(VarDeclaration ast, Object o) {
+            try {
             addIdentifier(ast.I.spelling,
                     "KnownAddress",
                     (ast.entity != null ? ast.entity.size : 0),
                     ((KnownAddress) ast.entity).address.level,
                     ((KnownAddress) ast.entity).address.displacement,
                     -1);
-        } catch (NullPointerException e) {
+            } catch (NullPointerException e) {
+            }
+            ast.T.visit(this, null);
+            return (null);
         }
-
-        ast.T.visit(this, null);
-        return (null);
-    }
+    */
+    // END CAMBIO Joseph
 
   // </editor-fold>
+    
   // <editor-fold defaultstate="collapsed" desc=" Aggregates ">
     // Array Aggregates
     public Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o) {
@@ -663,6 +750,7 @@ public class TableVisitor implements Visitor {
     }
 
   // </editor-fold>
+    
   // <editor-fold defaultstate="collapsed" desc=" Literals, Identifiers and Operators ">
     // Literals, Identifiers and Operators
     public Object visitCharacterLiteral(CharacterLiteral ast, Object o) {
@@ -748,7 +836,8 @@ public class TableVisitor implements Visitor {
     }
 
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc=" Attributes ">
+    
+  // <editor-fold defaultstate="collapsed" desc=" Attributes ">
     private DefaultTableModel model;
     // </editor-fold>
 }

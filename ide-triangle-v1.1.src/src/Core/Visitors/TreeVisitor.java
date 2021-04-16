@@ -63,7 +63,6 @@ import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
 import Triangle.AbstractSyntaxTrees.Visitor;
 import Triangle.AbstractSyntaxTrees.VnameExpression;
@@ -71,6 +70,8 @@ import Triangle.AbstractSyntaxTrees.VnameExpression;
 // @descripcion   Importacion de nuevos ASTs
 // @funcionalidad Parseo de nuevos ASTs
 // @codigo        J.9
+import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
+import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
 import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
 import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
 import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
@@ -81,8 +82,14 @@ import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
 import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
+import Triangle.AbstractSyntaxTrees.Procedure;
+import Triangle.AbstractSyntaxTrees.Function;
+import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
+import Triangle.AbstractSyntaxTrees.PrivDeclaration;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
+import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -170,7 +177,6 @@ public class TreeVisitor implements Visitor {
      */
     // END CAMBIO Joseph
     
-    
     // @author        Joseph
     // @descripcion   Metodos dibujantes para visitar nuevos ASTS
     // @funcionalidad Creacion de nuevas alternativas de no-terminales
@@ -180,11 +186,11 @@ public class TreeVisitor implements Visitor {
     }
     
     public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object obj) {
-        return(createBinary("Do Loop Until Command", ast.E, ast.C));
+        return(createBinary("Do Loop Until Command", ast.C, ast.E));
     }
     
     public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object obj) {
-        return(createBinary("Do Loop While Command", ast.E, ast.C));
+        return(createBinary("Do Loop While Command", ast.C, ast.E));
     }
 
     public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object obj) {
@@ -200,6 +206,27 @@ public class TreeVisitor implements Visitor {
     }
     // END CAMBIO Joseph
     // </editor-fold>
+    
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevos ASTs de ProcFunc
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.36
+    // <editor-fold defaultstate="collapsed" desc=" ProcFuncs ">
+    
+    public Object visitProcedure (Procedure ast, Object obj) {
+        return(createTernary("Procedure", ast.I, ast.FPS, ast.C));
+    }
+    
+    public Object visitFunction (Function ast, Object obj) {
+        return(createQuaternary("Procedure", ast.I, ast.FPS, ast.TD, ast.E));
+    }
+
+    public Object visitSequentialProcFuncs (SequentialProcFuncs ast, Object obj) {
+        return(createBinary("ProcFuncs", ast.PF1, ast.PF2));
+    }
+    
+    //END CAMBIO Joseph
+   // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Expressions ">
     // Expressions
@@ -278,9 +305,33 @@ public class TreeVisitor implements Visitor {
         return(createTernary("Unary Operator Declaration", ast.O, ast.ARG, ast.RES));
     }
     
+   // @author        Joseph
+   // @descripcion   Metodos para visitar nuevas alternativas de single y compound declarations
+   // @funcionalidad Creacion de nuevas alternativas de no-terminales
+   // @codigo        J.50
+    public Object visitVarTDDeclaration(VarTDDeclaration ast, Object obj) {
+        return(createBinary("Variable Typed-denoted Declaration", ast.I, ast.T));
+    }
+    
+    public Object visitVarExpDeclaration(VarExpDeclaration ast, Object obj) {
+        return(createBinary("Initialized Variable Declaration", ast.I, ast.E));
+    }
+    
+    public Object visitRecDeclaration(RecDeclaration ast, Object obj) {
+        return(createUnary("Recursive declaration", ast.PFs));
+    }
+    
+    public Object visitPrivDeclaration(PrivDeclaration ast, Object obj) {
+        return(createBinary("Private declaration", ast.D1, ast.D2));
+    }
+    /*
     public Object visitVarDeclaration(VarDeclaration ast, Object obj) {
         return(createBinary("Variable Declaration", ast.I, ast.T));
     }
+    
+    */
+    //END CAMBIO Joseph
+    
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Aggregates ">
