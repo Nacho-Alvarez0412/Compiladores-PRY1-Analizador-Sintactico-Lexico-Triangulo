@@ -102,6 +102,8 @@ import Triangle.AbstractSyntaxTrees.ForFromCommand;
 import Triangle.AbstractSyntaxTrees.SimpleVarName;
 import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -599,8 +601,8 @@ public class TreeVisitor implements Visitor {
     // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Values or Variable Names
     // @author        Andres
-    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName
-    // @funcionalidad metodos de visita para AST de Varname
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName y Vname
+    // @funcionalidad metodos de visita para AST de Varname y Vname
     // @codigo        A.113
     public Object visitDotVarName(DotVarName ast, Object obj) {
         return(createBinary("Dot Var Name", ast.I, ast.V));
@@ -612,6 +614,18 @@ public class TreeVisitor implements Visitor {
     
     public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
         return(createBinary("Subscript Var Name", ast.V, ast.E));
+    }
+    
+    public Object visitSimpleVname(SimpleVname ast, Object o) {
+        return(createUnary("Simple Vname", ast.VN));
+    }
+    
+    public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return(createUnary("Package Identifier", ast.I));
+    }
+    
+    public Object visitPackageVname(PackageVname ast, Object o) {
+        return(createBinary("Package Vname", ast.PI, ast.VN));
     }
     /*
         public Object visitDotVname(DotVname ast, Object obj) {

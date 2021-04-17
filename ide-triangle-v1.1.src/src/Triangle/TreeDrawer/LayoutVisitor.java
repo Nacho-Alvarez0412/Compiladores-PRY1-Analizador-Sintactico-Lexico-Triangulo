@@ -114,6 +114,8 @@ import Triangle.AbstractSyntaxTrees.ForFromCommand ;
 import Triangle.AbstractSyntaxTrees.SimpleVarName;
 import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -598,8 +600,8 @@ public class LayoutVisitor implements Visitor {
 
   // Value-or-variable names
   // @author        Andres
-  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName
-  // @funcionalidad metodos de visita para AST de Varname
+  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName y Vname
+  // @funcionalidad metodos de visita para AST de Varname y Vname
   // @codigo        A.114
   public Object visitDotVarName(DotVarName ast, Object obj) {
     return layoutBinary("Dot.Var.Name", ast.I, ast.V);
@@ -612,6 +614,18 @@ public class LayoutVisitor implements Visitor {
   public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
     return layoutBinary("Sub.Var.Name",
         ast.V, ast.E);
+  }
+  
+  public Object visitSimpleVname(SimpleVname ast, Object o) {
+      return layoutUnary("Simp.Vname", ast.VN);
+  }
+  
+  public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return layoutUnary("Pack.Ident", ast.I);
+  }
+  
+  public Object visitPackageVname(PackageVname ast, Object o) {
+      return layoutBinary("Pack.Vname", ast.PI, ast.VN);
   }
   /*
       public Object visitDotVname(DotVname ast, Object obj) {

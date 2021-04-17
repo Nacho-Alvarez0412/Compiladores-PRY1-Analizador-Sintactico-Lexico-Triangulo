@@ -123,6 +123,8 @@ import Triangle.AbstractSyntaxTrees.ForFromCommand;
 import Triangle.AbstractSyntaxTrees.SimpleVarName;
 import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -936,8 +938,8 @@ public final class Encoder implements Visitor {
   // Value-or-variable names
   
     // @author        Andres
-    // @descripcion   Agregar metodos de visita encoder de nuevos ASTs VarName
-    // @funcionalidad metodos de visita encoder para AST de Varname
+    // @descripcion   Agregar metodos de visita encoder de nuevos ASTs VarName y Vname
+    // @funcionalidad metodos de visita encoder para AST de Varname y Vname
     // @codigo        A.116
   public Object visitDotVarName(DotVarName ast, Object o) {
     Frame frame = (Frame) o;
@@ -983,6 +985,19 @@ public final class Encoder implements Visitor {
     }
     return baseObject;
   }
+  
+  public Object visitSimpleVname(SimpleVname ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageVname(PackageVname ast, Object o) {
+      return null;
+  }
+  
   /*
   public Object visitDotVname(DotVname ast, Object o) {
     Frame frame = (Frame) o;

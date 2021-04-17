@@ -167,14 +167,22 @@ public interface Visitor {
   public abstract Object visitIdentifier(Identifier ast, Object o);
   public abstract Object visitIntegerLiteral(IntegerLiteral ast, Object o);
   public abstract Object visitOperator(Operator ast, Object o);
-
+  
   // @author        Andres
-  // @descripcion   Agregar metodos visitor para VarName
-  // @funcionalidad Visitors para VarName
+  // @descripcion   Agregar metodos visitor para VarName y Vname
+  // @funcionalidad Visitors para VarName y Vname
   // @codigo        A.108
   public abstract Object visitDotVarName(DotVarName ast, Object o);
   public abstract Object visitSimpleVarName(SimpleVarName ast, Object o);
   public abstract Object visitSubscriptVarName(SubscriptVarName ast, Object o);
+  public abstract Object visitSimpleVname(SimpleVname ast, Object o);
+  public abstract Object visitPackageIdentifier(PackageIdentifier ast, Object o);
+  public abstract Object visitPackageVname(PackageVname ast, Object o);
+  /*
+    public abstract Object visitDotVname(DotVname ast, Object o);
+    public abstract Object visitSimpleVname(SimpleVname ast, Object o);
+    public abstract Object visitSubscriptVname(SubscriptVname ast, Object o);
+  */
   // END Cambio Andres
 
   // Programs

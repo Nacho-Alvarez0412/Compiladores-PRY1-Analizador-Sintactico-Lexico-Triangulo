@@ -119,6 +119,8 @@ import Triangle.AbstractSyntaxTrees.ForFromCommand;
 import Triangle.AbstractSyntaxTrees.SimpleVarName;
 import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -940,8 +942,8 @@ public final class Checker implements Visitor {
   // Returns the TypeDenoter of the Vname. Does not use the
   // given object.
    // @author        Andres
-   // @descripcion   Agregar metodos de visita checker de nuevos ASTs VarName
-   // @funcionalidad metodos de visita checker para AST de Varname
+   // @descripcion   Agregar metodos de visita checker de nuevos ASTs VarName y Vname
+   // @funcionalidad metodos de visita checker para AST de Varname y Vname
    // @codigo        A.115
   public Object visitDotVarName(DotVarName ast, Object o) {
     ast.type = null;
@@ -1009,6 +1011,19 @@ public final class Checker implements Visitor {
     }
     return ast.type;
   }
+  
+  public Object visitSimpleVname(SimpleVname ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageVname(PackageVname ast, Object o) {
+      return null;
+  }
+  
   /*
     public Object visitDotVname(DotVname ast, Object o) {
     ast.type = null;

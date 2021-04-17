@@ -17,27 +17,33 @@ package Triangle.AbstractSyntaxTrees;
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public class SimpleVname extends Vname {
-
-  public SimpleVname (Identifier iAST, SourcePosition thePosition) {
+   
+  // @author Andres
+  // @descripcion Cambio de constructor en Vname
+  // @funcionalidad modificacion de Vname
+  // @codigo A.110
+  public SimpleVname (VarName vnAST, SourcePosition thePosition) {
     super (thePosition);
-    I = iAST;
+    VN = vnAST;
   }
   
-  // @author        Andres
-  // @descripcion   Eliminar visitors para Vname
-  // @funcionalidad Visitors para Vname nuevo
-  // @codigo        A.110
+  
   public Object visit (Visitor v, Object o) {
-    return null;
+    return v.visitSimpleVname(this, o);
   }
+
+  public VarName VN;
   /*
+    public SimpleVname (Identifier iAST, SourcePosition thePosition) {
+        super (thePosition);
+         I = iAST;
+    }
+  
     public Object visit (Visitor v, Object o) {
-       return v.visitSimpleVname(this, o);
-     }
+      return v.visitSimpleVname(this, o);
+    }
+  
+    public Identifier iAST;
   */
   // END Cambio Andres
-
-  
-
-  public Identifier I;
 }
