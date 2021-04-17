@@ -99,6 +99,9 @@ import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -595,18 +598,35 @@ public class TreeVisitor implements Visitor {
     
     // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Values or Variable Names
-    public Object visitDotVname(DotVname ast, Object obj) {
-        return(createBinary("Dot Vname", ast.I, ast.V));
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName
+    // @funcionalidad metodos de visita para AST de Varname
+    // @codigo        A.113
+    public Object visitDotVarName(DotVarName ast, Object obj) {
+        return(createBinary("Dot Var Name", ast.I, ast.V));
     }
     
-    public Object visitSimpleVname(SimpleVname ast, Object obj) {
-        return(createUnary("Simple Vname", ast.I));
+    public Object visitSimpleVarName(SimpleVarName ast, Object obj) {
+        return(createUnary("Simple Var Name", ast.I));
     }
     
-    public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
-        return(createBinary("Subscript Vname", ast.V, ast.E));
+    public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
+        return(createBinary("Subscript Var Name", ast.V, ast.E));
     }
-    
+    /*
+        public Object visitDotVname(DotVname ast, Object obj) {
+           return(createBinary("Dot Vname", ast.I, ast.V));
+       }
+
+       public Object visitSimpleVname(SimpleVname ast, Object obj) {
+           return(createUnary("Simple Vname", ast.I));
+       }
+
+       public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
+           return(createBinary("Subscript Vname", ast.V, ast.E));
+       }
+    */
+    // END cambio Andres
     public Object visitProgram(Program ast, Object obj) {
         return(createUnary("Program", ast.C));
     }

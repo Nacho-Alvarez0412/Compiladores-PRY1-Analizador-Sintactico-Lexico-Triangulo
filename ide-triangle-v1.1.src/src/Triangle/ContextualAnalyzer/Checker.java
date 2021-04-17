@@ -116,6 +116,9 @@ import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -936,8 +939,78 @@ public final class Checker implements Visitor {
 
   // Returns the TypeDenoter of the Vname. Does not use the
   // given object.
+   // @author        Andres
+   // @descripcion   Agregar metodos de visita checker de nuevos ASTs VarName
+   // @funcionalidad metodos de visita checker para AST de Varname
+   // @codigo        A.115
+  public Object visitDotVarName(DotVarName ast, Object o) {
+    ast.type = null;
+    TypeDenoter vType = (TypeDenoter) ast.V.visit(this, null);
+    ast.variable = ast.V.variable;
+    if (! (vType instanceof RecordTypeDenoter))
+      reporter.reportError ("record expected here", "", ast.V.position);
+    else {
+      ast.type = checkFieldIdentifier(((RecordTypeDenoter) vType).FT, ast.I);
+      if (ast.type == StdEnvironment.errorType)
+        reporter.reportError ("no field \"%\" in this record type",
+                              ast.I.spelling, ast.I.position);
+    }
+    return ast.type;
+  }
 
-  public Object visitDotVname(DotVname ast, Object o) {
+  public Object visitSimpleVarName(SimpleVarName ast, Object o) {
+    ast.variable = false;
+    ast.type = StdEnvironment.errorType;
+    Declaration binding = (Declaration) ast.I.visit(this, null);
+    if (binding == null)
+      reportUndeclared(ast.I);
+    else
+      if (binding instanceof ConstDeclaration) {
+        ast.type = ((ConstDeclaration) binding).E.type;
+        ast.variable = false;
+      // @author        Joseph
+      // @description   Cambio de var como alternativa de single-declaration
+      // @funcionalidad Cambio en las alternativas de single declaration
+      // @codigo        J.47
+      } else if (binding instanceof VarTDDeclaration) {
+        ast.type = ((VarTDDeclaration) binding).T;
+        ast.variable = true;
+       /* J.47
+      } else if (binding instanceof VarDeclaration) {
+        ast.type = ((VarDeclaration) binding).T;
+        ast.variable = true;        
+        */ 
+      // END CAMBIO Joseph
+      } else if (binding instanceof ConstFormalParameter) {
+        ast.type = ((ConstFormalParameter) binding).T;
+        ast.variable = false;
+      } else if (binding instanceof VarFormalParameter) {
+        ast.type = ((VarFormalParameter) binding).T;
+        ast.variable = true;
+      } else
+        reporter.reportError ("\"%\" is not a const or var identifier",
+                              ast.I.spelling, ast.I.position);
+    return ast.type;
+  }
+
+  public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
+    TypeDenoter vType = (TypeDenoter) ast.V.visit(this, null);
+    ast.variable = ast.V.variable;
+    TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
+    if (vType != StdEnvironment.errorType) {
+      if (! (vType instanceof ArrayTypeDenoter))
+        reporter.reportError ("array expected here", "", ast.V.position);
+      else {
+        if (! eType.equals(StdEnvironment.integerType))
+          reporter.reportError ("Integer expression expected here", "",
+				ast.E.position);
+        ast.type = ((ArrayTypeDenoter) vType).T;
+      }
+    }
+    return ast.type;
+  }
+  /*
+    public Object visitDotVname(DotVname ast, Object o) {
     ast.type = null;
     TypeDenoter vType = (TypeDenoter) ast.V.visit(this, null);
     ast.variable = ast.V.variable;
@@ -975,6 +1048,7 @@ public final class Checker implements Visitor {
         ast.variable = true;        
         */ 
       // END CAMBIO Joseph
+      /*
       } else if (binding instanceof ConstFormalParameter) {
         ast.type = ((ConstFormalParameter) binding).T;
         ast.variable = false;
@@ -1003,7 +1077,9 @@ public final class Checker implements Visitor {
     }
     return ast.type;
   }
-
+  */
+  // END Cambio Andres
+  
   // Programs
 
   public Object visitProgram(Program ast, Object o) {

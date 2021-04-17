@@ -98,6 +98,9 @@ import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -915,25 +918,51 @@ public class TableVisitor implements Visitor {
 
   // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Value-or-variable names
-    public Object visitDotVname(DotVname ast, Object o) {
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName
+    // @funcionalidad metodos de visita para AST de Varname
+    // @codigo        A.112
+    public Object visitDotVarName(DotVarName ast, Object o) {
         ast.I.visit(this, null);
         ast.V.visit(this, null);
 
         return (null);
     }
 
-    public Object visitSimpleVname(SimpleVname ast, Object o) {
+    public Object visitSimpleVarName(SimpleVarName ast, Object o) {
         ast.I.visit(this, null);
 
         return (null);
     }
 
-    public Object visitSubscriptVname(SubscriptVname ast, Object o) {
+    public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
         ast.E.visit(this, null);
         ast.V.visit(this, null);
 
         return (null);
     }
+    /*
+        public Object visitDotVname(DotVname ast, Object o) {
+           ast.I.visit(this, null);
+           ast.V.visit(this, null);
+
+           return (null);
+        }
+        public Object visitSimpleVname(SimpleVname ast, Object o) {
+          ast.I.visit(this, null);
+
+          return (null);
+         }
+
+        public Object visitSubscriptVname(SubscriptVname ast, Object o) {
+            ast.E.visit(this, null);
+            ast.V.visit(this, null);
+
+            return (null);
+        }
+    */
+    // END Cambio Andres
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">

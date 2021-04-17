@@ -111,6 +111,9 @@ import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand ;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -594,18 +597,37 @@ public class LayoutVisitor implements Visitor {
 
 
   // Value-or-variable names
-  public Object visitDotVname(DotVname ast, Object obj) {
-    return layoutBinary("DotVname", ast.I, ast.V);
+  // @author        Andres
+  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName
+  // @funcionalidad metodos de visita para AST de Varname
+  // @codigo        A.114
+  public Object visitDotVarName(DotVarName ast, Object obj) {
+    return layoutBinary("Dot.Var.Name", ast.I, ast.V);
   }
 
-  public Object visitSimpleVname(SimpleVname ast, Object obj) {
-    return layoutUnary("Sim.Vname", ast.I);
+  public Object visitSimpleVarName(SimpleVarName ast, Object obj) {
+    return layoutUnary("Sim.Var.Name", ast.I);
   }
 
-  public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
-    return layoutBinary("Sub.Vname",
+  public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
+    return layoutBinary("Sub.Var.Name",
         ast.V, ast.E);
   }
+  /*
+      public Object visitDotVname(DotVname ast, Object obj) {
+        return layoutBinary("DotVname", ast.I, ast.V);
+      }
+
+      public Object visitSimpleVname(SimpleVname ast, Object obj) {
+        return layoutUnary("Sim.Vname", ast.I);
+      }
+
+      public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
+        return layoutBinary("Sub.Vname",
+            ast.V, ast.E);
+      }
+  */
+  // END CAMBIO Andres
 
 
   // Programs
