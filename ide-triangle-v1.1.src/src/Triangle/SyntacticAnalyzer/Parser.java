@@ -119,6 +119,10 @@ import Triangle.AbstractSyntaxTrees.SingleDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.VarName;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -1086,6 +1090,41 @@ public class Parser {
     }
     return vAST;
   }
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear el VarName
+  // @funcionalidad Parsear VarName
+  // @codigo        A.117
+  VarName parseVarName() throws SyntaxError {
+    VarName varNameAST = null; // in case there's a syntactic error
+    Identifier iAST = parseIdentifier();
+    varNameAST = parseRestOfVarName(iAST);
+    return varNameAST;
+  }
+  
+  VarName parseRestOfVarName(Identifier identifierAST) throws SyntaxError {
+    SourcePosition varNamePos = new SourcePosition();
+    varNamePos = identifierAST.position;
+    VarName vAST = new SimpleVarName(identifierAST, varNamePos);
+
+    while (currentToken.kind == Token.DOT ||
+           currentToken.kind == Token.LBRACKET) {
+
+      if (currentToken.kind == Token.DOT) {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        vAST = new DotVarName(vAST, iAST, varNamePos);
+      } else {
+        acceptIt();
+        Expression eAST = parseExpression();
+        accept(Token.RBRACKET);
+        finish(varNamePos);
+        vAST = new SubscriptVarName(vAST, eAST, varNamePos);
+      }
+    }
+    return vAST;
+  }
+  // END Cambio Andres
 
 ///////////////////////////////////////////////////////////////////////////////
 //

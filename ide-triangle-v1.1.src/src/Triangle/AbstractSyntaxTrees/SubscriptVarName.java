@@ -14,7 +14,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  * A.107
  */
 public class SubscriptVarName extends VarName {
-    public SubscriptVarName (Vname vAST, Expression eAST, SourcePosition thePosition) {
+    public SubscriptVarName (VarName vAST, Expression eAST, SourcePosition thePosition) {
         super (thePosition);
         V = vAST;
         E = eAST;
@@ -25,5 +25,5 @@ public class SubscriptVarName extends VarName {
   }
 
   public Expression E;
-  public Vname V;
+  public VarName V;
 }

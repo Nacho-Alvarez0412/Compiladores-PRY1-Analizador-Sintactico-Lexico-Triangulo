@@ -14,7 +14,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
  * A.106
  */
 public class DotVarName extends VarName {
-   public DotVarName (Vname vAST, Identifier iAST, SourcePosition thePosition) {
+   public DotVarName (VarName vAST, Identifier iAST, SourcePosition thePosition) {
     super (thePosition);
     V = vAST;
     I = iAST;
@@ -25,5 +25,5 @@ public class DotVarName extends VarName {
   }
 
   public Identifier I;
-  public Vname V;
+  public VarName V;
 }
