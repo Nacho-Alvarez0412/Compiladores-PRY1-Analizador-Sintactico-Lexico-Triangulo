@@ -26,6 +26,8 @@ A.22 - Encoder.java
 A.23 - Checker.java
 A.24 - SequentialElsifCommand.java*
 A.25 - SingleElsifCommand.java*
+A.103 - ElsifCommand.java
+
 Cases
 A.26 - CaseLiteral.java*
 A.27 - Visitor.java
@@ -104,3 +106,13 @@ A.99 - LayoutVisitor.java
 A.100 - Encoder.java
 A.101 - Checker.java
 A.102 - Parser.java
+
+Packages vname and varname
+A.104 - Varname.java*
+A.105 - SimpleVarName.java*
+A.106 - DotVarName.java*
+A.107 - SubscriptVarName.java*
+A.108 - Visitor.java
+A.109 - DotVname.java
+A.110 - SimpleVName.java
+A.111 - SubscriptVname.java

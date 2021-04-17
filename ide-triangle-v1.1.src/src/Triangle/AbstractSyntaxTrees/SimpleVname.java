@@ -22,10 +22,22 @@ public class SimpleVname extends Vname {
     super (thePosition);
     I = iAST;
   }
-
+  
+  // @author        Andres
+  // @descripcion   Eliminar visitors para Vname
+  // @funcionalidad Visitors para Vname nuevo
+  // @codigo        A.110
   public Object visit (Visitor v, Object o) {
-    return v.visitSimpleVname(this, o);
+    return null;
   }
+  /*
+    public Object visit (Visitor v, Object o) {
+       return v.visitSimpleVname(this, o);
+     }
+  */
+  // END Cambio Andres
+
+  
 
   public Identifier I;
 }

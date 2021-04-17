@@ -9,13 +9,20 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
  * @newclass
- * Clase para representar un AST de un elsif
+ * Represents a VarName AST
  * @author Andres
- * A.103
+ * A.104
  */
-public abstract class ElsifCommand extends Command {
+public abstract class VarName extends AST {
     
-    public ElsifCommand(SourcePosition thePosition) {
+    public VarName(SourcePosition thePosition) {
         super(thePosition);
+        variable = false;
+        type = null;
     }
+    
+  public boolean variable, indexed;
+  public int offset;
+  public TypeDenoter type;
+    
 }

@@ -23,10 +23,20 @@ public class DotVname extends Vname {
     V = vAST;
     I = iAST;
   }
-
+  
+  // @author        Andres
+  // @descripcion   Eliminar visitors para Vname
+  // @funcionalidad Visitors para Vname nuevo
+  // @codigo        A.109
+  public Object visit (Visitor v, Object o) {
+    return null;
+  }
+  /*
   public Object visit (Visitor v, Object o) {
     return v.visitDotVname(this, o);
   }
+  */
+  // END Cambio Andres
 
   public Identifier I;
   public Vname V;
