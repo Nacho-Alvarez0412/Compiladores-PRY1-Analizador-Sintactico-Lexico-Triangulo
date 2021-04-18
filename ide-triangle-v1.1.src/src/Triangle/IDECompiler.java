@@ -13,6 +13,8 @@ import Triangle.AbstractSyntaxTrees.Program;
 import Triangle.SyntacticAnalyzer.Parser;
 import Triangle.ContextualAnalyzer.Checker;
 import Triangle.CodeGenerator.Encoder;
+import Triangle.HTML.Generator.HTML_Generator;
+import java.io.IOException;
 
 
 
@@ -39,8 +41,55 @@ public class IDECompiler {
      * @param sourceName Path to the source file.
      * @return True if compilation was succesful.
      */
-    public boolean compileProgram(String sourceName) {
-        System.out.println(sourceName);
+    
+    /** @author        Ignacio Alvarez
+    * @description   Cambios a la función compileProgram
+    * @funcionalidad Agregar el HTML Generator para que genere código HTML un vez compilado el documento
+    * @codigo        I.3 
+    */
+    public boolean compileProgram(String sourceName) throws IOException {
+        System.out.println("********** " +
+                           "Triangle Compiler (IDE-Triangle 1.0)" +
+                           " **********");
+        
+        System.out.println("Syntactic Analysis ...");
+        SourceFile source = new SourceFile(sourceName);
+        Scanner scanner = new Scanner(source);
+        HTML_Generator htmlGen = new HTML_Generator();
+        htmlGen.setCode(sourceName);
+        report = new IDEReporter();
+        Parser parser = new Parser(scanner, report);
+        boolean success = false;
+        
+        rootAST = parser.parseProgram();
+        if (report.numErrors == 0) {
+            //System.out.println("Contextual Analysis ...");
+            //Checker checker = new Checker(report);
+            //checker.check(rootAST);
+            if (report.numErrors == 0) {
+               // System.out.println("Code Generation ...");
+                //Encoder encoder = new Encoder(report);
+               //encoder.encodeRun(rootAST, false);
+                
+                if (report.numErrors == 0) {
+                    //encoder.saveObjectProgram(sourceName.replace(".tri", ".tam"));
+                    success = true;
+                }
+            }
+        }
+
+        if (success){
+            htmlGen.generateHTML();
+            System.out.println("Compilation was successful.");
+        }
+        else
+            System.out.println("Compilation was unsuccessful.");
+        
+        return(success);
+    }
+    
+    /*
+    public boolean compileProgram(String sourceName) throws IOException {
         System.out.println("********** " +
                            "Triangle Compiler (IDE-Triangle 1.0)" +
                            " **********");
@@ -69,13 +118,18 @@ public class IDECompiler {
             }
         }
 
-        if (success)
+        if (success){
             System.out.println("Compilation was successful.");
+        }
         else
             System.out.println("Compilation was unsuccessful.");
         
         return(success);
     }
+    
+    END CAMBIO IGNACIO
+    
+    */
       
     /**
      * Returns the line number where the first error is.

@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @newClass
+ * @description Clase que representa los tokens interpretados por el generado de HTML
+ * @author Ignacio Alvarez
+ * @codigo I.1
  */
 package Triangle.HTML.Generator;
 

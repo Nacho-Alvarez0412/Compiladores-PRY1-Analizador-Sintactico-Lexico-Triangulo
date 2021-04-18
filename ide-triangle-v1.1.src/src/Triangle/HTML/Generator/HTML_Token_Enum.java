@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @newEnum
+ * @description Enum que representa los tokens de un código, para poder ser interpretados por el generador de HTML
+ * @author Ignacio Alvarez
+ * @codigo I.0
  */
 package Triangle.HTML.Generator;
 

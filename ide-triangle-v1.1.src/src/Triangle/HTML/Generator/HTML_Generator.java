@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @newClass
+ * @description Clase que se encarga de genenerar los HTML basado en un código dado por el compilador
+ *              los archivos generados son almacenados en la carpeta HTMLs del proyecto
+ * @author Ignacio Alvarez
+ * @codigo I.2
  */
 package Triangle.HTML.Generator;
 
@@ -166,7 +168,7 @@ public class HTML_Generator {
             html = html.concat(lineToString(line));
         }
         
-        File file = new File("..\\"+this.fileName);
+        File file = new File("..\\HTMLs\\"+this.fileName);
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file)); 
             bw.write(html);
