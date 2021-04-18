@@ -129,6 +129,10 @@ import Triangle.AbstractSyntaxTrees.LongIdentifier;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.PackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -140,12 +144,37 @@ public class Parser {
   private ErrorReporter errorReporter;
   private Token currentToken;
   private SourcePosition previousTokenPosition;
+  // @author        Andres
+  // @descripcion   Atributo para determinar el tipo de programa
+  // @funcionalidad Parsear el programa
+  // @codigo        A.140
+  private boolean isSimpleProgram = false;
+  private SimpleProgram simpleProgram = null;
+  private CompoundProgram compoundProgram = null;
+  // END Cambio Andres
 
   public Parser(Scanner lexer, ErrorReporter reporter) {
     lexicalAnalyser = lexer;
     errorReporter = reporter;
     previousTokenPosition = new SourcePosition();
   }
+  
+  // @author        Andres
+  // @descripcion   Meotodo para determinar el tipo de programa
+  // @funcionalidad Parsear el programa
+  // @codigo        A.141
+  public boolean getIsSimpleProgram() {
+      return isSimpleProgram;
+  }
+  
+  public SimpleProgram getSimpleProgram() {
+      return simpleProgram;
+  }
+  
+  public CompoundProgram getCompoundProgram() {
+      return compoundProgram;
+  }
+  // END CAMBIO Andres
 
 // accept checks whether the current token matches tokenExpected.
 // If so, fetches the next token.
@@ -193,24 +222,53 @@ public class Parser {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-  public Program parseProgram() {
-
-    Program programAST = null;
+   // @author        Andres
+   // @descripcion   Determinar que tipo de Program parsear
+   // @funcionalidad Parsear Program
+   // @codigo        A.143
+  public void parseProgram() {
 
     previousTokenPosition.start = 0;
     previousTokenPosition.finish = 0;
     currentToken = lexicalAnalyser.scan();
-
+    
     try {
+      // Check package declaration parsing
+      PackageDeclaration pdAST = null;
+      if (currentToken.kind == Token.PACKAGE) {
+          pdAST = parsePackageDeclaration();
+      }
+      Command cAST = parseCommand();
+      if (pdAST == null) {
+          this.isSimpleProgram = true;
+          simpleProgram = new SimpleProgram(cAST, previousTokenPosition);
+      } else {
+          this.isSimpleProgram = false;
+          compoundProgram = new CompoundProgram(pdAST, cAST, previousTokenPosition);
+      }
+      if (currentToken.kind != Token.EOT) {
+        syntacticError("\"%\" not expected after end of program",
+          currentToken.spelling);
+      }
+    }
+    catch (SyntaxError s) {
+        compoundProgram = null;
+        simpleProgram = null;
+    }
+    /*
+        try {
       Command cAST = parseCommand();
       programAST = new Program(cAST, previousTokenPosition);
+      
+      
       if (currentToken.kind != Token.EOT) {
         syntacticError("\"%\" not expected after end of program",
           currentToken.spelling);
       }
     }
     catch (SyntaxError s) { return null; }
-    return programAST;
+    */
+    // END CAMBIO Andres
   }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1111,12 +1169,38 @@ public class Parser {
       PackageIdentifier piAST = parsePackageIdentifier();
       accept(Token.IS);
       Declaration dAST = parseDeclaration();
+      accept(Token.END);
       finish(spdPos);
+      // Se acepta despues porque no es parte de la frase
+      // accept(Token.SEMICOLON);
       
       singlePackageDeclarationAST = new SinglePackageDeclaration(piAST, dAST, spdPos);
       
       return singlePackageDeclarationAST;
   }
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear PackageDeclaration
+  // @funcionalidad Parsear PackageDeclaration
+  // @codigo        A.142
+  PackageDeclaration parsePackageDeclaration() throws SyntaxError {
+      PackageDeclaration packageDeclarationAST = null;
+      SourcePosition pdPos = new SourcePosition();
+      start(pdPos);
+      
+      packageDeclarationAST = parseSinglePackageDeclaration();
+      accept(Token.SEMICOLON);
+      while (currentToken.kind == Token.PACKAGE) {
+          SinglePackageDeclaration pd2AST = parseSinglePackageDeclaration();
+          finish(pdPos);
+          accept(Token.SEMICOLON);
+          packageDeclarationAST = new SequentialPackageDeclaration(packageDeclarationAST, pd2AST, pdPos);
+      }
+      
+      return packageDeclarationAST;
+  }
+  // END CAMBIO Andres
   
   // @author        Andres
   // @descripcion   Metodo para parsear el vname nuevo

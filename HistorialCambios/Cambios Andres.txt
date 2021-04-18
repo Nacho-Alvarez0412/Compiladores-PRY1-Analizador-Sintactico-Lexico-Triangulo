@@ -144,3 +144,11 @@ A.136 - TreeVisitor.java
 A.137 - LayoutVisitor.java
 A.138 - Checker.java
 A.139 - Encoder.java
+A.140 - Parser.java
+A.141 - Parser.java
+A.142 - Parser.java
+A.143 - Parser.java
+A.144 - IDECOMPILER.java
+A.145 - IDECOMPILER.java
+A.146 - IDECOMPILER.java
+A.147 - Main.java

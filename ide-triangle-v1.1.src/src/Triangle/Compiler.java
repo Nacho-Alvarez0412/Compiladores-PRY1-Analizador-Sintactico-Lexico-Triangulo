@@ -81,7 +81,7 @@ public class Compiler {
         drawer   = new Drawer();
 
         // scanner.enableDebugging();
-        theAST = parser.parseProgram();				// 1st pass
+        //theAST = parser.parseProgram();				// 1st pass
         if (reporter.numErrors == 0) {
             //if (showingAST) {
             //    drawer.draw(theAST);

@@ -13,6 +13,8 @@ import Triangle.AbstractSyntaxTrees.Program;
 import Triangle.SyntacticAnalyzer.Parser;
 import Triangle.ContextualAnalyzer.Checker;
 import Triangle.CodeGenerator.Encoder;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 
 
 
@@ -51,7 +53,22 @@ public class IDECompiler {
         Parser parser = new Parser(scanner, report);
         boolean success = false;
         
-        rootAST = parser.parseProgram();
+        
+        // @author        Andres
+        // @descripcion   Determinar que tipo de Program parsear
+        // @funcionalidad Parsear Program
+        // @codigo        A.146
+        parser.parseProgram();
+        isSimpleProgram = parser.getIsSimpleProgram();
+        if (isSimpleProgram) {
+            simpleProgramAST = parser.getSimpleProgram();
+        } else {
+            compoundProgramAST = parser.getCompoundProgram();
+        }
+        /*
+            rootAST = parser.parseProgram();
+        */
+        // END CAMBIO Andres
         if (report.numErrors == 0) {
             //System.out.println("Contextual Analysis ...");
             //Checker checker = new Checker(report);
@@ -84,17 +101,47 @@ public class IDECompiler {
         return(report.getFirstErrorPosition());
     }
         
-    /**
-     * Returns the root Abstract Syntax Tree.
-     * @return Program AST (root).
-     */
-    public Program getAST() {
-        return(rootAST);
+    
+    
+    // @author        Andres
+    // @descripcion   Determinar que tipo de Program parsear
+    // @funcionalidad Parsear Program
+    // @codigo        A.144
+    public boolean getIsSimpleProgram() {
+        return this.isSimpleProgram;
     }
+    
+    public SimpleProgram getSimpleProgram() {
+        return simpleProgramAST;
+    }
+    
+    public CompoundProgram getCompoundProgram() {
+        return compoundProgramAST;
+    }
+    /*
+        public Program getAST() {
+            return(rootAST);
+        }
+    */
+    // END CAMBIO Andres
+    
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc=" Attributes ">
-    private Program rootAST;        // The Root Abstract Syntax Tree.    
+    
+    
+    // @author        Andres
+    // @descripcion   Determinar que tipo de Program parsear
+    // @funcionalidad Parsear Program
+    // @codigo        A.145
+    private boolean isSimpleProgram;
+    private SimpleProgram simpleProgramAST;        
+    private CompoundProgram compoundProgramAST;
     private IDEReporter report;     // Our ErrorReporter class.
+    /*
+        private Program rootAST;        // The Root Abstract Syntax Tree.    
+    private IDEReporter report;     // Our ErrorReporter class.
+    */
+    // END CAMBIO Andres
     // </editor-fold>
 }
