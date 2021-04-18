@@ -103,6 +103,9 @@ import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.PackageIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -922,8 +925,8 @@ public class TableVisitor implements Visitor {
     // Value-or-variable names
     
     // @author        Andres
-    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName y Vname
-    // @funcionalidad metodos de visita para AST de Varname y Vname
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y Package
+    // @funcionalidad metodos de visita para AST de Varname, Vname y Package
     // @codigo        A.112
     public Object visitDotVarName(DotVarName ast, Object o) {
         ast.I.visit(this, null);
@@ -960,6 +963,26 @@ public class TableVisitor implements Visitor {
     public Object visitPackageVname(PackageVname ast, Object o) {
         ast.PI.visit(this, null);
         ast.VN.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+        ast.I.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+        ast.PI.visit(this, null);
+        ast.I.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+        ast.PI.visit(this, null);
+        ast.D.visit(this, null);
         
         return (null);
     }

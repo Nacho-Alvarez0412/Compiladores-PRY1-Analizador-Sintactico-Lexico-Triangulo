@@ -180,7 +180,7 @@ public interface Visitor {
   public abstract Object visitPackageVname(PackageVname ast, Object o);
   public abstract Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o);
   public abstract Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o);
-  public abstract Object visitPackageDeclaration(PackageDeclaration ast, Object o);
+  public abstract Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o);
   /*
     public abstract Object visitDotVname(DotVname ast, Object o);
     public abstract Object visitSimpleVname(SimpleVname ast, Object o);

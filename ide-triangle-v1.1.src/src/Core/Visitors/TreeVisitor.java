@@ -104,6 +104,9 @@ import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.PackageIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -601,8 +604,8 @@ public class TreeVisitor implements Visitor {
     // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Values or Variable Names
     // @author        Andres
-    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName y Vname
-    // @funcionalidad metodos de visita para AST de Varname y Vname
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y package
+    // @funcionalidad metodos de visita para AST de Varname, Vname y package
     // @codigo        A.113
     public Object visitDotVarName(DotVarName ast, Object obj) {
         return(createBinary("Dot Var Name", ast.I, ast.V));
@@ -627,6 +630,19 @@ public class TreeVisitor implements Visitor {
     public Object visitPackageVname(PackageVname ast, Object o) {
         return(createBinary("Package Vname", ast.PI, ast.VN));
     }
+    
+    public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+       return(createUnary("Simple Long Identifier", ast.I));
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+       return(createBinary("Package Long Identifier", ast.PI, ast.I));
+    }
+    
+    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return(createBinary("Package Declaration", ast.PI, ast.D));
+    }
+    
     /*
         public Object visitDotVname(DotVname ast, Object obj) {
            return(createBinary("Dot Vname", ast.I, ast.V));

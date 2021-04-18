@@ -129,4 +129,6 @@ A.121 - Parser.java
 A.122 - LongIdentifier.java*
 A.123 - SimpleLongIdentifier.java*
 A.124 - PackageLongIdentifier.java*
-A.125 - PackageDeclaration.java*
+A.125 - SinglePackageDeclaration.java*
+A.126 - Parser.java
+A.127 - PackageDeclaration.java*

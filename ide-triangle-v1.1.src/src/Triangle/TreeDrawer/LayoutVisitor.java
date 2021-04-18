@@ -116,12 +116,14 @@ import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.PackageIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
-
 public class LayoutVisitor implements Visitor {
 
   private final int BORDER = 5;
@@ -600,8 +602,8 @@ public class LayoutVisitor implements Visitor {
 
   // Value-or-variable names
   // @author        Andres
-  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName y Vname
-  // @funcionalidad metodos de visita para AST de Varname y Vname
+  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y package
+  // @funcionalidad metodos de visita para AST de Varname, Vname y package
   // @codigo        A.114
   public Object visitDotVarName(DotVarName ast, Object obj) {
     return layoutBinary("Dot.Var.Name", ast.I, ast.V);
@@ -627,6 +629,19 @@ public class LayoutVisitor implements Visitor {
   public Object visitPackageVname(PackageVname ast, Object o) {
       return layoutBinary("Pack.Vname", ast.PI, ast.VN);
   }
+  
+   public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+       return layoutUnary("Simp.Long.Iden", ast.I);
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+       return layoutBinary("Pack.Long.Iden", ast.PI, ast.I);
+    }
+    
+    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return layoutBinary("Pack.Dec", ast.PI, ast.D);
+    }
+  
   /*
       public Object visitDotVname(DotVname ast, Object obj) {
         return layoutBinary("DotVname", ast.I, ast.V);

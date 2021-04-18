@@ -121,6 +121,9 @@ import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.PackageIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -942,8 +945,8 @@ public final class Checker implements Visitor {
   // Returns the TypeDenoter of the Vname. Does not use the
   // given object.
    // @author        Andres
-   // @descripcion   Agregar metodos de visita checker de nuevos ASTs VarName y Vname
-   // @funcionalidad metodos de visita checker para AST de Varname y Vname
+   // @descripcion   Agregar metodos de visita checker de nuevos ASTs VarName, Vname y package
+   // @funcionalidad metodos de visita checker para AST de Varname, Vname y package
    // @codigo        A.115
   public Object visitDotVarName(DotVarName ast, Object o) {
     ast.type = null;
@@ -1023,6 +1026,19 @@ public final class Checker implements Visitor {
   public Object visitPackageVname(PackageVname ast, Object o) {
       return null;
   }
+  
+    public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+       return null;
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+       return null;
+    }
+    
+    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return null;
+    }
+  
   
   /*
     public Object visitDotVname(DotVname ast, Object o) {

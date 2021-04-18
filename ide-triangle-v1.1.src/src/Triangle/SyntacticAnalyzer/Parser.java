@@ -125,12 +125,15 @@ import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.VarName;
 import Triangle.AbstractSyntaxTrees.PackageIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.LongIdentifier;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
-
 public class Parser {
 
   private Scanner lexicalAnalyser;
@@ -1066,6 +1069,55 @@ public class Parser {
 // VALUE-OR-VARIABLE NAMES
 //
 ///////////////////////////////////////////////////////////////////////////////
+  
+  
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear LongIdentifier
+  // @funcionalidad Parsear LongIdentifier
+  // @codigo        A.126
+  LongIdentifier parseLongIdentifier() throws SyntaxError {
+      LongIdentifier longIdentifierAST = null;
+      SourcePosition longIdentifierPos = new SourcePosition();
+      start(longIdentifierPos);
+      
+      Identifier iAST = parseIdentifier();
+      if (currentToken.kind == Token.DOLLAR) {
+          finish(longIdentifierPos);
+          PackageIdentifier piAST = new PackageIdentifier(iAST, longIdentifierPos);
+          accept(Token.DOLLAR);
+          
+          Identifier i2AST = parseIdentifier();
+          finish(longIdentifierPos);
+          longIdentifierAST = new PackageLongIdentifier(piAST, i2AST, longIdentifierPos);
+      } else {
+          finish(longIdentifierPos);
+          longIdentifierAST = new SimpleLongIdentifier(iAST, longIdentifierPos);
+      }
+      
+      return longIdentifierAST;
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear SinglePackageDeclaration
+  // @funcionalidad Parsear SinglePackageDeclaration
+  // @codigo        A.128
+  SinglePackageDeclaration parseSinglePackageDeclaration() throws SyntaxError {
+      SinglePackageDeclaration singlePackageDeclarationAST = null;
+      SourcePosition spdPos = new SourcePosition();
+      start(spdPos);
+      
+      accept(Token.PACKAGE);
+      PackageIdentifier piAST = parsePackageIdentifier();
+      accept(Token.IS);
+      Declaration dAST = parseDeclaration();
+      finish(spdPos);
+      
+      singlePackageDeclarationAST = new SinglePackageDeclaration(piAST, dAST, spdPos);
+      
+      return singlePackageDeclarationAST;
+  }
+  
   // @author        Andres
   // @descripcion   Metodo para parsear el vname nuevo
   // @funcionalidad Parsear vname nuevo
