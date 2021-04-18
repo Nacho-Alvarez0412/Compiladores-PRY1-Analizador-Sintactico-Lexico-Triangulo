@@ -180,7 +180,8 @@ public interface Visitor {
   public abstract Object visitPackageVname(PackageVname ast, Object o);
   public abstract Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o);
   public abstract Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o);
-  public abstract Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o);
+  public abstract Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o);
+  public abstract Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o);
   /*
     public abstract Object visitDotVname(DotVname ast, Object o);
     public abstract Object visitSimpleVname(SimpleVname ast, Object o);
@@ -189,6 +190,15 @@ public interface Visitor {
   // END Cambio Andres
 
   // Programs
-  public abstract Object visitProgram(Program ast, Object o);
+  // @author        Andres
+  // @descripcion   Agregar metodos visitor para program
+  // @funcionalidad Visitors para program
+  // @codigo        A.131
+  public abstract Object visitSimpleProgram(SimpleProgram ast, Object o);
+  public abstract Object visitCompoundProgram(CompoundProgram ast, Object o);
+  /*
+   public abstract Object visitProgram(Program ast, Object o);
+  */
+  // END Cambio Andres
 
 }

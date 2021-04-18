@@ -128,6 +128,9 @@ import Triangle.AbstractSyntaxTrees.PackageVname;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -1008,7 +1011,11 @@ public final class Encoder implements Visitor {
     return null;
   }
     
-  public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+  public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+    return null;
+  }
+  
+  public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
     return null;
   }
   
@@ -1062,9 +1069,26 @@ public final class Encoder implements Visitor {
 
 
   // Programs
+  
+  
+// @author        Andres
+// @descripcion   Agregar metodos de visita encoder de nuevos ASTs VarName, Vname y package
+// @funcionalidad metodos de visita encoder para AST de Varname, Vname y package
+// @codigo        A.139
+  public Object visitSimpleProgram(SimpleProgram ast, Object o) {
+      return null;
+      
+  }
+  
+  public Object visitCompoundProgram(CompoundProgram ast, Object o) {
+      return null;
+  }
+  /*
   public Object visitProgram(Program ast, Object o) {
     return ast.C.visit(this, o);
   }
+  */
+  // END CAMBIO Andres
 
   public Encoder (ErrorReporter reporter) {
     this.reporter = reporter;

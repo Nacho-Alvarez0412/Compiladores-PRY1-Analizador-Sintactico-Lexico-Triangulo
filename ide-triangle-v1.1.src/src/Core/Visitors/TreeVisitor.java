@@ -107,6 +107,9 @@ import Triangle.AbstractSyntaxTrees.PackageVname;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -639,8 +642,12 @@ public class TreeVisitor implements Visitor {
        return(createBinary("Package Long Identifier", ast.PI, ast.I));
     }
     
-    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
-      return(createBinary("Package Declaration", ast.PI, ast.D));
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return(createBinary("Single Package Declaration", ast.PI, ast.D));
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        return(createBinary("Sequential Package Declaration", ast.PD1, ast.PD2));
     }
     
     /*
@@ -657,9 +664,32 @@ public class TreeVisitor implements Visitor {
        }
     */
     // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.136
+    public Object visitProgram(SimpleProgram ast, Object obj) {
+        return(createUnary("Simple Program", ast.C));
+    }
+    
+     public Object visitProgram(CompoundProgram ast, Object obj) {
+        return(createBinary("Compound Program", ast.PD, ast.C));
+    }
+     
+     public Object visitSimpleProgram(SimpleProgram ast, Object obj) {
+        return(createUnary("Simple Program", ast.C));
+    }
+    
+     public Object visitCompoundProgram(CompoundProgram ast, Object obj) {
+        return(createBinary("Compound Program", ast.PD, ast.C));
+    }
+    /*
     public Object visitProgram(Program ast, Object obj) {
         return(createUnary("Program", ast.C));
     }
+    */
+    // END CAMBIO Andres
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc=" Tree Creation Methods ">

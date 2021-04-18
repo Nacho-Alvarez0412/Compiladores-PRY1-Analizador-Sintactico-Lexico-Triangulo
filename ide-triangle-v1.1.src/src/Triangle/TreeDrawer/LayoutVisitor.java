@@ -119,6 +119,9 @@ import Triangle.AbstractSyntaxTrees.PackageVname;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -638,8 +641,12 @@ public class LayoutVisitor implements Visitor {
        return layoutBinary("Pack.Long.Iden", ast.PI, ast.I);
     }
     
-    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
       return layoutBinary("Pack.Dec", ast.PI, ast.D);
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        return layoutBinary("Seq.Pack.Dec", ast.PD1, ast.PD2);
     }
   
   /*
@@ -660,10 +667,25 @@ public class LayoutVisitor implements Visitor {
 
 
   // Programs
-  public Object visitProgram(Program ast, Object obj) {
-    return layoutUnary("Program", ast.C);
-  }
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs Program
+    // @funcionalidad metodos de visita para AST de Program
+    // @codigo        A.137
+    public Object visitSimpleProgram(SimpleProgram ast, Object obj) {
+        return layoutUnary("Simple Program", ast.C);
+    }
+    
+    public Object visitCompoundProgram(CompoundProgram ast, Object obj) {
+        return layoutBinary("Compound Program", ast.PD, ast.C);
+    }
 
+    /*
+    public Object visitProgram(Program ast, Object obj) {
+        return layoutUnary("Program", ast.C);
+     }
+    */
+    // END CAMBIO Andres
+  
   private DrawingTree layoutCaption (String name) {
     int w = fontMetrics.stringWidth(name) + 4;
     int h = fontMetrics.getHeight() + 4;

@@ -106,6 +106,9 @@ import Triangle.AbstractSyntaxTrees.PackageVname;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -980,9 +983,16 @@ public class TableVisitor implements Visitor {
         return (null);
     }
     
-    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
         ast.PI.visit(this, null);
         ast.D.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        ast.PD1.visit(this, null);
+        ast.PD2.visit(this, null);
         
         return (null);
     }
@@ -1011,11 +1021,31 @@ public class TableVisitor implements Visitor {
 
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
     // Programs
-    public Object visitProgram(Program ast, Object o) {
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.134
+    public Object visitSimpleProgram(SimpleProgram ast, Object o) {
         ast.C.visit(this, null);
 
         return (null);
     }
+    
+     public Object visitCompoundProgram(CompoundProgram ast, Object o) {
+        ast.PD.visit(this, null);
+        ast.C.visit(this, null);
+
+        return (null);
+    }
+    /*
+        public Object visitProgram(Program ast, Object o) {
+        ast.C.visit(this, null);
+
+        return (null);
+    }
+    */
+    // END Cambio Andres
 
     /**
      * Adds an identifier to the table.
@@ -1042,12 +1072,32 @@ public class TableVisitor implements Visitor {
     /**
      * Returns the filled table model.
      */
-    public DefaultTableModel getTable(Program ast) {
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.135
+    public DefaultTableModel getTable(SimpleProgram ast) {
+        model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
+        visitSimpleProgram(ast, null);
+
+        return (model);
+    }
+    
+    public DefaultTableModel getTable(CompoundProgram ast) {
+        model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
+        visitCompoundProgram(ast, null);
+
+        return (model);
+    }
+    /*
+     public DefaultTableModel getTable(Program ast) {
         model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
         visitProgram(ast, null);
 
         return (model);
     }
+    */
+    // END CAMBIO Andres
 
     // </editor-fold>
     

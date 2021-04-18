@@ -9,7 +9,7 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
  * @newclass
- * Represents a PackageDeclaration AST
+ * Represents a Single PackageDeclaration AST
  * @author Andres
  * A.125
  */
@@ -24,7 +24,7 @@ public class SinglePackageDeclaration extends PackageDeclaration {
     }
     
      public Object visit(Visitor v, Object o) {
-        return v.visitPackageDeclaration(this, o);
+        return v.visitSinglePackageDeclaration(this, o);
     }
     
     public PackageIdentifier PI;

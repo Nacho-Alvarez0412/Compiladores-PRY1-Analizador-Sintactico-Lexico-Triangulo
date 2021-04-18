@@ -124,6 +124,9 @@ import Triangle.AbstractSyntaxTrees.PackageVname;
 import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
 import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
 import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -1035,7 +1038,11 @@ public final class Checker implements Visitor {
        return null;
     }
     
-    public Object visitPackageDeclaration(SinglePackageDeclaration ast, Object o) {
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return null;
+    }
+    
+     public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
       return null;
     }
   
@@ -1112,11 +1119,29 @@ public final class Checker implements Visitor {
   // END Cambio Andres
   
   // Programs
-
+  
+  // @author        Andres
+  // @description   Cambio de metodos de visita checker para program
+  // @funcionalidad metodos de visita checker para program
+  // @codigo        A.138
+     public Object visitSimpleProgram(SimpleProgram ast, Object o) {
+         ast.C.visit(this, null);
+         return null;
+     }
+     
+     public Object visitCompoundProgram(CompoundProgram ast, Object o) {
+         ast.PD.visit(this, null);
+         ast.C.visit(this, null);
+         
+         return null;
+     }
+  /*
   public Object visitProgram(Program ast, Object o) {
     ast.C.visit(this, null);
     return null;
   }
+     */
+     // END CAMBIO Andres
 
   // Checks whether the source program, represented by its AST, satisfies the
   // language's scope rules and type rules.
