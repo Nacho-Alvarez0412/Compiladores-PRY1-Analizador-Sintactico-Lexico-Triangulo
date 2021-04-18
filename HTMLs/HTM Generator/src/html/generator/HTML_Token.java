@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author nacho
  */
-public class HTML_Tokens {
+public class HTML_Token {
     private String spelling;
     private HTML_Token_Enum type;
     
@@ -24,12 +24,20 @@ public class HTML_Tokens {
     private static String[] operators = new String[] {".",":",";",",",":=","~","|","$",".."};
     private static String[] separators = new String[] {"(",")","[","]","{","}","",};
     
-    public HTML_Tokens(String spelling){
+    public HTML_Token(String spelling){
         this.spelling = spelling;
         this.type = identifyType(spelling);
     }
+    
+    public HTML_Token(){
+        this.spelling = null;
+        this.type = null;
+    }
 
     private HTML_Token_Enum identifyType(String spelling) {
+        if (spelling.contentEquals("\n")){
+            return HTML_Token_Enum.ENTER;
+        }
         if (spelling.contentEquals("\t")){
             return HTML_Token_Enum.TAB;
         }
@@ -59,8 +67,8 @@ public class HTML_Tokens {
         return HTML_Token_Enum.IDENTIFIER;
     }
 
-    private boolean isReserved(String spelling) {
-        for (String reservedWord : HTML_Tokens.reservedWords) {
+    public boolean isReserved(String spelling) {
+        for (String reservedWord : HTML_Token.reservedWords) {
             if (spelling.contentEquals(reservedWord)) {
                 return true;
             }
@@ -68,8 +76,8 @@ public class HTML_Tokens {
         return false;
     }
     
-    private boolean isOperator(String spelling) {
-        for (String operator : HTML_Tokens.operators) {
+    public boolean isOperator(String spelling) {
+        for (String operator : HTML_Token.operators) {
             if (spelling.contentEquals(operator)) {
                 return true;
             }
@@ -77,8 +85,8 @@ public class HTML_Tokens {
         return false;
     }
     
-    private boolean isSeparator(String spelling) {
-        for (String separator : HTML_Tokens.separators) {
+    public boolean isSeparator(String spelling) {
+        for (String separator : HTML_Token.separators) {
             if (spelling.contentEquals(separator)) {
                 return true;
             }
@@ -111,6 +119,10 @@ public class HTML_Tokens {
 
     public HTML_Token_Enum getType() {
         return type;
+    }
+
+    public void setType(HTML_Token_Enum type) {
+        this.type = type;
     }
             
 }

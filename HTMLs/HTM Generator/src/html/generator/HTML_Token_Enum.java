@@ -17,5 +17,6 @@ public enum HTML_Token_Enum {
             LITERAL,
             COMMENT,
             TAB,
-            SPACE
+            SPACE,
+            ENTER
 }
