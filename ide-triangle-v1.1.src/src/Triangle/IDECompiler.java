@@ -40,6 +40,7 @@ public class IDECompiler {
      * @return True if compilation was succesful.
      */
     public boolean compileProgram(String sourceName) {
+        System.out.println(sourceName);
         System.out.println("********** " +
                            "Triangle Compiler (IDE-Triangle 1.0)" +
                            " **********");

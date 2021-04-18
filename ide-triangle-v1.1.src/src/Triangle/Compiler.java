@@ -60,6 +60,7 @@ public class Compiler {
      */
     static boolean compileProgram (String sourceName, String objectName,
                                    boolean showingAST, boolean showingTable) {
+        
 
         System.out.println("********** " +
                            "Triangle Compiler (Java Version 2.1)" +

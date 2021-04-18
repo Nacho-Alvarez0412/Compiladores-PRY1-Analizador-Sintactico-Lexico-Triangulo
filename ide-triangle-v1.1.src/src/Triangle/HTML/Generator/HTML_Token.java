@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package html.generator;
+package Triangle.HTML.Generator;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.isLiteral;
 import java.util.regex.Pattern;
