@@ -37,8 +37,8 @@ public class main {
                           "\tend;\n" +
                           "\tnothing\n" +
                           "end");
-        ArrayList<String> preTokens = generator.getCodeSections();
-        System.out.println(generator.getTokens(preTokens));
+        
+        generator.generateHTML();
         
         
         
