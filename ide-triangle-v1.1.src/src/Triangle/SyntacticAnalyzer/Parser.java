@@ -123,6 +123,8 @@ import Triangle.AbstractSyntaxTrees.SimpleVarName;
 import Triangle.AbstractSyntaxTrees.DotVarName;
 import Triangle.AbstractSyntaxTrees.SubscriptVarName;
 import Triangle.AbstractSyntaxTrees.VarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -320,6 +322,7 @@ public class Parser {
     switch (currentToken.kind) {
 
     case Token.IDENTIFIER:
+      /*
       {
         Identifier iAST = parseIdentifier();
         if (currentToken.kind == Token.LPAREN) {
@@ -338,6 +341,7 @@ public class Parser {
           commandAST = new AssignCommand(vAST, eAST, commandPos);
         }
       }
+      */
       break;
         
     // @author        Andres
@@ -973,6 +977,7 @@ public class Parser {
       break;
 
     case Token.IDENTIFIER:
+        /*
       {
         Identifier iAST= parseIdentifier();
         if (currentToken.kind == Token.LPAREN) {
@@ -988,6 +993,7 @@ public class Parser {
           expressionAST = new VnameExpression(vAST, expressionPos);
         }
       }
+        */
       break;
 
     case Token.OPERATOR:
@@ -1060,8 +1066,34 @@ public class Parser {
 // VALUE-OR-VARIABLE NAMES
 //
 ///////////////////////////////////////////////////////////////////////////////
-
-  Vname parseVname () throws SyntaxError {
+  // @author        Andres
+  // @descripcion   Metodo para parsear el vname nuevo
+  // @funcionalidad Parsear vname nuevo
+  // @codigo        A.121
+  Vname parseVname() throws SyntaxError {
+      Vname vnameAST = null;
+      SourcePosition vnamePos = new SourcePosition();
+      start(vnamePos);
+      
+      Identifier iAST = parseIdentifier();
+      if (currentToken.kind == Token.DOLLAR) {
+          finish(vnamePos);
+          PackageIdentifier piAST = new PackageIdentifier(iAST, vnamePos);
+          accept(Token.DOLLAR);
+          
+          VarName vnAST = parseVarName();
+          finish(vnamePos);
+          vnameAST = new PackageVname(piAST, vnAST, vnamePos);
+      } else {
+          VarName vnAST = parseRestOfVarName(iAST);
+          finish(vnamePos);
+          vnameAST = new SimpleVname(vnAST, vnamePos);
+      }
+      
+      return vnameAST;
+  }
+  /*
+    Vname parseVname () throws SyntaxError {
     Vname vnameAST = null; // in case there's a syntactic error
     Identifier iAST = parseIdentifier();
     vnameAST = parseRestOfVname(iAST);
@@ -1090,6 +1122,25 @@ public class Parser {
     }
     return vAST;
   }
+  */
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear el package-identifier
+  // @funcionalidad Parsear package-identifier
+  // @codigo        A.120
+  PackageIdentifier parsePackageIdentifier() throws SyntaxError {
+      PackageIdentifier piAST = null;
+      SourcePosition packageIdentifierPos = new SourcePosition();
+      
+      start(packageIdentifierPos);
+      Identifier iAST = parseIdentifier();
+      finish(packageIdentifierPos);
+      
+      piAST = new PackageIdentifier(iAST, packageIdentifierPos);
+      return piAST;
+  }
+  // END CAMBIO Andres
   
   // @author        Andres
   // @descripcion   Metodo para parsear el VarName
