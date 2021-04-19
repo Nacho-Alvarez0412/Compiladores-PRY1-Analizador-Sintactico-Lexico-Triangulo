@@ -1,0 +1,5 @@
+I.0 Creación HTML_Token_Enum
+I.1 Creación clase HTML_Token
+I.2 Creación clase HTML_Generator
+I.3 Modificación IDE Compiler class
+I.4 Modficación IDE Token
