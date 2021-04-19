@@ -69,6 +69,7 @@ public class IDECompiler {
         }
 
         if (success)
+            //Satanas mas playo
             System.out.println("Compilation was successful.");
         else
             System.out.println("Compilation was unsuccessful.");
