@@ -657,6 +657,7 @@ public class Parser {
         case Token.FOR:
           {
             ForFromCommand ffcAST = parseForFromCommand();
+            accept(Token.TO);
             Expression e1AST = parseExpression();
             switch (currentToken.kind) {
             case Token.DO:
