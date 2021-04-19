@@ -15,6 +15,11 @@ import Triangle.ContextualAnalyzer.Checker;
 import Triangle.CodeGenerator.Encoder;
 import Triangle.AbstractSyntaxTrees.SimpleProgram;
 import Triangle.AbstractSyntaxTrees.CompoundProgram;
+import Triangle.HTML.Generator.HTML_Generator;
+import Triangle.SyntacticAnalyzer.Token;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -48,11 +53,24 @@ public class IDECompiler {
         
         System.out.println("Syntactic Analysis ...");
         SourceFile source = new SourceFile(sourceName);
+        SourceFile HTMLsource = new SourceFile(sourceName);
         Scanner scanner = new Scanner(source);
+        Scanner HTMLscanner = new Scanner(HTMLsource);
+        HTML_Generator htmlGen = new HTML_Generator();
+        htmlGen.setCode(sourceName);
         report = new IDEReporter();
         Parser parser = new Parser(scanner, report);
         boolean success = false;
-        
+        boolean generateHTML = true;
+        Token token = HTMLscanner.scan();
+
+        while(token.kind != Token.EOT){
+            if(token.kind == Token.ERROR){
+                generateHTML = false;
+                break;
+            }
+            token = HTMLscanner.scan(); 
+        }
         
         // @author        Andres
         // @descripcion   Determinar que tipo de Program parsear
@@ -84,7 +102,12 @@ public class IDECompiler {
                 }
             }
         }
-
+        if (generateHTML)
+            try {
+                htmlGen.generateHTML();
+            }catch (IOException ex) {
+                Logger.getLogger(IDECompiler.class.getName()).log(Level.SEVERE, null, ex);
+            }
         if (success)
             //Satanas mas playo
             System.out.println("Compilation was successful.");

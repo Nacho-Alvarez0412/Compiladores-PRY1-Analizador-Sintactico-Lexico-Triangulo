@@ -14,12 +14,23 @@
 
 package Triangle.SyntacticAnalyzer;
 
+/** @author        Ignacio Alvarez
+* @description   Cambios a la clase Token para modificar accesibilidad
+* @funcionalidad Permitir acceso a la clase Token y funciones kind
+* @codigo        I.4 
+*/
+final public class Token extends Object {
 
-final class Token extends Object {
-
-  protected int kind;
+  public int kind;
   protected String spelling;
   protected SourcePosition position;
+/*I.4 
+  * final  class Token extends Object {
+        protected int kind;
+        protected String spelling;
+        protected SourcePosition position;
+  */
+  // END CAMBIO IGNACIO
 
   public Token(int kind, String spelling, SourcePosition position) {
 
