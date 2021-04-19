@@ -98,6 +98,17 @@ import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -175,12 +186,25 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de call command
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        J.75
+    public Object visitCallCommand(CallCommand ast, Object o) {
+        ast.LI.visit(this, null);
+        ast.APS.visit(this, null);
+
+        return (null);
+    }
+    /* J.75
     public Object visitCallCommand(CallCommand ast, Object o) {
         ast.I.visit(this, null);
         ast.APS.visit(this, null);
 
         return (null);
-    }
+    }  
+    */
+    //END CAMBIO Joseph
 
     public Object visitEmptyCommand(EmptyCommand ast, Object o) {
         return (null);
@@ -459,12 +483,24 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de call expression
+    // @funcionalidad Cambio en las alternativas de simple expression
+    // @codigo        J.76
+    public Object visitCallExpression(CallExpression ast, Object o) {
+        ast.LI.visit(this, null);
+        ast.APS.visit(this, null);
+        return (null);
+    }
+    /* J.76
     public Object visitCallExpression(CallExpression ast, Object o) {
         ast.I.visit(this, null);
         ast.APS.visit(this, null);
-
         return (null);
-    }
+    }   
+    */
+    //END CAMBIO Joseph
 
     public Object visitCharacterExpression(CharacterExpression ast, Object o) {
         ast.CL.visit(this, null);
@@ -846,11 +882,22 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de simple type-denoter
+    // @funcionalidad Cambio en las alternativas de type-denoter
+    // @codigo        J.77
+    public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
+        ast.LI.visit(this, null);
+        return (null);
+    }
+    /* J.77
     public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
         ast.I.visit(this, null);
 
         return (null);
     }
+    */
+    // END CAMBIO Joseph
 
     public Object visitIntTypeDenoter(IntTypeDenoter ast, Object o) {
         return (null);
@@ -915,34 +962,126 @@ public class TableVisitor implements Visitor {
 
   // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Value-or-variable names
-    public Object visitDotVname(DotVname ast, Object o) {
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y Package
+    // @funcionalidad metodos de visita para AST de Varname, Vname y Package
+    // @codigo        A.112
+    public Object visitDotVarName(DotVarName ast, Object o) {
         ast.I.visit(this, null);
         ast.V.visit(this, null);
 
         return (null);
     }
 
-    public Object visitSimpleVname(SimpleVname ast, Object o) {
+    public Object visitSimpleVarName(SimpleVarName ast, Object o) {
         ast.I.visit(this, null);
 
         return (null);
     }
 
-    public Object visitSubscriptVname(SubscriptVname ast, Object o) {
+    public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
         ast.E.visit(this, null);
         ast.V.visit(this, null);
 
         return (null);
     }
+    
+    public Object visitSimpleVname(SimpleVname ast, Object o) {
+        ast.VN.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+        ast.I.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitPackageVname(PackageVname ast, Object o) {
+        ast.PI.visit(this, null);
+        ast.VN.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+        ast.I.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+        ast.PI.visit(this, null);
+        ast.I.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+        ast.PI.visit(this, null);
+        ast.D.visit(this, null);
+        
+        return (null);
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        ast.PD1.visit(this, null);
+        ast.PD2.visit(this, null);
+        
+        return (null);
+    }
+    /*
+        public Object visitDotVname(DotVname ast, Object o) {
+           ast.I.visit(this, null);
+           ast.V.visit(this, null);
+
+           return (null);
+        }
+        public Object visitSimpleVname(SimpleVname ast, Object o) {
+          ast.I.visit(this, null);
+
+          return (null);
+         }
+
+        public Object visitSubscriptVname(SubscriptVname ast, Object o) {
+            ast.E.visit(this, null);
+            ast.V.visit(this, null);
+
+            return (null);
+        }
+    */
+    // END Cambio Andres
   // </editor-fold>
 
   // <editor-fold defaultstate="collapsed" desc=" Table Creation Methods ">
     // Programs
-    public Object visitProgram(Program ast, Object o) {
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.134
+    public Object visitSimpleProgram(SimpleProgram ast, Object o) {
         ast.C.visit(this, null);
 
         return (null);
     }
+    
+     public Object visitCompoundProgram(CompoundProgram ast, Object o) {
+        ast.PD.visit(this, null);
+        ast.C.visit(this, null);
+
+        return (null);
+    }
+    /*
+        public Object visitProgram(Program ast, Object o) {
+        ast.C.visit(this, null);
+
+        return (null);
+    }
+    */
+    // END Cambio Andres
 
     /**
      * Adds an identifier to the table.
@@ -969,12 +1108,32 @@ public class TableVisitor implements Visitor {
     /**
      * Returns the filled table model.
      */
-    public DefaultTableModel getTable(Program ast) {
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.135
+    public DefaultTableModel getTable(SimpleProgram ast) {
+        model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
+        visitSimpleProgram(ast, null);
+
+        return (model);
+    }
+    
+    public DefaultTableModel getTable(CompoundProgram ast) {
+        model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
+        visitCompoundProgram(ast, null);
+
+        return (model);
+    }
+    /*
+     public DefaultTableModel getTable(Program ast) {
         model = new DefaultTableModel((new String[]{"Name", "Type", "Size", "Level", "Displacement", "Value"}), 0);
         visitProgram(ast, null);
 
         return (model);
     }
+    */
+    // END CAMBIO Andres
 
     // </editor-fold>
     

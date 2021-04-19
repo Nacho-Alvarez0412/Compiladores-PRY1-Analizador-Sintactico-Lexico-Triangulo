@@ -9,13 +9,14 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
  * @newclass
- * Clase para representar un AST de un elsif
+ * Represents the PackageDeclaration AST
  * @author Andres
- * A.103
+ * A.127
  */
-public abstract class ElsifCommand extends Command {
+public abstract class PackageDeclaration extends AST {
     
-    public ElsifCommand(SourcePosition thePosition) {
+    public PackageDeclaration(SourcePosition thePosition) {
         super(thePosition);
     }
+    
 }

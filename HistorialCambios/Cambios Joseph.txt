@@ -60,10 +60,23 @@ J.59: Parser.java
 J.60: Parser.java
 J.61: ForFromCommand.java*
 J.62: Parser.java
-
-// @author        Joseph
-// @description   Cambio de var como alternativa de single-declaration
-// @funcionalidad Cambio en las alternativas de single declaration
-// @codigo        J.
-/**/
-// END CAMBIO Joseph
+j.63: SimpleTypeDenoter.java
+j.64: CallCommand.java
+j.65: CallExpression.java
+j.66: Visitor.java
+j.67: Encoder.java
+j.68: Encoder.java
+j.69: Checker.java
+j.70: Checker.java
+j.71: Checker.java
+j.72: LayoutVisitor.java
+j.73: LayoutVisitor.java
+j.74: LayoutVisitor.java
+j.75: TableVisitor.java
+j.76: TableVisitor.java
+j.77: TableVisitor.java
+j.78: TreeVisitor.java
+j.79: TreeVisitor.java
+j.80: TreeVisitor.java
+j.81: Parser.java
+j.82: Parser.java

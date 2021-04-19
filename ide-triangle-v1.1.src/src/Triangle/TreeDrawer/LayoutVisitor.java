@@ -111,12 +111,22 @@ import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand ;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
-
 public class LayoutVisitor implements Visitor {
 
   private final int BORDER = 5;
@@ -159,10 +169,19 @@ public class LayoutVisitor implements Visitor {
   }
   // END cambio Andres
   
-
+  // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar Call Command
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.72
+  public Object visitCallCommand(CallCommand ast, Object obj) {
+    return layoutBinary("CallCom.", ast.LI, ast.APS);
+   }
+  /*J.72
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
    }
+  */
+  // END CAMBIO Joseph
 
   public Object visitEmptyCommand(EmptyCommand ast, Object obj) {
     return layoutNullary("EmptyCom.");
@@ -357,9 +376,19 @@ public class LayoutVisitor implements Visitor {
     return layoutTernary("Bin.Expr.", ast.E1, ast.O, ast.E2);
   }
 
+  // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar call expression
+  // @funcionalidad Cambio en las alternativas de primary expression
+  // @codigo        J.73
+  public Object visitCallExpression(CallExpression ast, Object obj) {
+    return layoutBinary("CallExpr.", ast.LI, ast.APS);
+  }
+ /*J.73
   public Object visitCallExpression(CallExpression ast, Object obj) {
     return layoutBinary("CallExpr.", ast.I, ast.APS);
   }
+ */
+ // END CAMBIO Joseph
 
   public Object visitCharacterExpression(CharacterExpression ast, Object obj) {
     return layoutUnary("Char.Expr.", ast.CL);
@@ -553,9 +582,19 @@ public class LayoutVisitor implements Visitor {
     return layoutNullary("error");
   }
 
+   // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar simple type denoter
+  // @funcionalidad Cambio en las alternativas de type denoter
+  // @codigo        J.74
+  public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
+    return layoutUnary("Sim.TypeD.", ast.LI);
+  }
+  /*J.74
   public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
     return layoutUnary("Sim.TypeD.", ast.I);
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitIntTypeDenoter(IntTypeDenoter ast, Object obj) {
     return layoutNullary("int");
@@ -594,25 +633,88 @@ public class LayoutVisitor implements Visitor {
 
 
   // Value-or-variable names
-  public Object visitDotVname(DotVname ast, Object obj) {
-    return layoutBinary("DotVname", ast.I, ast.V);
+  // @author        Andres
+  // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y package
+  // @funcionalidad metodos de visita para AST de Varname, Vname y package
+  // @codigo        A.114
+  public Object visitDotVarName(DotVarName ast, Object obj) {
+    return layoutBinary("Dot.Var.Name", ast.I, ast.V);
   }
 
-  public Object visitSimpleVname(SimpleVname ast, Object obj) {
-    return layoutUnary("Sim.Vname", ast.I);
+  public Object visitSimpleVarName(SimpleVarName ast, Object obj) {
+    return layoutUnary("Sim.Var.Name", ast.I);
   }
 
-  public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
-    return layoutBinary("Sub.Vname",
+  public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
+    return layoutBinary("Sub.Var.Name",
         ast.V, ast.E);
   }
+  
+  public Object visitSimpleVname(SimpleVname ast, Object o) {
+      return layoutUnary("Simp.Vname", ast.VN);
+  }
+  
+  public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return layoutUnary("Pack.Ident", ast.I);
+  }
+  
+  public Object visitPackageVname(PackageVname ast, Object o) {
+      return layoutBinary("Pack.Vname", ast.PI, ast.VN);
+  }
+  
+   public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+       return layoutUnary("Simp.Long.Iden", ast.I);
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+       return layoutBinary("Pack.Long.Iden", ast.PI, ast.I);
+    }
+    
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return layoutBinary("Pack.Dec", ast.PI, ast.D);
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        return layoutBinary("Seq.Pack.Dec", ast.PD1, ast.PD2);
+    }
+  
+  /*
+      public Object visitDotVname(DotVname ast, Object obj) {
+        return layoutBinary("DotVname", ast.I, ast.V);
+      }
+
+      public Object visitSimpleVname(SimpleVname ast, Object obj) {
+        return layoutUnary("Sim.Vname", ast.I);
+      }
+
+      public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
+        return layoutBinary("Sub.Vname",
+            ast.V, ast.E);
+      }
+  */
+  // END CAMBIO Andres
 
 
   // Programs
-  public Object visitProgram(Program ast, Object obj) {
-    return layoutUnary("Program", ast.C);
-  }
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs Program
+    // @funcionalidad metodos de visita para AST de Program
+    // @codigo        A.137
+    public Object visitSimpleProgram(SimpleProgram ast, Object obj) {
+        return layoutUnary("Simple Program", ast.C);
+    }
+    
+    public Object visitCompoundProgram(CompoundProgram ast, Object obj) {
+        return layoutBinary("Compound Program", ast.PD, ast.C);
+    }
 
+    /*
+    public Object visitProgram(Program ast, Object obj) {
+        return layoutUnary("Program", ast.C);
+     }
+    */
+    // END CAMBIO Andres
+  
   private DrawingTree layoutCaption (String name) {
     int w = fontMetrics.stringWidth(name) + 4;
     int h = fontMetrics.getHeight() + 4;

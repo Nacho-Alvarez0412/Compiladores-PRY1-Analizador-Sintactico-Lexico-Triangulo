@@ -9,13 +9,19 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
  * @newclass
- * Clase para representar un AST de un elsif
+ * Represents a SimpleProgram AST
  * @author Andres
- * A.103
+ * A.132
  */
-public abstract class ElsifCommand extends Command {
-    
-    public ElsifCommand(SourcePosition thePosition) {
-        super(thePosition);
-    }
+public class SimpleProgram extends Program {
+  public SimpleProgram (Command cAST, SourcePosition thePosition) {
+    super (thePosition);
+    C = cAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitSimpleProgram(this, o);
+  }
+
+  public Command C;
 }

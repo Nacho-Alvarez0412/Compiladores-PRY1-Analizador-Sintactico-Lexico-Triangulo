@@ -1,6 +1,17 @@
+package begin ~ 
+
+	const nacho ~ 5;
+	const titovare ~ 6
+end;
+package rooster ~ 
+
+	const turq ~ 5;
+	const zugar ~ 6
+end;
+
 if 1 > 2
 then
-	putint(3)
+	nothing
 else
-	putint(2)
+	nothing
 end

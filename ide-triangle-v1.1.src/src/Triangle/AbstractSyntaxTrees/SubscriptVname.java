@@ -23,10 +23,22 @@ public class SubscriptVname extends Vname {
     V = vAST;
     E = eAST;
   }
-
+  
+  // @author        Andres
+  // @descripcion   Eliminar visitors para Vname
+  // @funcionalidad Visitors para Vname nuevo
+  // @codigo        A.111
   public Object visit (Visitor v, Object o) {
+    return null;
+  }
+  /*
+   public Object visit (Visitor v, Object o) {
     return v.visitSubscriptVname(this, o);
   }
+  */
+  // END Cambio Andres
+
+  
 
   public Expression E;
   public Vname V;

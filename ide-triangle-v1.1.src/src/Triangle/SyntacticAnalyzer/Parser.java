@@ -119,24 +119,63 @@ import Triangle.AbstractSyntaxTrees.SingleDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.VarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.LongIdentifier;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.PackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
+import Triangle.AbstractSyntaxTrees.SimpleVname;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
-
 public class Parser {
 
   private Scanner lexicalAnalyser;
   private ErrorReporter errorReporter;
   private Token currentToken;
   private SourcePosition previousTokenPosition;
+  // @author        Andres
+  // @descripcion   Atributo para determinar el tipo de programa
+  // @funcionalidad Parsear el programa
+  // @codigo        A.140
+  private boolean isSimpleProgram = false;
+  private SimpleProgram simpleProgram = null;
+  private CompoundProgram compoundProgram = null;
+  // END Cambio Andres
 
   public Parser(Scanner lexer, ErrorReporter reporter) {
     lexicalAnalyser = lexer;
     errorReporter = reporter;
     previousTokenPosition = new SourcePosition();
   }
+  
+  // @author        Andres
+  // @descripcion   Meotodo para determinar el tipo de programa
+  // @funcionalidad Parsear el programa
+  // @codigo        A.141
+  public boolean getIsSimpleProgram() {
+      return isSimpleProgram;
+  }
+  
+  public SimpleProgram getSimpleProgram() {
+      return simpleProgram;
+  }
+  
+  public CompoundProgram getCompoundProgram() {
+      return compoundProgram;
+  }
+  // END CAMBIO Andres
 
 // accept checks whether the current token matches tokenExpected.
 // If so, fetches the next token.
@@ -184,24 +223,53 @@ public class Parser {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-  public Program parseProgram() {
-
-    Program programAST = null;
+   // @author        Andres
+   // @descripcion   Determinar que tipo de Program parsear
+   // @funcionalidad Parsear Program
+   // @codigo        A.143
+  public void parseProgram() {
 
     previousTokenPosition.start = 0;
     previousTokenPosition.finish = 0;
     currentToken = lexicalAnalyser.scan();
-
+    
     try {
+      // Check package declaration parsing
+      PackageDeclaration pdAST = null;
+      if (currentToken.kind == Token.PACKAGE) {
+          pdAST = parsePackageDeclaration();
+      }
+      Command cAST = parseCommand();
+      if (pdAST == null) {
+          this.isSimpleProgram = true;
+          simpleProgram = new SimpleProgram(cAST, previousTokenPosition);
+      } else {
+          this.isSimpleProgram = false;
+          compoundProgram = new CompoundProgram(pdAST, cAST, previousTokenPosition);
+      }
+      if (currentToken.kind != Token.EOT) {
+        syntacticError("\"%\" not expected after end of program",
+          currentToken.spelling);
+      }
+    }
+    catch (SyntaxError s) {
+        compoundProgram = null;
+        simpleProgram = null;
+    }
+    /*
+        try {
       Command cAST = parseCommand();
       programAST = new Program(cAST, previousTokenPosition);
+      
+      
       if (currentToken.kind != Token.EOT) {
         syntacticError("\"%\" not expected after end of program",
           currentToken.spelling);
       }
     }
     catch (SyntaxError s) { return null; }
-    return programAST;
+    */
+    // END CAMBIO Andres
   }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -315,6 +383,40 @@ public class Parser {
 
     switch (currentToken.kind) {
 
+    // @author        Joseph
+    // @description   Cambio de parsing de primary expression, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de primary expression
+    // @codigo        J.82
+    case Token.IDENTIFIER:
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        if (currentToken.kind == Token.LPAREN) {
+          acceptIt();
+          ActualParameterSequence apsAST = parseActualParameterSequence();
+          accept(Token.RPAREN);
+          finish(commandPos);
+          commandAST = new CallCommand(liAST, apsAST, commandPos);
+
+        } else {
+          if (liAST instanceof PackageLongIdentifier) {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            PackageVname vnameAST = new PackageVname (((PackageLongIdentifier) liAST).PI, varnAST, varnAST.position);
+            accept(Token.BECOMES);
+            Expression eAST = parseExpression();
+            finish(commandPos);
+            commandAST = new AssignCommand(vnameAST, eAST, commandPos);  
+          } else {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            SimpleVname vnameAST = new SimpleVname (varnAST, varnAST.position);
+            accept(Token.BECOMES);
+            Expression eAST = parseExpression();
+            finish(commandPos);
+            commandAST = new AssignCommand(vnameAST, eAST, commandPos);              
+          }
+        }
+      }
+      break;
+    /* J.82 
     case Token.IDENTIFIER:
       {
         Identifier iAST = parseIdentifier();
@@ -335,6 +437,8 @@ public class Parser {
         }
       }
       break;
+    */
+    // END CAMBIO Joseph
         
     // @author        Andres
     // @descripcion   Alternativa nothing para single command
@@ -968,6 +1072,36 @@ public class Parser {
       }
       break;
 
+    // @author        Joseph
+    // @description   Cambio de parsing de primary expression, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de primary expression
+    // @codigo        J.81
+    case Token.IDENTIFIER:
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        if (currentToken.kind == Token.LPAREN) {
+          acceptIt();
+          ActualParameterSequence apsAST = parseActualParameterSequence();
+          accept(Token.RPAREN);
+          finish(expressionPos);
+          expressionAST = new CallExpression(liAST, apsAST, expressionPos);
+
+        } else {
+          if (liAST instanceof PackageLongIdentifier) {
+             VarName varnAST = parseRestOfVarName(liAST.I);
+             finish(expressionPos);
+             PackageVname pvnAST = new PackageVname (((PackageLongIdentifier) liAST).PI,varnAST, expressionPos);    
+             expressionAST = new VnameExpression(pvnAST, expressionPos); 
+          } else {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            finish(expressionPos);
+            SimpleVname svnAST = new SimpleVname (varnAST, expressionPos);
+            expressionAST = new VnameExpression(svnAST, expressionPos);      
+          }
+        }
+      }
+      break;
+    /* J.81
     case Token.IDENTIFIER:
       {
         Identifier iAST= parseIdentifier();
@@ -985,6 +1119,8 @@ public class Parser {
         }
       }
       break;
+    */
+    // END CAMBIO Joseph
 
     case Token.OPERATOR:
       {
@@ -1056,8 +1192,109 @@ public class Parser {
 // VALUE-OR-VARIABLE NAMES
 //
 ///////////////////////////////////////////////////////////////////////////////
-
-  Vname parseVname () throws SyntaxError {
+  
+  
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear LongIdentifier
+  // @funcionalidad Parsear LongIdentifier
+  // @codigo        A.126
+  LongIdentifier parseLongIdentifier() throws SyntaxError {
+      LongIdentifier longIdentifierAST = null;
+      SourcePosition longIdentifierPos = new SourcePosition();
+      start(longIdentifierPos);
+      
+      Identifier iAST = parseIdentifier();
+      if (currentToken.kind == Token.DOLLAR) {
+          finish(longIdentifierPos);
+          PackageIdentifier piAST = new PackageIdentifier(iAST, longIdentifierPos);
+          accept(Token.DOLLAR);
+          
+          Identifier i2AST = parseIdentifier();
+          finish(longIdentifierPos);
+          longIdentifierAST = new PackageLongIdentifier(piAST, i2AST, longIdentifierPos);
+      } else {
+          finish(longIdentifierPos);
+          longIdentifierAST = new SimpleLongIdentifier(iAST, longIdentifierPos);
+      }
+      
+      return longIdentifierAST;
+  }
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear SinglePackageDeclaration
+  // @funcionalidad Parsear SinglePackageDeclaration
+  // @codigo        A.128
+  SinglePackageDeclaration parseSinglePackageDeclaration() throws SyntaxError {
+      SinglePackageDeclaration singlePackageDeclarationAST = null;
+      SourcePosition spdPos = new SourcePosition();
+      start(spdPos);
+      
+      accept(Token.PACKAGE);
+      PackageIdentifier piAST = parsePackageIdentifier();
+      accept(Token.IS);
+      Declaration dAST = parseDeclaration();
+      accept(Token.END);
+      finish(spdPos);
+      // Se acepta despues porque no es parte de la frase
+      // accept(Token.SEMICOLON);
+      
+      singlePackageDeclarationAST = new SinglePackageDeclaration(piAST, dAST, spdPos);
+      
+      return singlePackageDeclarationAST;
+  }
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear PackageDeclaration
+  // @funcionalidad Parsear PackageDeclaration
+  // @codigo        A.142
+  PackageDeclaration parsePackageDeclaration() throws SyntaxError {
+      PackageDeclaration packageDeclarationAST = null;
+      SourcePosition pdPos = new SourcePosition();
+      start(pdPos);
+      
+      packageDeclarationAST = parseSinglePackageDeclaration();
+      accept(Token.SEMICOLON);
+      while (currentToken.kind == Token.PACKAGE) {
+          SinglePackageDeclaration pd2AST = parseSinglePackageDeclaration();
+          finish(pdPos);
+          accept(Token.SEMICOLON);
+          packageDeclarationAST = new SequentialPackageDeclaration(packageDeclarationAST, pd2AST, pdPos);
+      }
+      
+      return packageDeclarationAST;
+  }
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear el vname nuevo
+  // @funcionalidad Parsear vname nuevo
+  // @codigo        A.121
+  Vname parseVname() throws SyntaxError {
+      Vname vnameAST = null;
+      SourcePosition vnamePos = new SourcePosition();
+      start(vnamePos);
+      
+      Identifier iAST = parseIdentifier();
+      if (currentToken.kind == Token.DOLLAR) {
+          finish(vnamePos);
+          PackageIdentifier piAST = new PackageIdentifier(iAST, vnamePos);
+          accept(Token.DOLLAR);
+          
+          VarName vnAST = parseVarName();
+          finish(vnamePos);
+          vnameAST = new PackageVname(piAST, vnAST, vnamePos);
+      } else {
+          VarName vnAST = parseRestOfVarName(iAST);
+          finish(vnamePos);
+          vnameAST = new SimpleVname(vnAST, vnamePos);
+      }
+      
+      return vnameAST;
+  }
+  /*
+    Vname parseVname () throws SyntaxError {
     Vname vnameAST = null; // in case there's a syntactic error
     Identifier iAST = parseIdentifier();
     vnameAST = parseRestOfVname(iAST);
@@ -1086,6 +1323,60 @@ public class Parser {
     }
     return vAST;
   }
+  */
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear el package-identifier
+  // @funcionalidad Parsear package-identifier
+  // @codigo        A.120
+  PackageIdentifier parsePackageIdentifier() throws SyntaxError {
+      PackageIdentifier piAST = null;
+      SourcePosition packageIdentifierPos = new SourcePosition();
+      
+      start(packageIdentifierPos);
+      Identifier iAST = parseIdentifier();
+      finish(packageIdentifierPos);
+      
+      piAST = new PackageIdentifier(iAST, packageIdentifierPos);
+      return piAST;
+  }
+  // END CAMBIO Andres
+  
+  // @author        Andres
+  // @descripcion   Metodo para parsear el VarName
+  // @funcionalidad Parsear VarName
+  // @codigo        A.117
+  VarName parseVarName() throws SyntaxError {
+    VarName varNameAST = null; // in case there's a syntactic error
+    Identifier iAST = parseIdentifier();
+    varNameAST = parseRestOfVarName(iAST);
+    return varNameAST;
+  }
+  
+  VarName parseRestOfVarName(Identifier identifierAST) throws SyntaxError {
+    SourcePosition varNamePos = new SourcePosition();
+    varNamePos = identifierAST.position;
+    VarName vAST = new SimpleVarName(identifierAST, varNamePos);
+
+    while (currentToken.kind == Token.DOT ||
+           currentToken.kind == Token.LBRACKET) {
+
+      if (currentToken.kind == Token.DOT) {
+        acceptIt();
+        Identifier iAST = parseIdentifier();
+        vAST = new DotVarName(vAST, iAST, varNamePos);
+      } else {
+        acceptIt();
+        Expression eAST = parseExpression();
+        accept(Token.RBRACKET);
+        finish(varNamePos);
+        vAST = new SubscriptVarName(vAST, eAST, varNamePos);
+      }
+    }
+    return vAST;
+  }
+  // END Cambio Andres
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -1553,6 +1844,18 @@ public class Parser {
 
     switch (currentToken.kind) {
 
+    // @author        Joseph
+    // @description   Cambio de parsing de type-denoter, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de type-denoter
+    // @codigo        J.81
+    case Token.IDENTIFIER:
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        finish(typePos);
+        typeAST = new SimpleTypeDenoter(liAST, typePos);
+      }
+      break;
+    /*J.81
     case Token.IDENTIFIER:
       {
         Identifier iAST = parseIdentifier();
@@ -1560,6 +1863,8 @@ public class Parser {
         typeAST = new SimpleTypeDenoter(iAST, typePos);
       }
       break;
+    */
+    // END CAMBIO Joseph
 
     case Token.ARRAY:
       {

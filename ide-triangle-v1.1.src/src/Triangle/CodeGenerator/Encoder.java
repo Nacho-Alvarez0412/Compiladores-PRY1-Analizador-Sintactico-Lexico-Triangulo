@@ -120,12 +120,22 @@ import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
 import Triangle.AbstractSyntaxTrees.PrivDeclaration;
 import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.13
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 */
 // END CAMBIO Joseph
-
 public final class Encoder implements Visitor {
 
 
@@ -163,14 +173,28 @@ public final class Encoder implements Visitor {
       return null;
   }
   // END cambio Andres
-
+  
+  
+  // @author        Joseph
+  // @descripcion   Cambio en metodo encoder para visitar CallCommand 
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.67
+  public Object visitCallCommand(CallCommand ast, Object o) {
+    Frame frame = (Frame) o;
+    Integer argsSize = (Integer) ast.APS.visit(this, frame);
+    ast.LI.visit(this, new Frame(frame.level, argsSize));
+    return null;
+  }
+  /*J.67
   public Object visitCallCommand(CallCommand ast, Object o) {
     Frame frame = (Frame) o;
     Integer argsSize = (Integer) ast.APS.visit(this, frame);
     ast.I.visit(this, new Frame(frame.level, argsSize));
     return null;
   }
-
+  */
+  // END CAMBIO Joseph
+  
   public Object visitEmptyCommand(EmptyCommand ast, Object o) {
     return null;
   }
@@ -423,13 +447,27 @@ public final class Encoder implements Visitor {
     return valSize;
   }
 
+   // @author        Joseph
+  // @descripcion   Cambio en metodo encoder para visitar CallExpression
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.68
   public Object visitCallExpression(CallExpression ast, Object o) {
+    Frame frame = (Frame) o;
+    Integer valSize = (Integer) ast.type.visit(this, null);
+    Integer argsSize = (Integer) ast.APS.visit(this, frame);
+    ast.LI.visit(this, new Frame(frame.level, argsSize));
+    return valSize;
+  }
+  /*J.68
+   public Object visitCallExpression(CallExpression ast, Object o) {
     Frame frame = (Frame) o;
     Integer valSize = (Integer) ast.type.visit(this, null);
     Integer argsSize = (Integer) ast.APS.visit(this, frame);
     ast.I.visit(this, new Frame(frame.level, argsSize));
     return valSize;
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitCharacterExpression(CharacterExpression ast,
 						Object o) {
@@ -931,6 +969,85 @@ public final class Encoder implements Visitor {
 
 
   // Value-or-variable names
+  
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita encoder de nuevos ASTs VarName, Vname y package
+    // @funcionalidad metodos de visita encoder para AST de Varname, Vname y package
+    // @codigo        A.116
+  public Object visitDotVarName(DotVarName ast, Object o) {
+    Frame frame = (Frame) o;
+    RuntimeEntity baseObject = (RuntimeEntity) ast.V.visit(this, frame);
+    ast.offset = ast.V.offset + ((Field) ast.I.decl.entity).fieldOffset;
+                   // I.decl points to the appropriate record field
+    ast.indexed = ast.V.indexed;
+    return baseObject;
+  }
+
+  public Object visitSimpleVarName(SimpleVarName ast, Object o) {
+    ast.offset = 0;
+    ast.indexed = false;
+    return ast.I.decl.entity;
+  }
+
+  public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
+    Frame frame = (Frame) o;
+    RuntimeEntity baseObject;
+    int elemSize, indexSize;
+
+    baseObject = (RuntimeEntity) ast.V.visit(this, frame);
+    ast.offset = ast.V.offset;
+    ast.indexed = ast.V.indexed;
+    elemSize = ((Integer) ast.type.visit(this, null)).intValue();
+    if (ast.E instanceof IntegerExpression) {
+      IntegerLiteral IL = ((IntegerExpression) ast.E).IL;
+      ast.offset = ast.offset + Integer.parseInt(IL.spelling) * elemSize;
+    } else {
+      // v-name is indexed by a proper expression, not a literal
+      if (ast.indexed)
+        frame.size = frame.size + Machine.integerSize;
+      indexSize = ((Integer) ast.E.visit(this, frame)).intValue();
+      if (elemSize != 1) {
+        emit(Machine.LOADLop, 0, 0, elemSize);
+        emit(Machine.CALLop, Machine.SBr, Machine.PBr,
+             Machine.multDisplacement);
+      }
+      if (ast.indexed)
+        emit(Machine.CALLop, Machine.SBr, Machine.PBr, Machine.addDisplacement);
+      else
+        ast.indexed = true;
+    }
+    return baseObject;
+  }
+  
+  public Object visitSimpleVname(SimpleVname ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return null;
+  }
+  
+  public Object visitPackageVname(PackageVname ast, Object o) {
+      return null;
+  }
+  
+  public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+    return null;
+  }
+    
+  public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+    return null;
+  }
+    
+  public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+    return null;
+  }
+  
+  public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+    return null;
+  }
+  
+  /*
   public Object visitDotVname(DotVname ast, Object o) {
     Frame frame = (Frame) o;
     RuntimeEntity baseObject = (RuntimeEntity) ast.V.visit(this, frame);
@@ -975,12 +1092,31 @@ public final class Encoder implements Visitor {
     }
     return baseObject;
   }
+  */
+  // END Cambio Andres
 
 
   // Programs
+  
+  
+// @author        Andres
+// @descripcion   Agregar metodos de visita encoder de nuevos ASTs VarName, Vname y package
+// @funcionalidad metodos de visita encoder para AST de Varname, Vname y package
+// @codigo        A.139
+  public Object visitSimpleProgram(SimpleProgram ast, Object o) {
+      return null;
+      
+  }
+  
+  public Object visitCompoundProgram(CompoundProgram ast, Object o) {
+      return null;
+  }
+  /*
   public Object visitProgram(Program ast, Object o) {
     return ast.C.visit(this, o);
   }
+  */
+  // END CAMBIO Andres
 
   public Encoder (ErrorReporter reporter) {
     this.reporter = reporter;

@@ -617,7 +617,20 @@ public class Main extends javax.swing.JFrame {
             if (compiler.compileProgram(desktopPane.getSelectedFrame().getTitle())) {           
                 output.setDelegate(delegateTAMCode);
                 //disassembler.Disassemble(desktopPane.getSelectedFrame().getTitle().replace(".tri", ".tam"));
+                // @author        Andres
+                // @descripcion   Determinar que tipo de Program parsear
+                // @funcionalidad Parsear Program
+                // @codigo        A.147
+                if (compiler.getIsSimpleProgram()) {
+                    ((FileFrame)desktopPane.getSelectedFrame()).setTree((DefaultMutableTreeNode)treeVisitor.visitSimpleProgram(compiler.getSimpleProgram(), null));
+                } else {
+                    ((FileFrame)desktopPane.getSelectedFrame()).setTree((DefaultMutableTreeNode)treeVisitor.visitCompoundProgram(compiler.getCompoundProgram(), null));
+                }
+                /*
                 ((FileFrame)desktopPane.getSelectedFrame()).setTree((DefaultMutableTreeNode)treeVisitor.visitProgram(compiler.getAST(), null));
+                */
+                // END CAMBIO Andres
+                
                 //((FileFrame)desktopPane.getSelectedFrame()).setTable(tableVisitor.getTable(compiler.getAST()));
                 
                 runMenuItem.setEnabled(false);

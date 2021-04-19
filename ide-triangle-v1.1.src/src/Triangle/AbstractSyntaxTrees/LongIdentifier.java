@@ -9,13 +9,16 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 /**
  * @newclass
- * Clase para representar un AST de un elsif
+ * Represents a LongIdentifier AST
  * @author Andres
- * A.103
+ * A.122
  */
-public abstract class ElsifCommand extends Command {
+public abstract class LongIdentifier extends AST {
     
-    public ElsifCommand(SourcePosition thePosition) {
+    public LongIdentifier(SourcePosition thePosition) {
         super(thePosition);
     }
+    
+    public Identifier I;
+    
 }

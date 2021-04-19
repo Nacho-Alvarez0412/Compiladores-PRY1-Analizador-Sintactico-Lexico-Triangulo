@@ -16,6 +16,18 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+// @author        Andres
+// @descripcion   Metodo para parsear Program
+// @funcionalidad Parsear Program
+// @codigo        A.130
+public abstract class Program extends AST {
+
+  public Program (SourcePosition thePosition) {
+    super (thePosition);
+  }
+
+}
+/*
 public class Program extends AST {
 
   public Program (Command cAST, SourcePosition thePosition) {
@@ -29,3 +41,5 @@ public class Program extends AST {
 
   public Command C;
 }
+*/
+// END Cambio Andres

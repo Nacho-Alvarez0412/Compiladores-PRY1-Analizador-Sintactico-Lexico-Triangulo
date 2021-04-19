@@ -167,13 +167,38 @@ public interface Visitor {
   public abstract Object visitIdentifier(Identifier ast, Object o);
   public abstract Object visitIntegerLiteral(IntegerLiteral ast, Object o);
   public abstract Object visitOperator(Operator ast, Object o);
-
-  // Value-or-variable names
-  public abstract Object visitDotVname(DotVname ast, Object o);
+  
+  // @author        Andres
+  // @descripcion   Agregar metodos visitor para VarName, Vname y package
+  // @funcionalidad Visitors para VarName, Vname y package
+  // @codigo        A.108
+  public abstract Object visitDotVarName(DotVarName ast, Object o);
+  public abstract Object visitSimpleVarName(SimpleVarName ast, Object o);
+  public abstract Object visitSubscriptVarName(SubscriptVarName ast, Object o);
   public abstract Object visitSimpleVname(SimpleVname ast, Object o);
-  public abstract Object visitSubscriptVname(SubscriptVname ast, Object o);
+  public abstract Object visitPackageIdentifier(PackageIdentifier ast, Object o);
+  public abstract Object visitPackageVname(PackageVname ast, Object o);
+  public abstract Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o);
+  public abstract Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o);
+  public abstract Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o);
+  public abstract Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o);
+  /*
+    public abstract Object visitDotVname(DotVname ast, Object o);
+    public abstract Object visitSimpleVname(SimpleVname ast, Object o);
+    public abstract Object visitSubscriptVname(SubscriptVname ast, Object o);
+  */
+  // END Cambio Andres
 
   // Programs
-  public abstract Object visitProgram(Program ast, Object o);
+  // @author        Andres
+  // @descripcion   Agregar metodos visitor para program
+  // @funcionalidad Visitors para program
+  // @codigo        A.131
+  public abstract Object visitSimpleProgram(SimpleProgram ast, Object o);
+  public abstract Object visitCompoundProgram(CompoundProgram ast, Object o);
+  /*
+   public abstract Object visitProgram(Program ast, Object o);
+  */
+  // END Cambio Andres
 
 }

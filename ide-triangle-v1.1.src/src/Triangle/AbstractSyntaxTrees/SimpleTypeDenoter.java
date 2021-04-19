@@ -16,6 +16,30 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+// @author        Joseph
+// @description   Cambio de alternativa de type-denoter, de identifier a long identifier
+// @funcionalidad Cambio en las alternativas de type-denoter
+// @codigo        J.63
+
+public class SimpleTypeDenoter extends TypeDenoter {
+
+  public SimpleTypeDenoter (LongIdentifier liAST, SourcePosition thePosition) {
+    super (thePosition);
+    LI = liAST;
+  }
+
+  public Object visit (Visitor v, Object o) {
+    return v.visitSimpleTypeDenoter(this, o);
+  }
+
+  public boolean equals (Object obj) {
+    return false; // should not happen
+  }
+
+  public LongIdentifier LI;
+}
+
+/* J.63
 public class SimpleTypeDenoter extends TypeDenoter {
 
   public SimpleTypeDenoter (Identifier iAST, SourcePosition thePosition) {
@@ -33,3 +57,5 @@ public class SimpleTypeDenoter extends TypeDenoter {
 
   public Identifier I;
 }
+*/
+// END CAMBIO Joseph

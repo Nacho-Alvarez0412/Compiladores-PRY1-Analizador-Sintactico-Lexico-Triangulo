@@ -99,6 +99,17 @@ import Triangle.AbstractSyntaxTrees.SimpleCases;
 import Triangle.AbstractSyntaxTrees.CompoundCases;
 import Triangle.AbstractSyntaxTrees.ChooseCommand;
 import Triangle.AbstractSyntaxTrees.ForFromCommand;
+import Triangle.AbstractSyntaxTrees.SimpleVarName;
+import Triangle.AbstractSyntaxTrees.DotVarName;
+import Triangle.AbstractSyntaxTrees.SubscriptVarName;
+import Triangle.AbstractSyntaxTrees.PackageIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageVname;
+import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
+import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
+import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
+import Triangle.AbstractSyntaxTrees.SimpleProgram;
+import Triangle.AbstractSyntaxTrees.CompoundProgram;
 /* J.8
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -155,9 +166,20 @@ public class TreeVisitor implements Visitor {
     }
     // END Cambio Andres
     
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol binario de call command
+    // @funcionalidad Cambio en las alternativas de call command
+    // @codigo        J.78
+    public Object visitCallCommand(CallCommand ast, Object o) {
+        return(createBinary("Call Command", ast.LI, ast.APS));
+    }
+    /* J.78
     public Object visitCallCommand(CallCommand ast, Object o) {
         return(createBinary("Call Command", ast.I, ast.APS));
     }
+    */
+    // END CAMBIO Joseph
+    
     
     public Object visitEmptyCommand(EmptyCommand ast, Object o) {
         return(createNullary("Empty Command"));
@@ -354,10 +376,20 @@ public class TreeVisitor implements Visitor {
     public Object visitBinaryExpression(BinaryExpression ast, Object obj) {
         return(createTernary("Binary Expression", ast.E1, ast.O, ast.E2));
     }
-    
+ 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol binario de call expression
+    // @funcionalidad Cambio en las alternativas de call expression
+    // @codigo        J.79   
+    public Object visitCallExpression(CallExpression ast, Object obj) {
+        return(createBinary("Call Expression", ast.LI, ast.APS));
+    }
+    /* J.79
     public Object visitCallExpression(CallExpression ast, Object obj) {
         return(createBinary("Call Expression", ast.I, ast.APS));
     }
+    */
+    // END CAMBIO Joseph
     
     public Object visitCharacterExpression(CharacterExpression ast, Object obj) {
         return(createUnary("Character Expression", ast.CL));
@@ -552,10 +584,20 @@ public class TreeVisitor implements Visitor {
     public Object visitErrorTypeDenoter(ErrorTypeDenoter ast, Object obj) {
         return(createNullary("error"));
     }
-    
+   
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol unario de simple type denoter
+    // @funcionalidad Cambio en las alternativas de type denoter
+    // @codigo        J.80
+    public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
+        return(createUnary("Simple Type Denoter", ast.LI));
+    }
+    /* J.80
     public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
         return(createUnary("Simple Type Denoter", ast.I));
-    }
+    }  
+    */
+    // END CAMBIO 
     
     public Object visitIntTypeDenoter(IntTypeDenoter ast, Object obj) {
         return(createNullary("int"));
@@ -595,21 +637,90 @@ public class TreeVisitor implements Visitor {
     
     // <editor-fold defaultstate="collapsed" desc=" Values or Variable Names ">
     // Values or Variable Names
-    public Object visitDotVname(DotVname ast, Object obj) {
-        return(createBinary("Dot Vname", ast.I, ast.V));
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs VarName, Vname y package
+    // @funcionalidad metodos de visita para AST de Varname, Vname y package
+    // @codigo        A.113
+    public Object visitDotVarName(DotVarName ast, Object obj) {
+        return(createBinary("Dot Var Name", ast.I, ast.V));
     }
     
-    public Object visitSimpleVname(SimpleVname ast, Object obj) {
-        return(createUnary("Simple Vname", ast.I));
+    public Object visitSimpleVarName(SimpleVarName ast, Object obj) {
+        return(createUnary("Simple Var Name", ast.I));
     }
     
-    public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
-        return(createBinary("Subscript Vname", ast.V, ast.E));
+    public Object visitSubscriptVarName(SubscriptVarName ast, Object obj) {
+        return(createBinary("Subscript Var Name", ast.V, ast.E));
     }
     
+    public Object visitSimpleVname(SimpleVname ast, Object o) {
+        return(createUnary("Simple Vname", ast.VN));
+    }
+    
+    public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
+      return(createUnary("Package Identifier", ast.I));
+    }
+    
+    public Object visitPackageVname(PackageVname ast, Object o) {
+        return(createBinary("Package Vname", ast.PI, ast.VN));
+    }
+    
+    public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
+       return(createUnary("Simple Long Identifier", ast.I));
+    }
+    
+    public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
+       return(createBinary("Package Long Identifier", ast.PI, ast.I));
+    }
+    
+    public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
+      return(createBinary("Single Package Declaration", ast.PI, ast.D));
+    }
+    
+    public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
+        return(createBinary("Sequential Package Declaration", ast.PD1, ast.PD2));
+    }
+    
+    /*
+        public Object visitDotVname(DotVname ast, Object obj) {
+           return(createBinary("Dot Vname", ast.I, ast.V));
+       }
+
+       public Object visitSimpleVname(SimpleVname ast, Object obj) {
+           return(createUnary("Simple Vname", ast.I));
+       }
+
+       public Object visitSubscriptVname(SubscriptVname ast, Object obj) {
+           return(createBinary("Subscript Vname", ast.V, ast.E));
+       }
+    */
+    // END cambio Andres
+    
+    // @author        Andres
+    // @descripcion   Agregar metodos de visita de nuevos ASTs program
+    // @funcionalidad metodos de visita para AST de program
+    // @codigo        A.136
+    public Object visitProgram(SimpleProgram ast, Object obj) {
+        return(createUnary("Simple Program", ast.C));
+    }
+    
+     public Object visitProgram(CompoundProgram ast, Object obj) {
+        return(createBinary("Compound Program", ast.PD, ast.C));
+    }
+     
+     public Object visitSimpleProgram(SimpleProgram ast, Object obj) {
+        return(createUnary("Simple Program", ast.C));
+    }
+    
+     public Object visitCompoundProgram(CompoundProgram ast, Object obj) {
+        return(createBinary("Compound Program", ast.PD, ast.C));
+    }
+    /*
     public Object visitProgram(Program ast, Object obj) {
         return(createUnary("Program", ast.C));
     }
+    */
+    // END CAMBIO Andres
     // </editor-fold>
 
     // <editor-fold defaultstate="collapsed" desc=" Tree Creation Methods ">

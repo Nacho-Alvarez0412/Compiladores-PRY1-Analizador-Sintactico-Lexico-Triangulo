@@ -16,6 +16,28 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+
+// @author        Joseph
+// @description   Cambio de alternativa de primary-expression, de identifier a long identifier
+// @funcionalidad Cambio en las alternativas de primary-expression
+// @codigo        J.65
+public class CallExpression extends Expression {
+
+  public CallExpression (LongIdentifier liAST, ActualParameterSequence apsAST,
+               SourcePosition thePosition) {
+    super (thePosition);
+    LI = liAST;
+    APS = apsAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitCallExpression(this, o);
+  }
+
+  public LongIdentifier LI;
+  public ActualParameterSequence APS;
+}
+/*J.65
 public class CallExpression extends Expression {
 
   public CallExpression (Identifier iAST, ActualParameterSequence apsAST,
@@ -32,3 +54,5 @@ public class CallExpression extends Expression {
   public Identifier I;
   public ActualParameterSequence APS;
 }
+*/
+// END CAMBIO Joseph
