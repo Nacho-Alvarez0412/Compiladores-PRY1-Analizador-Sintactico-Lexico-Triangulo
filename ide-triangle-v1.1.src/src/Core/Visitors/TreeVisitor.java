@@ -166,9 +166,20 @@ public class TreeVisitor implements Visitor {
     }
     // END Cambio Andres
     
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol binario de call command
+    // @funcionalidad Cambio en las alternativas de call command
+    // @codigo        J.78
+    public Object visitCallCommand(CallCommand ast, Object o) {
+        return(createBinary("Call Command", ast.LI, ast.APS));
+    }
+    /* J.78
     public Object visitCallCommand(CallCommand ast, Object o) {
         return(createBinary("Call Command", ast.I, ast.APS));
     }
+    */
+    // END CAMBIO Joseph
+    
     
     public Object visitEmptyCommand(EmptyCommand ast, Object o) {
         return(createNullary("Empty Command"));
@@ -365,10 +376,20 @@ public class TreeVisitor implements Visitor {
     public Object visitBinaryExpression(BinaryExpression ast, Object obj) {
         return(createTernary("Binary Expression", ast.E1, ast.O, ast.E2));
     }
-    
+ 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol binario de call expression
+    // @funcionalidad Cambio en las alternativas de call expression
+    // @codigo        J.79   
+    public Object visitCallExpression(CallExpression ast, Object obj) {
+        return(createBinary("Call Expression", ast.LI, ast.APS));
+    }
+    /* J.79
     public Object visitCallExpression(CallExpression ast, Object obj) {
         return(createBinary("Call Expression", ast.I, ast.APS));
     }
+    */
+    // END CAMBIO Joseph
     
     public Object visitCharacterExpression(CharacterExpression ast, Object obj) {
         return(createUnary("Character Expression", ast.CL));
@@ -563,10 +584,20 @@ public class TreeVisitor implements Visitor {
     public Object visitErrorTypeDenoter(ErrorTypeDenoter ast, Object obj) {
         return(createNullary("error"));
     }
-    
+   
+    // @author        Joseph
+    // @descripcion   Cambio en metodo de creacion de arbol unario de simple type denoter
+    // @funcionalidad Cambio en las alternativas de type denoter
+    // @codigo        J.80
+    public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
+        return(createUnary("Simple Type Denoter", ast.LI));
+    }
+    /* J.80
     public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
         return(createUnary("Simple Type Denoter", ast.I));
-    }
+    }  
+    */
+    // END CAMBIO 
     
     public Object visitIntTypeDenoter(IntTypeDenoter ast, Object obj) {
         return(createNullary("int"));

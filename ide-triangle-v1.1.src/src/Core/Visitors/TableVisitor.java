@@ -189,13 +189,22 @@ public class TableVisitor implements Visitor {
     // @author        Joseph
     // @descripcion   Cambio en metodo visitante de call command
     // @funcionalidad Cambio en las alternativas de single-command
-    // @codigo        J.74
+    // @codigo        J.75
+    public Object visitCallCommand(CallCommand ast, Object o) {
+        ast.LI.visit(this, null);
+        ast.APS.visit(this, null);
+
+        return (null);
+    }
+    /* J.75
     public Object visitCallCommand(CallCommand ast, Object o) {
         ast.I.visit(this, null);
         ast.APS.visit(this, null);
 
         return (null);
-    }
+    }  
+    */
+    //END CAMBIO Joseph
 
     public Object visitEmptyCommand(EmptyCommand ast, Object o) {
         return (null);
@@ -474,12 +483,24 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de call expression
+    // @funcionalidad Cambio en las alternativas de simple expression
+    // @codigo        J.76
+    public Object visitCallExpression(CallExpression ast, Object o) {
+        ast.LI.visit(this, null);
+        ast.APS.visit(this, null);
+        return (null);
+    }
+    /* J.76
     public Object visitCallExpression(CallExpression ast, Object o) {
         ast.I.visit(this, null);
         ast.APS.visit(this, null);
-
         return (null);
-    }
+    }   
+    */
+    //END CAMBIO Joseph
 
     public Object visitCharacterExpression(CharacterExpression ast, Object o) {
         ast.CL.visit(this, null);
@@ -861,11 +882,22 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de simple type-denoter
+    // @funcionalidad Cambio en las alternativas de type-denoter
+    // @codigo        J.77
+    public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
+        ast.LI.visit(this, null);
+        return (null);
+    }
+    /* J.77
     public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
         ast.I.visit(this, null);
 
         return (null);
     }
+    */
+    // END CAMBIO Joseph
 
     public Object visitIntTypeDenoter(IntTypeDenoter ast, Object o) {
         return (null);

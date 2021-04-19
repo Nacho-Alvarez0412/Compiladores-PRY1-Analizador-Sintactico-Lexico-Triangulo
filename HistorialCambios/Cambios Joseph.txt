@@ -72,10 +72,11 @@ j.71: Checker.java
 j.72: LayoutVisitor.java
 j.73: LayoutVisitor.java
 j.74: LayoutVisitor.java
-
-// @author        Joseph
-// @description   Cambio de var como alternativa de single-declaration
-// @funcionalidad Cambio en las alternativas de single declaration
-// @codigo        J.
-/**/
-// END CAMBIO Joseph
+j.75: TableVisitor.java
+j.76: TableVisitor.java
+j.77: TableVisitor.java
+j.78: TreeVisitor.java
+j.79: TreeVisitor.java
+j.80: TreeVisitor.java
+j.81: Parser.java
+j.82: Parser.java

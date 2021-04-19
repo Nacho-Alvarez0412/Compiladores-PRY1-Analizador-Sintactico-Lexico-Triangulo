@@ -133,6 +133,7 @@ import Triangle.AbstractSyntaxTrees.PackageDeclaration;
 import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
 import Triangle.AbstractSyntaxTrees.SimpleProgram;
 import Triangle.AbstractSyntaxTrees.CompoundProgram;
+import Triangle.AbstractSyntaxTrees.SimpleVname;
 /* J.16
 import Triangle.AbstractSyntaxTrees.WhileCommand;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
@@ -382,8 +383,41 @@ public class Parser {
 
     switch (currentToken.kind) {
 
+    // @author        Joseph
+    // @description   Cambio de parsing de primary expression, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de primary expression
+    // @codigo        J.82
     case Token.IDENTIFIER:
-      /*
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        if (currentToken.kind == Token.LPAREN) {
+          acceptIt();
+          ActualParameterSequence apsAST = parseActualParameterSequence();
+          accept(Token.RPAREN);
+          finish(commandPos);
+          commandAST = new CallCommand(liAST, apsAST, commandPos);
+
+        } else {
+          if (liAST instanceof PackageLongIdentifier) {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            PackageVname vnameAST = new PackageVname (((PackageLongIdentifier) liAST).PI, varnAST, varnAST.position);
+            accept(Token.BECOMES);
+            Expression eAST = parseExpression();
+            finish(commandPos);
+            commandAST = new AssignCommand(vnameAST, eAST, commandPos);  
+          } else {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            SimpleVname vnameAST = new SimpleVname (varnAST, varnAST.position);
+            accept(Token.BECOMES);
+            Expression eAST = parseExpression();
+            finish(commandPos);
+            commandAST = new AssignCommand(vnameAST, eAST, commandPos);              
+          }
+        }
+      }
+      break;
+    /* J.82 
+    case Token.IDENTIFIER:
       {
         Identifier iAST = parseIdentifier();
         if (currentToken.kind == Token.LPAREN) {
@@ -402,8 +436,9 @@ public class Parser {
           commandAST = new AssignCommand(vAST, eAST, commandPos);
         }
       }
-      */
       break;
+    */
+    // END CAMBIO Joseph
         
     // @author        Andres
     // @descripcion   Alternativa nothing para single command
@@ -1037,8 +1072,37 @@ public class Parser {
       }
       break;
 
+    // @author        Joseph
+    // @description   Cambio de parsing de primary expression, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de primary expression
+    // @codigo        J.81
     case Token.IDENTIFIER:
-        /*
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        if (currentToken.kind == Token.LPAREN) {
+          acceptIt();
+          ActualParameterSequence apsAST = parseActualParameterSequence();
+          accept(Token.RPAREN);
+          finish(expressionPos);
+          expressionAST = new CallExpression(liAST, apsAST, expressionPos);
+
+        } else {
+          if (liAST instanceof PackageLongIdentifier) {
+             VarName varnAST = parseRestOfVarName(liAST.I);
+             finish(expressionPos);
+             PackageVname pvnAST = new PackageVname (((PackageLongIdentifier) liAST).PI,varnAST, expressionPos);    
+             expressionAST = new VnameExpression(pvnAST, expressionPos); 
+          } else {
+            VarName varnAST = parseRestOfVarName(liAST.I);
+            finish(expressionPos);
+            SimpleVname svnAST = new SimpleVname (varnAST, expressionPos);
+            expressionAST = new VnameExpression(svnAST, expressionPos);      
+          }
+        }
+      }
+      break;
+    /* J.81
+    case Token.IDENTIFIER:
       {
         Identifier iAST= parseIdentifier();
         if (currentToken.kind == Token.LPAREN) {
@@ -1054,8 +1118,9 @@ public class Parser {
           expressionAST = new VnameExpression(vAST, expressionPos);
         }
       }
-        */
       break;
+    */
+    // END CAMBIO Joseph
 
     case Token.OPERATOR:
       {
@@ -1779,6 +1844,18 @@ public class Parser {
 
     switch (currentToken.kind) {
 
+    // @author        Joseph
+    // @description   Cambio de parsing de type-denoter, de identifier a long identifier
+    // @funcionalidad Cambio en las alternativas de type-denoter
+    // @codigo        J.81
+    case Token.IDENTIFIER:
+      {
+        LongIdentifier liAST = parseLongIdentifier();
+        finish(typePos);
+        typeAST = new SimpleTypeDenoter(liAST, typePos);
+      }
+      break;
+    /*J.81
     case Token.IDENTIFIER:
       {
         Identifier iAST = parseIdentifier();
@@ -1786,6 +1863,8 @@ public class Parser {
         typeAST = new SimpleTypeDenoter(iAST, typePos);
       }
       break;
+    */
+    // END CAMBIO Joseph
 
     case Token.ARRAY:
       {
