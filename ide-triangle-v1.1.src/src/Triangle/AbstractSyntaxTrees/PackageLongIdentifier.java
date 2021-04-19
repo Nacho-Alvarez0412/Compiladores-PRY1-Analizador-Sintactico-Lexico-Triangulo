@@ -26,6 +26,5 @@ public class PackageLongIdentifier extends LongIdentifier {
         return v.visitPackageLongIdentifier(this, o);
     }
     
-    public Identifier I;
     public PackageIdentifier PI;
 }

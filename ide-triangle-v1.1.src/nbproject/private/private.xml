@@ -4,10 +4,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andres%20Aguilar%20Moya/Desktop/TriangleCompilerExtended/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Visitor.java</file>
-            <file>file:/C:/Users/Andres%20Aguilar%20Moya/Desktop/TriangleCompilerExtended/ide-triangle-v1.1.src/src/Triangle/TreeDrawer/LayoutVisitor.java</file>
-            <file>file:/C:/Users/Andres%20Aguilar%20Moya/Desktop/TriangleCompilerExtended/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/LongIdentifier.java</file>
-            <file>file:/C:/Users/Andres%20Aguilar%20Moya/Desktop/TriangleCompilerExtended/ide-triangle-v1.1.src/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/PackageLongIdentifier.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Scanner.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Parser.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/SourceFile.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/ContextualAnalyzer/IdEntry.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/LongIdentifier.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/CodeGenerator/Encoder.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SimpleTypeDenoter.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CallCommand.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Visitor.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/TreeDrawer/LayoutVisitor.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/SourcePosition.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/Visitors/TableVisitor.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/GUI/Main.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CallExpression.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Token.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/SyntaxError.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Expression.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Identifier.java</file>
+            <file>file:/C:/Users/Personal/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SimpleLongIdentifier.java</file>
         </group>
     </open-files>
 </project-private>

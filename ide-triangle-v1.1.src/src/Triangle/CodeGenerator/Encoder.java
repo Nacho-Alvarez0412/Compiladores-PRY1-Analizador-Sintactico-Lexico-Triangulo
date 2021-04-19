@@ -173,14 +173,28 @@ public final class Encoder implements Visitor {
       return null;
   }
   // END cambio Andres
-
+  
+  
+  // @author        Joseph
+  // @descripcion   Cambio en metodo encoder para visitar CallCommand 
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.67
+  public Object visitCallCommand(CallCommand ast, Object o) {
+    Frame frame = (Frame) o;
+    Integer argsSize = (Integer) ast.APS.visit(this, frame);
+    ast.LI.visit(this, new Frame(frame.level, argsSize));
+    return null;
+  }
+  /*J.67
   public Object visitCallCommand(CallCommand ast, Object o) {
     Frame frame = (Frame) o;
     Integer argsSize = (Integer) ast.APS.visit(this, frame);
     ast.I.visit(this, new Frame(frame.level, argsSize));
     return null;
   }
-
+  */
+  // END CAMBIO Joseph
+  
   public Object visitEmptyCommand(EmptyCommand ast, Object o) {
     return null;
   }
@@ -433,13 +447,27 @@ public final class Encoder implements Visitor {
     return valSize;
   }
 
+   // @author        Joseph
+  // @descripcion   Cambio en metodo encoder para visitar CallExpression
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.68
   public Object visitCallExpression(CallExpression ast, Object o) {
+    Frame frame = (Frame) o;
+    Integer valSize = (Integer) ast.type.visit(this, null);
+    Integer argsSize = (Integer) ast.APS.visit(this, frame);
+    ast.LI.visit(this, new Frame(frame.level, argsSize));
+    return valSize;
+  }
+  /*J.68
+   public Object visitCallExpression(CallExpression ast, Object o) {
     Frame frame = (Frame) o;
     Integer valSize = (Integer) ast.type.visit(this, null);
     Integer argsSize = (Integer) ast.APS.visit(this, frame);
     ast.I.visit(this, new Frame(frame.level, argsSize));
     return valSize;
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitCharacterExpression(CharacterExpression ast,
 						Object o) {

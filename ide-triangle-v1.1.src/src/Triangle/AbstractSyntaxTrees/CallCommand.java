@@ -16,6 +16,27 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
+// @author        Joseph
+// @description   Cambio de alternativa de single-command, de identifier a long identifier
+// @funcionalidad Cambio en las alternativas de single-command
+// @codigo        J.64
+public class CallCommand extends Command {
+
+  public CallCommand (LongIdentifier liAST, ActualParameterSequence apsAST,
+               SourcePosition thePosition) {
+    super (thePosition);
+    LI = liAST;
+    APS = apsAST;
+  }
+
+  public Object visit(Visitor v, Object o) {
+    return v.visitCallCommand(this, o);
+  }
+
+  public LongIdentifier LI;
+  public ActualParameterSequence APS;
+}
+/*J.64
 public class CallCommand extends Command {
 
   public CallCommand (Identifier iAST, ActualParameterSequence apsAST,
@@ -32,3 +53,5 @@ public class CallCommand extends Command {
   public Identifier I;
   public ActualParameterSequence APS;
 }
+*/
+// END CAMBIO Joseph

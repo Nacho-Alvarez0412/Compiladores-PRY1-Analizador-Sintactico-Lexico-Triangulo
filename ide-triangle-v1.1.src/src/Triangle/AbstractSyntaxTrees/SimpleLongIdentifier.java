@@ -25,6 +25,5 @@ public class SimpleLongIdentifier extends LongIdentifier {
         return v.visitSimpleLongIdentifier(this, o);
     }
     
-    public Identifier I;
     
 }

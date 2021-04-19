@@ -186,6 +186,10 @@ public class TableVisitor implements Visitor {
         return (null);
     }
 
+    // @author        Joseph
+    // @descripcion   Cambio en metodo visitante de call command
+    // @funcionalidad Cambio en las alternativas de single-command
+    // @codigo        J.74
     public Object visitCallCommand(CallCommand ast, Object o) {
         ast.I.visit(this, null);
         ast.APS.visit(this, null);

@@ -176,6 +176,26 @@ public final class Checker implements Visitor {
   }
   // END cambio Andres
 
+  // @author        Joseph
+  // @descripcion   Cambio en metodo checker para visitar CallCommand
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.70
+  // TODO: FIX THIS METHOD
+  public Object visitCallCommand(CallCommand ast, Object o) {
+
+    Declaration binding = (Declaration) ast.LI.visit(this, null);
+    if (binding == null)
+      reportUndeclared(ast.LI.I);
+    else if (binding instanceof ProcDeclaration) {
+      ast.APS.visit(this, ((ProcDeclaration) binding).FPS);
+    } else if (binding instanceof ProcFormalParameter) {
+      ast.APS.visit(this, ((ProcFormalParameter) binding).FPS);
+    } else
+      reporter.reportError("\"%\" is not a procedure identifier",
+                           ast.LI.I.spelling, ast.LI.position);
+    return null;
+  }
+  /* J.70
   public Object visitCallCommand(CallCommand ast, Object o) {
 
     Declaration binding = (Declaration) ast.I.visit(this, null);
@@ -190,6 +210,8 @@ public final class Checker implements Visitor {
                            ast.I.spelling, ast.I.position);
     return null;
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitEmptyCommand(EmptyCommand ast, Object o) {
     return null;
@@ -446,6 +468,28 @@ public final class Checker implements Visitor {
     return ast.type;
   }
 
+  // @author        Joseph
+  // @descripcion   Cambio en metodo checker para visitar CallExpression
+  // @funcionalidad Cambio en las alternativas de primaryExpression
+  // @codigo        J.69
+  // TODO: FIX THIS METHOD
+  public Object visitCallExpression(CallExpression ast, Object o) {
+    Declaration binding = (Declaration) ast.LI.visit(this, null);
+    if (binding == null) {
+      reportUndeclared(ast.LI.I);
+      ast.type = StdEnvironment.errorType;
+    } else if (binding instanceof FuncDeclaration) {
+      ast.APS.visit(this, ((FuncDeclaration) binding).FPS);
+      ast.type = ((FuncDeclaration) binding).T;
+    } else if (binding instanceof FuncFormalParameter) {
+      ast.APS.visit(this, ((FuncFormalParameter) binding).FPS);
+      ast.type = ((FuncFormalParameter) binding).T;
+    } else
+      reporter.reportError("\"%\" is not a function identifier",
+                           ast.LI.I.spelling, ast.LI.position);
+    return ast.type;
+  }
+  /*J.69
   public Object visitCallExpression(CallExpression ast, Object o) {
     Declaration binding = (Declaration) ast.I.visit(this, null);
     if (binding == null) {
@@ -462,6 +506,8 @@ public final class Checker implements Visitor {
                            ast.I.spelling, ast.I.position);
     return ast.type;
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitCharacterExpression(CharacterExpression ast, Object o) {
     ast.type = StdEnvironment.charType;
@@ -871,6 +917,24 @@ public final class Checker implements Visitor {
     return StdEnvironment.errorType;
   }
 
+  // @author        Joseph
+  // @descripcion   Cambio en metodo checker para visitar simple Type Denoter
+  // @funcionalidad Cambio en las alternativas de Type Denoter
+  // @codigo        J.71
+  // TODO: FIX THIS METHOD
+  public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
+    Declaration binding = (Declaration) ast.LI.visit(this, null);
+    if (binding == null) {
+      reportUndeclared (ast.LI.I);
+      return StdEnvironment.errorType;
+    } else if (! (binding instanceof TypeDeclaration)) {
+      reporter.reportError ("\"%\" is not a type identifier",
+                            ast.LI.I.spelling, ast.LI.position);
+      return StdEnvironment.errorType;
+    }
+    return ((TypeDeclaration) binding).T;
+  }
+  /* J.71
   public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
     Declaration binding = (Declaration) ast.I.visit(this, null);
     if (binding == null) {
@@ -883,6 +947,8 @@ public final class Checker implements Visitor {
     }
     return ((TypeDeclaration) binding).T;
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitIntTypeDenoter(IntTypeDenoter ast, Object o) {
     return StdEnvironment.integerType;

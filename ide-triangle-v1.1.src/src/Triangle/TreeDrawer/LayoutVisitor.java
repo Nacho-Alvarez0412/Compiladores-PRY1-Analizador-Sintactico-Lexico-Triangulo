@@ -169,10 +169,19 @@ public class LayoutVisitor implements Visitor {
   }
   // END cambio Andres
   
-
+  // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar Call Command
+  // @funcionalidad Cambio en las alternativas de single-command
+  // @codigo        J.72
+  public Object visitCallCommand(CallCommand ast, Object obj) {
+    return layoutBinary("CallCom.", ast.LI, ast.APS);
+   }
+  /*J.72
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
    }
+  */
+  // END CAMBIO Joseph
 
   public Object visitEmptyCommand(EmptyCommand ast, Object obj) {
     return layoutNullary("EmptyCom.");
@@ -367,9 +376,19 @@ public class LayoutVisitor implements Visitor {
     return layoutTernary("Bin.Expr.", ast.E1, ast.O, ast.E2);
   }
 
+  // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar call expression
+  // @funcionalidad Cambio en las alternativas de primary expression
+  // @codigo        J.73
+  public Object visitCallExpression(CallExpression ast, Object obj) {
+    return layoutBinary("CallExpr.", ast.LI, ast.APS);
+  }
+ /*J.73
   public Object visitCallExpression(CallExpression ast, Object obj) {
     return layoutBinary("CallExpr.", ast.I, ast.APS);
   }
+ */
+ // END CAMBIO Joseph
 
   public Object visitCharacterExpression(CharacterExpression ast, Object obj) {
     return layoutUnary("Char.Expr.", ast.CL);
@@ -563,9 +582,19 @@ public class LayoutVisitor implements Visitor {
     return layoutNullary("error");
   }
 
+   // @author        Joseph
+  // @descripcion   Cambio en metodo dibujante para visitar simple type denoter
+  // @funcionalidad Cambio en las alternativas de type denoter
+  // @codigo        J.74
+  public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
+    return layoutUnary("Sim.TypeD.", ast.LI);
+  }
+  /*J.74
   public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object obj) {
     return layoutUnary("Sim.TypeD.", ast.I);
   }
+  */
+  // END CAMBIO Joseph
 
   public Object visitIntTypeDenoter(IntTypeDenoter ast, Object obj) {
     return layoutNullary("int");
