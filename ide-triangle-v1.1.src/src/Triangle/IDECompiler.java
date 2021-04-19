@@ -14,6 +14,7 @@ import Triangle.SyntacticAnalyzer.Parser;
 import Triangle.ContextualAnalyzer.Checker;
 import Triangle.CodeGenerator.Encoder;
 import Triangle.HTML.Generator.HTML_Generator;
+import Triangle.SyntacticAnalyzer.Token;
 import java.io.IOException;
 
 
@@ -55,11 +56,22 @@ public class IDECompiler {
         System.out.println("Syntactic Analysis ...");
         SourceFile source = new SourceFile(sourceName);
         Scanner scanner = new Scanner(source);
+        Scanner scanner1 = new Scanner(source);
         HTML_Generator htmlGen = new HTML_Generator();
         htmlGen.setCode(sourceName);
         report = new IDEReporter();
         Parser parser = new Parser(scanner, report);
         boolean success = false;
+        boolean generateHTML = true;
+        Token token = scanner1.scan();
+        
+        while(token.kind != Token.EOT){
+            if(token.kind == Token.ERROR){
+                generateHTML = false;
+                break;
+            }
+            token = scanner1.scan(); 
+        }
         
         rootAST = parser.parseProgram();
         if (report.numErrors == 0) {
@@ -77,9 +89,9 @@ public class IDECompiler {
                 }
             }
         }
-
-        if (success){
+        if (generateHTML)
             htmlGen.generateHTML();
+        if (success){
             System.out.println("Compilation was successful.");
         }
         else

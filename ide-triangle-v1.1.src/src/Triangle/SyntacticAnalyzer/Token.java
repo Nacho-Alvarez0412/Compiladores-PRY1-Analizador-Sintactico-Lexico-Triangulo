@@ -15,9 +15,9 @@
 package Triangle.SyntacticAnalyzer;
 
 
-final class Token extends Object {
+final public class Token extends Object {
 
-  protected int kind;
+  public int kind;
   protected String spelling;
   protected SourcePosition position;
 
