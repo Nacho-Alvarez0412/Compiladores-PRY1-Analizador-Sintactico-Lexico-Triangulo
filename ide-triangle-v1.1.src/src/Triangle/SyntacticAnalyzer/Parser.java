@@ -675,6 +675,7 @@ public class Parser {
                Expression e2AST = parseExpression();
                accept(Token.DO);
                Command cAST = parseCommand();
+               accept(Token.END);
                finish(commandPos);
                commandAST = new ForLoopWhileCommand(ffcAST, e1AST ,e2AST, cAST, commandPos);               
              }
@@ -685,6 +686,7 @@ public class Parser {
                Expression e2AST = parseExpression();
                accept(Token.DO);
                Command cAST = parseCommand();
+               accept(Token.END);
                finish(commandPos);
                commandAST = new ForLoopUntilCommand(ffcAST, e2AST, e2AST, cAST, commandPos);               
              }
@@ -942,7 +944,7 @@ public class Parser {
       }
       break;
 
-    case Token.IF:
+    case Token.FUNC:
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
@@ -1459,6 +1461,7 @@ public class Parser {
         Declaration d1AST = parseDeclaration();
         accept(Token.IN);
         Declaration d2AST = parseDeclaration();
+        accept(Token.END);
         finish(declarationPos);
         declarationAST = new PrivDeclaration(d1AST, d2AST, declarationPos);
       }
@@ -1600,7 +1603,7 @@ public class Parser {
         accept(Token.COLON);
         TypeDenoter tAST = parseTypeDenoter();
         accept(Token.IS);
-        Expression eAST = parseExpression();
+        Expression eAST = parseExpression();        
         finish(singleDeclarationPos);
         singleDeclarationAST = new FuncDeclaration(iAST, fpsAST, tAST, eAST,
           singleDeclarationPos);
