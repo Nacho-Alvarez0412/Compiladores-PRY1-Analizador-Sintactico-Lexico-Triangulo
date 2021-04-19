@@ -4,9 +4,62 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/GUI/Main.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/IDECompiler.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Token.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SequentialCaseRange.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/VarExpDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/ContextualAnalyzer/Checker.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Program.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SequentialElsifCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Declaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CharacterLiteral.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ForFromCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/Visitors/TableVisitor.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/WhileLoopCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/GUI/Main.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/ContextualAnalyzer/IdEntry.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Scanner.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/IDECompiler.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/TreeDrawer/DrawingTree.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/TreeDrawer/LayoutVisitor.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/DoLoopUntilCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Token.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SimpleVname.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Visitor.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CaseLiterals.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ProcDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/VarTDDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/UntilLoopCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ForLoopUntilCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ActualParameterSequence.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/TypeDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/VnameExpression.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ProcFormalParameter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SimpleCaseRange.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SequentialCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/FieldTypeDenoter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CompoundCaseRange.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SequentialDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SimpleTypeDenoter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/IntegerLiteral.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Parser.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CompoundIfCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ForLoopDoCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/IfCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CallCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ElsifCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SequentialProcFuncs.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/SingleDeclaration.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/Console/OutputRedirector.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/CodeGenerator/Encoder.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/IDE/IDEInterpreter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/CaseLiteral.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/TypeDenoter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Expression.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/IntegerExpression.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ForLoopWhileCommand.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Command.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/Visitors/TreeVisitor.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/ActualParameter.java</file>
+            <file>file:/C:/Users/JOS/Desktop/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/AbstractSyntaxTrees/Vname.java</file>
         </group>
     </open-files>
 </project-private>

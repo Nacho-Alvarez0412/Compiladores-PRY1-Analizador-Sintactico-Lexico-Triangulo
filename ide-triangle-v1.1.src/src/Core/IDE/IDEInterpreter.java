@@ -5,6 +5,7 @@
 
 package Core.IDE;
 import java.awt.event.ActionListener;
+// THis is a comment
 
 /**
  * Just another small class to call the Triangle interpreter.
