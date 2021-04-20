@@ -24,10 +24,6 @@ public class SequentialElsifCommand extends ElsifCommand {
         SE2 = c2AST;
     }
     
-    public SequentialElsifCommand(ElsifCommand c1AST, SourcePosition thePosition) {
-       super(thePosition);
-       SE1 = c1AST; 
-    }
     
     public Object visit(Visitor v, Object o) {
         return v.visitSequentialElsifCommand(this, o);

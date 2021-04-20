@@ -484,6 +484,17 @@ public class Parser {
         Command cAST = parseCommand();
         ElsifCommand eiAST = null;
         // Start parsing elsif instructions
+        if (currentToken.kind == Token.ELSIF) {
+            acceptIt();
+            // Parse elsif expression
+            Expression e2AST = parseExpression();
+            accept(Token.THEN);
+            // Parse elsif command
+            Command c2AST = parseCommand();
+            finish(commandPos);
+            // Create AST for the single elsif
+            eiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
+        }
         while(currentToken.kind == Token.ELSIF) {
             acceptIt();
             // Parse elsif expression
@@ -495,8 +506,7 @@ public class Parser {
             // Create AST for the single elsif
             SingleElsifCommand seiAST = new SingleElsifCommand(e2AST, c2AST, commandPos);
             // Group elsif ASTs
-            eiAST = eiAST == null ? new SequentialElsifCommand(seiAST, commandPos) 
-                    : new SequentialElsifCommand(eiAST, seiAST, commandPos);
+            eiAST = new SequentialElsifCommand(eiAST, seiAST, commandPos);
         }
         // Parse else instruction
         accept(Token.ELSE);
