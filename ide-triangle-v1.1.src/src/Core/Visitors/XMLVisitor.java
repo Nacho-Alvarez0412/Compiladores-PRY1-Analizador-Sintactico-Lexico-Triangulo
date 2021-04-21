@@ -701,19 +701,25 @@ public class XMLVisitor implements Visitor {
   public Object generateXML(){
     
     try {
-      DocumentBuilderFactory dbFactory =
-      DocumentBuilderFactory.newInstance();
+
+      //Primero crea el documento
+
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
       Document doc = dBuilder.newDocument();
+
+      //Crea la raiz
       
-      // root element
       Element rootElement = doc.createElement("ejemploRaiz");
       doc.appendChild(rootElement);
+
+      //crea y agrega el primer elemento anidado a la raiz
 
       Element primerElemento = doc.createElement("primerElemento");
       rootElement.appendChild(primerElemento);
 
-      // setting attribute to element
       Attr attr = doc.createAttribute("company");
       attr.setValue("Ferrari");
       primerElemento.setAttributeNode(attr);
@@ -732,7 +738,6 @@ public class XMLVisitor implements Visitor {
       carname1.appendChild(doc.createTextNode("Ferrari 202"));
       primerElemento.appendChild(carname1);
 
-      // write the content into xml file
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(doc);
@@ -741,7 +746,7 @@ public class XMLVisitor implements Visitor {
       
       StreamResult consoleResult = new StreamResult(System.out);
       transformer.transform(source, consoleResult);
-      
+
    } catch (Exception e) {
       e.printStackTrace();
    }
