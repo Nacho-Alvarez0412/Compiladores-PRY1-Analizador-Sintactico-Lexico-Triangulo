@@ -32,6 +32,10 @@ public class BinaryOperatorDeclaration extends Declaration {
     return v.visitBinaryOperatorDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitBinaryOperatorDeclaration(this, o);
+  }
+
   public Operator O;
   public TypeDenoter ARG1, ARG2, RES;
 }

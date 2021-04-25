@@ -29,6 +29,10 @@ public class MultipleArrayAggregate extends ArrayAggregate {
     return v.visitMultipleArrayAggregate(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitMultipleArrayAggregate(this, o);
+  }
+
   public Expression E;
   public ArrayAggregate AA;
 }

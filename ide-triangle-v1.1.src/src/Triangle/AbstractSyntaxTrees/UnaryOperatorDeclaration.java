@@ -29,6 +29,9 @@ public class UnaryOperatorDeclaration extends Declaration {
   public Object visit (Visitor v, Object o) {
     return v.visitUnaryOperatorDeclaration(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitUnaryOperatorDeclaration(this, o);
+  }
 
   public Operator O;
   public TypeDenoter ARG, RES;

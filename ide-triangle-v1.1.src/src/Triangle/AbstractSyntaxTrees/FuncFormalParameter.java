@@ -30,6 +30,10 @@ public class FuncFormalParameter extends FormalParameter {
     return v.visitFuncFormalParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitFuncFormalParameter(this, o);
+  }
+
   public boolean equals (Object fpAST) {
   	if (fpAST instanceof FuncFormalParameter) {
   	  FuncFormalParameter ffpAST = (FuncFormalParameter) fpAST;

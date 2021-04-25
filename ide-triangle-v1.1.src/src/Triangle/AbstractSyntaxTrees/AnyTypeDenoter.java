@@ -26,6 +26,10 @@ public class AnyTypeDenoter extends TypeDenoter {
     return v.visitAnyTypeDenoter(this, o);
   }
 
+  public Object visitXMl(Visitor v, Object o) {
+    return v.visitAnyTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     return false;
   }

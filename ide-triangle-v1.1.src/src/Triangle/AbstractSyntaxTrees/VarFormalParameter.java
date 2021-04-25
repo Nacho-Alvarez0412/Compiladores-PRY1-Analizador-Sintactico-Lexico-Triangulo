@@ -29,6 +29,10 @@ public class VarFormalParameter extends FormalParameter {
     return v.visitVarFormalParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitVarFormalParameter(this, o);
+  }
+
   public Identifier I;
   public TypeDenoter T;
 

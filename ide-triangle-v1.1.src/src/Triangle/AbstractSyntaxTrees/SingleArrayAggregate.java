@@ -28,5 +28,9 @@ public class SingleArrayAggregate extends ArrayAggregate {
     return v.visitSingleArrayAggregate(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSingleArrayAggregate(this, o);
+  }
+
   public Expression E;
 }

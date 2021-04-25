@@ -36,6 +36,10 @@ public class CompoundIfCommand extends Command {
     return v.visitCompoundIfCommand(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCompoundIfCommand(this, o);
+  }
+
   public Expression E;
   public Command C1, C2;
   public ElsifCommand EIC;

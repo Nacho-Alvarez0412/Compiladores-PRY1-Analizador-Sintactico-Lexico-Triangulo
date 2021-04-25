@@ -27,5 +27,9 @@ public class ConstActualParameter extends ActualParameter {
     return v.visitConstActualParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitConstActualParameter(this, o);
+  }
+
   public Expression E;
 }

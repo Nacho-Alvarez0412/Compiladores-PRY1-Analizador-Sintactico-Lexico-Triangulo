@@ -25,5 +25,8 @@ public class IntegerLiteral extends Terminal {
   public Object visit(Visitor v, Object o) {
     return v.visitIntegerLiteral(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitIntegerLiteral(this, o);
+  }
 
 }

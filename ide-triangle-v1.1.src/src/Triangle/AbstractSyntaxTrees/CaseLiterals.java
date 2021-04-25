@@ -23,6 +23,10 @@ public class CaseLiterals extends AST {
     public Object visit(Visitor v, Object o) {
         return v.visitCaseLiterals(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitCaseLiterals(this, o);
+    }
     
     public CaseRange CR;
 

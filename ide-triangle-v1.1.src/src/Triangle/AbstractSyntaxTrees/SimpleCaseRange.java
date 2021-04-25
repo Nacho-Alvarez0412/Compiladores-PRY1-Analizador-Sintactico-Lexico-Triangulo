@@ -23,6 +23,10 @@ public class SimpleCaseRange extends CaseRange {
     public Object visit(Visitor v, Object o) {
         return v.visitSimpleCaseRange(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSimpleCaseRange(this, o);
+    }
     
     public CaseLiteral CL;
 }

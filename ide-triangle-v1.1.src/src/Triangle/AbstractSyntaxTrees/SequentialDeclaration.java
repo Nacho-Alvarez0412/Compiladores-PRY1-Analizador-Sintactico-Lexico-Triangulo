@@ -29,5 +29,9 @@ public class SequentialDeclaration extends Declaration {
     return v.visitSequentialDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSequentialDeclaration(this, o);
+  }
+
   public Declaration D1, D2;
 }

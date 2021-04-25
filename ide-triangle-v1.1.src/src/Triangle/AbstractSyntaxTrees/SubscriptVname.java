@@ -31,6 +31,9 @@ public class SubscriptVname extends Vname {
   public Object visit (Visitor v, Object o) {
     return null;
   }
+  public Object visitXML(Visitor v, Object o) {
+    return null;
+  }
   /*
    public Object visit (Visitor v, Object o) {
     return v.visitSubscriptVname(this, o);

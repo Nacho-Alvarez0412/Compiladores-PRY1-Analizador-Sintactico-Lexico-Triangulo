@@ -28,5 +28,9 @@ public class SequentialCommand extends Command {
     return v.visitSequentialCommand(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSequentialCommand(this, o);
+  }
+
   public Command C1, C2;
 }

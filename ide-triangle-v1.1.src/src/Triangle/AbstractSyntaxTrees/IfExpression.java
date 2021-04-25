@@ -29,6 +29,9 @@ public class IfExpression extends Expression {
   public Object visit(Visitor v, Object o) {
     return v.visitIfExpression(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitIfExpression(this, o);
+  }
 
   public Expression E1, E2, E3;
 }

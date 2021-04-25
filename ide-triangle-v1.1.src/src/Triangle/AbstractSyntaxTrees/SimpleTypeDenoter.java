@@ -32,6 +32,10 @@ public class SimpleTypeDenoter extends TypeDenoter {
     return v.visitSimpleTypeDenoter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSimpleTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     return false; // should not happen
   }

@@ -24,6 +24,10 @@ public class SingleElsifCommand extends ElsifCommand {
     public Object visit(Visitor v, Object o) {
         return v.visitSingleElsifCommand(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSingleElsifCommand(this, o);
+    }
     
     public Expression E;
     public Command C;

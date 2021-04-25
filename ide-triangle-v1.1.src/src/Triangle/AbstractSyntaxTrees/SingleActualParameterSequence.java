@@ -28,5 +28,9 @@ public class SingleActualParameterSequence extends ActualParameterSequence {
     return v.visitSingleActualParameterSequence(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSingleActualParameterSequence(this, o);
+  }
+
   public ActualParameter AP;
 }

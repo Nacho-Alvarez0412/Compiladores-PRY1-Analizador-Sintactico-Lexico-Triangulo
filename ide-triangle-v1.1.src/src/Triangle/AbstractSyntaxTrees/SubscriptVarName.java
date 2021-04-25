@@ -23,6 +23,9 @@ public class SubscriptVarName extends VarName {
   public Object visit (Visitor v, Object o) {
     return v.visitSubscriptVarName(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSubscriptVarName(this, o);
+  }
 
   public Expression E;
   public VarName V;

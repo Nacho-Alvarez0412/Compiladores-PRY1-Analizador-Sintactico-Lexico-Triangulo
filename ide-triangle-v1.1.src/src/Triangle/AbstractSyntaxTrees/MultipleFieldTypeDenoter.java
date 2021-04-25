@@ -30,6 +30,10 @@ public class MultipleFieldTypeDenoter extends FieldTypeDenoter {
     return v.visitMultipleFieldTypeDenoter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitMultipleFieldTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     if (obj != null && obj instanceof MultipleFieldTypeDenoter) {
       MultipleFieldTypeDenoter ft = (MultipleFieldTypeDenoter) obj;

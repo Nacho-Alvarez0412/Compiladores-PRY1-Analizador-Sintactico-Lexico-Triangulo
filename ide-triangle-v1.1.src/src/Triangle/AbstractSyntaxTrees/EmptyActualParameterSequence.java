@@ -25,4 +25,8 @@ public class EmptyActualParameterSequence extends ActualParameterSequence {
   public Object visit(Visitor v, Object o) {
     return v.visitEmptyActualParameterSequence(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitEmptyActualParameterSequence(this, o);
+  }
 }

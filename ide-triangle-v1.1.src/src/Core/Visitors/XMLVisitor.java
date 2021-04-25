@@ -119,434 +119,509 @@ public class XMLVisitor implements Visitor {
   private Document doc;
 
   public Object visitAssignCommand(AssignCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Assign Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitCallCommand(CallCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Call Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitEmptyCommand(EmptyCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Empty Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Compound If Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitIfCommand(IfCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("If Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitLetCommand(LetCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Let Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialCommand(SequentialCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Sequential Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("While Loop Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Until Loop Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Do Loop Until Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Do Loop While Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Sequential Else If Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Else If Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("For Loop Do Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("For Loop While Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("For Loop Until Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitProcedure(Procedure ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Procedure");
+
+    return elemento;
   }
 
   @Override
   public Object visitFunction(Function ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("ProcFuncs");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialProcFuncs(SequentialProcFuncs ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("ProcFuncs");
+
+    return elemento;
   }
 
   @Override
   public Object visitChooseCommand(ChooseCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Choose Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitForFromCommand(ForFromCommand ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("For From Command");
+
+    return elemento;
   }
 
   @Override
   public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Case Literal");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Simple Case Range");
+
+    return elemento;
   }
 
   @Override
   public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Compound Case Range");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Sequential Case Range");
+
+    return elemento;
   }
 
   @Override
   public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Case Literals");
+
+    return elemento;
   }
 
   @Override
   public Object visitCompoundCases(CompoundCases ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Compund Cases");
+
+    return elemento;
   }
 
   @Override
   public Object visitElseCase(ElseCase ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Else Case");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialCase(SequentialCase ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Sequential Case");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleCases(SimpleCases ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Simple Cases");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleCase(SingleCase ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Case");
+
+    return elemento;
   }
 
   @Override
   public Object visitArrayExpression(ArrayExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Array Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitBinaryExpression(BinaryExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Binary Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitCallExpression(CallExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Call Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitCharacterExpression(CharacterExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Character Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitEmptyExpression(EmptyExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Empty Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitIfExpression(IfExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("If Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitIntegerExpression(IntegerExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Integer Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitLetExpression(LetExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Let Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitRecordExpression(RecordExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Record Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitUnaryExpression(UnaryExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Unary Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitVnameExpression(VnameExpression ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Vname Expression");
+
+    return elemento;
   }
 
   @Override
   public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Binary Operator Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitConstDeclaration(ConstDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Constant Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitFuncDeclaration(FuncDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Function Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitProcDeclaration(ProcDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Procedure Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Sequential Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitTypeDeclaration(TypeDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Type Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Unary Operator Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Variable Typed-denoted Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Initialized Variable Declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitRecDeclaration(RecDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Recursive declaration");
+
+    return elemento;
   }
 
   @Override
   public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Private declaration");
+
+    return elemento;
   }
 
+ 
   @Override
   public Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Multiple Array Aggregate");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleArrayAggregate(SingleArrayAggregate ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Array Aggregate");
+
+    return elemento;
   }
 
   @Override
   public Object visitMultipleRecordAggregate(MultipleRecordAggregate ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Multiple Record Aggregate");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleRecordAggregate(SingleRecordAggregate ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Record Aggregate");
+
+    return elemento;
   }
+
 
   @Override
   public Object visitConstFormalParameter(ConstFormalParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Constant Formal Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitFuncFormalParameter(FuncFormalParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Function Formal Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitProcFormalParameter(ProcFormalParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Procedure Formal Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitVarFormalParameter(VarFormalParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Variable Formal Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitEmptyFormalParameterSequence(EmptyFormalParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Empty Formal Parameter Sequence");
+
+    return elemento;
   }
 
   @Override
   public Object visitMultipleFormalParameterSequence(MultipleFormalParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Multiple Formal Parameter Sequence");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleFormalParameterSequence(SingleFormalParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Formal Parameter Sequence");
+
+    return elemento;
   }
 
   @Override
   public Object visitConstActualParameter(ConstActualParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Constant Actual Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitFuncActualParameter(FuncActualParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Function Actual Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitProcActualParameter(ProcActualParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Procedure Actual Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitVarActualParameter(VarActualParameter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Variable Formal Parameter");
+
+    return elemento;
   }
 
   @Override
   public Object visitEmptyActualParameterSequence(EmptyActualParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Empty Formal Parameter Sequence");
+
+    return elemento;
   }
 
   @Override
   public Object visitMultipleActualParameterSequence(MultipleActualParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Multiple Formal Parameter Sequence");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleActualParameterSequence(SingleActualParameterSequence ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Single Formal Parameter Sequence");
+
+    return elemento;
   }
+
 
   @Override
   public Object visitAnyTypeDenoter(AnyTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("any");
+
+    return elemento;
   }
 
   @Override

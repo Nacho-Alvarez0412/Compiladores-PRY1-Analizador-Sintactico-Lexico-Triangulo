@@ -20,7 +20,11 @@ public class DotVarName extends VarName {
     I = iAST;
   }
 
-  public Object visit (Visitor v, Object o) {
+  public Object visit(Visitor v, Object o) {
+    return v.visitDotVarName(this, o);
+  }
+
+  public Object visitXML(Visitor v, Object o) {
     return v.visitDotVarName(this, o);
   }
 

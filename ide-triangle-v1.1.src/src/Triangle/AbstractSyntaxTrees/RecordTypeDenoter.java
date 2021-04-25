@@ -27,6 +27,10 @@ public class RecordTypeDenoter extends TypeDenoter {
     return v.visitRecordTypeDenoter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitRecordTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     if (obj != null && obj instanceof ErrorTypeDenoter)
       return true;

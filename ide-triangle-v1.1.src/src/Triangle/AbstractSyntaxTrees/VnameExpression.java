@@ -27,5 +27,9 @@ public class VnameExpression extends Expression {
     return v.visitVnameExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitVnameExpression(this, o);
+  }
+
   public Vname V;
 }

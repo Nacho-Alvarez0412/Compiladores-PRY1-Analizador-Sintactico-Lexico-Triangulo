@@ -24,6 +24,10 @@ public class SimpleLongIdentifier extends LongIdentifier {
     public Object visit(Visitor v, Object o) {
         return v.visitSimpleLongIdentifier(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSimpleLongIdentifier(this, o);
+    }
     
     
 }

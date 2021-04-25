@@ -33,6 +33,11 @@ public class WhileLoopCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitWhileLoopCommand(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitWhileLoopCommand(this, o);
+  }
+  
   /* J.5
   public class WhileCommand extends Command {
 

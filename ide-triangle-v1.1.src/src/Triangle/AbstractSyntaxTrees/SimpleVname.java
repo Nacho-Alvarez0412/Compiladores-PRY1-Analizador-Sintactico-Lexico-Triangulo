@@ -32,6 +32,10 @@ public class SimpleVname extends Vname {
     return v.visitSimpleVname(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSimpleVname(this, o);
+  }
+
   public VarName VN;
   /*
     public SimpleVname (Identifier iAST, SourcePosition thePosition) {

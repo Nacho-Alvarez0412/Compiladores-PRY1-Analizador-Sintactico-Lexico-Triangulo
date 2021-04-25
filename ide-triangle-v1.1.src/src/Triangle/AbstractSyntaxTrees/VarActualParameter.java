@@ -26,6 +26,9 @@ public class VarActualParameter extends ActualParameter {
   public Object visit(Visitor v, Object o) {
     return v.visitVarActualParameter(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitVarActualParameter(this, o);
+  }
 
   public Vname V;
 }

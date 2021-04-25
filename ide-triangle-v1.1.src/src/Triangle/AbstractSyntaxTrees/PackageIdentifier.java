@@ -24,6 +24,10 @@ public class PackageIdentifier extends AST {
     public Object visit(Visitor v, Object o) {
         return v.visitPackageIdentifier(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitPackageIdentifier(this, o);
+    }
     
     public Identifier I;
     

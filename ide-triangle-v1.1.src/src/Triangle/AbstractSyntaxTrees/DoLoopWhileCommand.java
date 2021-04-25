@@ -19,6 +19,10 @@ public class DoLoopWhileCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitDoLoopWhileCommand(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitDoLoopWhileCommand(this, o);
+  }
   
   public Command C;
   public Expression E;

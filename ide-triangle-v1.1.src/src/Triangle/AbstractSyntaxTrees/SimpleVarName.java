@@ -23,5 +23,9 @@ public class SimpleVarName extends VarName {
     return v.visitSimpleVarName(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSimpleVarName(this, o);
+  }
+
   public Identifier I;
 }

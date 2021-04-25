@@ -25,6 +25,10 @@ public class PackageLongIdentifier extends LongIdentifier {
     public Object visit(Visitor v, Object o) {
         return v.visitPackageLongIdentifier(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitPackageLongIdentifier(this, o);
+    }
     
     public PackageIdentifier PI;
 }

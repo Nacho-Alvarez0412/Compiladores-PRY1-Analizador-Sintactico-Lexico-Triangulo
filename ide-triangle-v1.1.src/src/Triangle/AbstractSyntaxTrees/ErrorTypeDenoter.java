@@ -22,7 +22,11 @@ public class ErrorTypeDenoter extends TypeDenoter {
     super (thePosition);
   }
 
-  public Object visit (Visitor v, Object o) {
+  public Object visit(Visitor v, Object o) {
+    return v.visitErrorTypeDenoter(this, o);
+  }
+
+  public Object visitXML(Visitor v, Object o) {
     return v.visitErrorTypeDenoter(this, o);
   }
 

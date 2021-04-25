@@ -29,6 +29,10 @@ public class SingleFieldTypeDenoter extends FieldTypeDenoter {
     return v.visitSingleFieldTypeDenoter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSingleFieldTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     if (obj != null && obj instanceof SingleFieldTypeDenoter) {
       SingleFieldTypeDenoter ft = (SingleFieldTypeDenoter) obj;

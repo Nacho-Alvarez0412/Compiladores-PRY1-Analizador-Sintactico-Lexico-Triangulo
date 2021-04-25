@@ -33,6 +33,10 @@ public class CallCommand extends Command {
     return v.visitCallCommand(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCallCommand(this, o);
+  }
+
   public LongIdentifier LI;
   public ActualParameterSequence APS;
 }

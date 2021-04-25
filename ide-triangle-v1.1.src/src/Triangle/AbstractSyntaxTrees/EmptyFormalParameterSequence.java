@@ -26,6 +26,10 @@ public class EmptyFormalParameterSequence extends FormalParameterSequence {
     return v.visitEmptyFormalParameterSequence(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitEmptyFormalParameterSequence(this, o);
+  }
+
   public boolean equals(Object fpsAST) {
     return (fpsAST instanceof EmptyFormalParameterSequence);
   }

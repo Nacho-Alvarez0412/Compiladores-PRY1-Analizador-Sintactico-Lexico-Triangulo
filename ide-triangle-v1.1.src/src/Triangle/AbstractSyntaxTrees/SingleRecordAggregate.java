@@ -28,6 +28,9 @@ public class SingleRecordAggregate extends RecordAggregate {
   public Object visit(Visitor v, Object o) {
     return v.visitSingleRecordAggregate(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSingleRecordAggregate(this, o);
+  }
 
   public Identifier I;
   public Expression E;

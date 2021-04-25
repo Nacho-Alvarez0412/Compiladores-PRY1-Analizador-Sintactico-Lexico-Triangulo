@@ -20,6 +20,10 @@ public class ForLoopDoCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitForLoopDoCommand(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitForLoopDoCommand(this, o);
+  }
   
   public ForFromCommand FFC;
   public Expression E;

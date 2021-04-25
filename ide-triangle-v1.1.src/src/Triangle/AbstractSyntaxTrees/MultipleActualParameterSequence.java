@@ -29,6 +29,10 @@ public class MultipleActualParameterSequence extends ActualParameterSequence {
     return v.visitMultipleActualParameterSequence(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitMultipleActualParameterSequence(this, o);
+  }
+
   public ActualParameter AP;
   public ActualParameterSequence APS;
 }

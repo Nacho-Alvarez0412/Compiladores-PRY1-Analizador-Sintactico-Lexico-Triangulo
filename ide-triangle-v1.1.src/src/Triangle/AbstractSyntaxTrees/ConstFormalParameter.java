@@ -29,6 +29,10 @@ public class ConstFormalParameter extends FormalParameter {
     return v.visitConstFormalParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitConstFormalParameter(this, o);
+  }
+
   public Identifier I;
   public TypeDenoter T;
 

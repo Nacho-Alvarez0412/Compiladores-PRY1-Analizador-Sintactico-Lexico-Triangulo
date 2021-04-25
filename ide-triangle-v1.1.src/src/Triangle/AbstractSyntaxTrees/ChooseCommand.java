@@ -26,6 +26,10 @@ public class ChooseCommand extends Command {
     public Object visit(Visitor v, Object o) {
         return v.visitChooseCommand(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitChooseCommand(this, o);
+    }
     
     public Expression E;
     public Cases CS;

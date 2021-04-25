@@ -29,6 +29,10 @@ public class ArrayTypeDenoter extends TypeDenoter {
     return v.visitArrayTypeDenoter(this, o);
   }
 
+  public Object visitXMl(Visitor v, Object o) {
+    return v.visitArrayTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     if (obj != null && obj instanceof ErrorTypeDenoter)
       return true;

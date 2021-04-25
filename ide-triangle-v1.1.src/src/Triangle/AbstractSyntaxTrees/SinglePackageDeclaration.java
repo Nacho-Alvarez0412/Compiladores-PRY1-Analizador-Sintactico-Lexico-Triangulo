@@ -26,6 +26,9 @@ public class SinglePackageDeclaration extends PackageDeclaration {
      public Object visit(Visitor v, Object o) {
         return v.visitSinglePackageDeclaration(this, o);
     }
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSinglePackageDeclaration(this, o);
+    }
     
     public PackageIdentifier PI;
     public Declaration D;

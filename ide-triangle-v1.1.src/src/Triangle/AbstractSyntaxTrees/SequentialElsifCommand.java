@@ -28,4 +28,9 @@ public class SequentialElsifCommand extends ElsifCommand {
     public Object visit(Visitor v, Object o) {
         return v.visitSequentialElsifCommand(this, o);
     }
+    
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSequentialElsifCommand(this, o);
+    }
 }

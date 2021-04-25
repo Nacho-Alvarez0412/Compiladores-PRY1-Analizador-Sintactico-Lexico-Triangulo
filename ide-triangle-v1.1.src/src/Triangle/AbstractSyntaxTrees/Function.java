@@ -21,6 +21,10 @@ public class Function extends ProcFunc {
   public Object visit(Visitor v, Object o) {
     return v.visitFunction(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitFunction(this, o);
+  }
   
   public Identifier I;
   public FormalParameterSequence FPS;

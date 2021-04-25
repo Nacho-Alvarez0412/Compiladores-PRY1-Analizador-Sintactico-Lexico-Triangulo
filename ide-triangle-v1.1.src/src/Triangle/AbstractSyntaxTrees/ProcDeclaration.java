@@ -35,6 +35,10 @@ public class ProcDeclaration extends SingleDeclaration {
     return v.visitProcDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitProcDeclaration(this, o);
+  }
+
   public Identifier I;
   public FormalParameterSequence FPS;
   public Command C;

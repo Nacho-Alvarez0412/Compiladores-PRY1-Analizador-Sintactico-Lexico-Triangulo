@@ -27,5 +27,9 @@ public class RecordExpression extends Expression {
     return v.visitRecordExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitRecordExpression(this, o);
+  }
+
   public RecordAggregate RA;
 }
