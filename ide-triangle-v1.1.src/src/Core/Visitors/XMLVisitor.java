@@ -1,104 +1,5 @@
 package Core.Visitors;
 
-import Triangle.AbstractSyntaxTrees.AnyTypeDenoter;
-import Triangle.AbstractSyntaxTrees.ArrayExpression;
-import Triangle.AbstractSyntaxTrees.ArrayTypeDenoter;
-import Triangle.AbstractSyntaxTrees.AssignCommand;
-import Triangle.AbstractSyntaxTrees.BinaryExpression;
-import Triangle.AbstractSyntaxTrees.BinaryOperatorDeclaration;
-import Triangle.AbstractSyntaxTrees.BoolTypeDenoter;
-import Triangle.AbstractSyntaxTrees.CallCommand;
-import Triangle.AbstractSyntaxTrees.CallExpression;
-import Triangle.AbstractSyntaxTrees.CaseLiteral;
-import Triangle.AbstractSyntaxTrees.CaseLiterals;
-import Triangle.AbstractSyntaxTrees.CharTypeDenoter;
-import Triangle.AbstractSyntaxTrees.CharacterExpression;
-import Triangle.AbstractSyntaxTrees.CharacterLiteral;
-import Triangle.AbstractSyntaxTrees.ChooseCommand;
-import Triangle.AbstractSyntaxTrees.CompoundCaseRange;
-import Triangle.AbstractSyntaxTrees.CompoundCases;
-import Triangle.AbstractSyntaxTrees.CompoundIfCommand;
-import Triangle.AbstractSyntaxTrees.CompoundProgram;
-import Triangle.AbstractSyntaxTrees.ConstActualParameter;
-import Triangle.AbstractSyntaxTrees.ConstDeclaration;
-import Triangle.AbstractSyntaxTrees.ConstFormalParameter;
-import Triangle.AbstractSyntaxTrees.DoLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.DoLoopWhileCommand;
-import Triangle.AbstractSyntaxTrees.DotVarName;
-import Triangle.AbstractSyntaxTrees.ElseCase;
-import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.EmptyCommand;
-import Triangle.AbstractSyntaxTrees.EmptyExpression;
-import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.ErrorTypeDenoter;
-import Triangle.AbstractSyntaxTrees.ForFromCommand;
-import Triangle.AbstractSyntaxTrees.ForLoopDoCommand;
-import Triangle.AbstractSyntaxTrees.ForLoopUntilCommand;
-import Triangle.AbstractSyntaxTrees.ForLoopWhileCommand;
-import Triangle.AbstractSyntaxTrees.FuncActualParameter;
-import Triangle.AbstractSyntaxTrees.FuncDeclaration;
-import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
-import Triangle.AbstractSyntaxTrees.Function;
-import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
-import Triangle.AbstractSyntaxTrees.IfExpression;
-import Triangle.AbstractSyntaxTrees.IntTypeDenoter;
-import Triangle.AbstractSyntaxTrees.IntegerExpression;
-import Triangle.AbstractSyntaxTrees.IntegerLiteral;
-import Triangle.AbstractSyntaxTrees.LetCommand;
-import Triangle.AbstractSyntaxTrees.LetExpression;
-import Triangle.AbstractSyntaxTrees.MultipleActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.MultipleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
-import Triangle.AbstractSyntaxTrees.MultipleFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.MultipleRecordAggregate;
-import Triangle.AbstractSyntaxTrees.Operator;
-import Triangle.AbstractSyntaxTrees.PackageIdentifier;
-import Triangle.AbstractSyntaxTrees.PackageLongIdentifier;
-import Triangle.AbstractSyntaxTrees.PackageVname;
-import Triangle.AbstractSyntaxTrees.PrivDeclaration;
-import Triangle.AbstractSyntaxTrees.ProcActualParameter;
-import Triangle.AbstractSyntaxTrees.ProcDeclaration;
-import Triangle.AbstractSyntaxTrees.ProcFormalParameter;
-import Triangle.AbstractSyntaxTrees.Procedure;
-import Triangle.AbstractSyntaxTrees.RecDeclaration;
-import Triangle.AbstractSyntaxTrees.RecordExpression;
-import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SequentialCase;
-import Triangle.AbstractSyntaxTrees.SequentialCaseRange;
-import Triangle.AbstractSyntaxTrees.SequentialCommand;
-import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
-import Triangle.AbstractSyntaxTrees.SequentialElsifCommand;
-import Triangle.AbstractSyntaxTrees.SequentialPackageDeclaration;
-import Triangle.AbstractSyntaxTrees.SequentialProcFuncs;
-import Triangle.AbstractSyntaxTrees.SimpleCaseRange;
-import Triangle.AbstractSyntaxTrees.SimpleCases;
-import Triangle.AbstractSyntaxTrees.SimpleLongIdentifier;
-import Triangle.AbstractSyntaxTrees.SimpleProgram;
-import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SimpleVarName;
-import Triangle.AbstractSyntaxTrees.SimpleVname;
-import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.SingleCase;
-import Triangle.AbstractSyntaxTrees.SingleElsifCommand;
-import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.SinglePackageDeclaration;
-import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
-import Triangle.AbstractSyntaxTrees.SubscriptVarName;
-import Triangle.AbstractSyntaxTrees.TypeDeclaration;
-import Triangle.AbstractSyntaxTrees.UnaryExpression;
-import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
-import Triangle.AbstractSyntaxTrees.UntilLoopCommand;
-import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarExpDeclaration;
-import Triangle.AbstractSyntaxTrees.VarFormalParameter;
-import Triangle.AbstractSyntaxTrees.VarTDDeclaration;
-import Triangle.AbstractSyntaxTrees.Visitor;
-import Triangle.AbstractSyntaxTrees.VnameExpression;
-import Triangle.AbstractSyntaxTrees.WhileLoopCommand;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.transform.Transformer;
@@ -109,6 +10,8 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import Triangle.AbstractSyntaxTrees.*;
 
 import java.io.File;
 
@@ -1162,11 +1065,11 @@ public class XMLVisitor implements Visitor {
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
     elemento.appendChild((Node) ast.PD.visitXML(this, null));
-    
+
     return elemento;
   }
 
-  public Object generateXML(){
+  public Object generateXML(AST rootElement){
     
     try {
 
@@ -1180,10 +1083,10 @@ public class XMLVisitor implements Visitor {
 
       //Crea la raiz
       
-      Element rootElement = doc.createElement("Program");
-      doc.appendChild(rootElement);
+      //Element rootElement = doc.createElement("Program");
+      //doc.appendChild(rootElement);
 
-
+      this.doc.appendChild((Node) rootElement.visitXML(this, null));
 
       //crea y agrega el primer elemento anidado a la raiz
 
@@ -1210,7 +1113,7 @@ public class XMLVisitor implements Visitor {
 
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
-      DOMSource source = new DOMSource(doc);
+      DOMSource source = new DOMSource(this.doc);
       StreamResult result = new StreamResult(new File("C:\\tree.xml"));
       transformer.transform(source, result);
       
