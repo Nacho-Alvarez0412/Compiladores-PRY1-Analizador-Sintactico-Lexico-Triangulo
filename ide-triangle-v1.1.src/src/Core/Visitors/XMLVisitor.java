@@ -116,7 +116,8 @@ public class XMLVisitor implements Visitor {
 
   }
 
-  @Override
+  private Document doc;
+
   public Object visitAssignCommand(AssignCommand ast, Object o) {
     // TODO Auto-generated method stub
     return null;
@@ -550,152 +551,196 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitArrayTypeDenoter(ArrayTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("Array Type Denoter");
+
+    return elemento;
   }
+
 
   @Override
   public Object visitBoolTypeDenoter(BoolTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("bool");
+
+    return elemento;
   }
 
   @Override
   public Object visitCharTypeDenoter(CharTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("char");
+
+    return elemento;
   }
 
   @Override
   public Object visitErrorTypeDenoter(ErrorTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = doc.createElement("error");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Simple Type Denoter");
+
+    return elemento;
   }
 
   @Override
   public Object visitIntTypeDenoter(IntTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("int");
+
+    return elemento;
   }
 
   @Override
   public Object visitRecordTypeDenoter(RecordTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Record Type Denoter");
+
+    return elemento;
   }
 
   @Override
   public Object visitMultipleFieldTypeDenoter(MultipleFieldTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Multiple Field Type Denoter");
+
+    return elemento;
   }
 
   @Override
   public Object visitSingleFieldTypeDenoter(SingleFieldTypeDenoter ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Single Field Type Denoter");
+
+    return elemento;
   }
 
   @Override
   public Object visitCharacterLiteral(CharacterLiteral ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Character Literal");
+
+    return elemento;
   }
 
   @Override
   public Object visitIdentifier(Identifier ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Identifier");
+
+    return elemento;
   }
 
   @Override
   public Object visitIntegerLiteral(IntegerLiteral ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Integer Literal");
+
+    return elemento;
   }
 
   @Override
   public Object visitOperator(Operator ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Operator");
+
+    return elemento;
   }
 
   @Override
   public Object visitDotVarName(DotVarName ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Dot Var Name");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleVarName(SimpleVarName ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Simple Var Name");
+
+    return elemento;
   }
 
   @Override
   public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Subscript Var Name");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleVname(SimpleVname ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Simple Vname");
+
+    return elemento;
   }
 
   @Override
   public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Package Identifier");
+
+    return elemento;
   }
 
   @Override
   public Object visitPackageVname(PackageVname ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Package Vname");
+
+    return elemento;
   }
 
   @Override
   public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Simple Long Identifier");
+    
+    return elemento;
   }
 
   @Override
   public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Package Long Identifier");
+  
+    return elemento;
   }
 
   @Override
   public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+
+    Element elemento = doc.createElement("Single Package Declaration");
+    return elemento;
   }
 
   @Override
   public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+   
+    Element elemento = doc.createElement("Sequential Package Declaration");
+    return elemento;
   }
 
   @Override
   public Object visitSimpleProgram(SimpleProgram ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    Element elemento = this.doc.createElement("Simple Program");
+
+    return elemento;
   }
 
   @Override
   public Object visitCompoundProgram(CompoundProgram ast, Object o) {
-    // TODO Auto-generated method stub
-    return null;
+    
+    Element elemento = this.doc.createElement("Compound Program");
+    //elemento.appendChild(ast.C.visit(this, null));
+    return elemento;
   }
 
   public Object generateXML(){
@@ -708,16 +753,18 @@ public class XMLVisitor implements Visitor {
 
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
-      Document doc = dBuilder.newDocument();
+      this.doc = dBuilder.newDocument();
 
       //Crea la raiz
       
-      Element rootElement = doc.createElement("ejemploRaiz");
+      Element rootElement = doc.createElement("Program");
       doc.appendChild(rootElement);
+
+
 
       //crea y agrega el primer elemento anidado a la raiz
 
-      Element primerElemento = doc.createElement("primerElemento");
+      /*Element primerElemento = doc.createElement("primerElemento");
       rootElement.appendChild(primerElemento);
 
       Attr attr = doc.createAttribute("company");
@@ -736,7 +783,7 @@ public class XMLVisitor implements Visitor {
       attrType1.setValue("sports");
       carname1.setAttributeNode(attrType1);
       carname1.appendChild(doc.createTextNode("Ferrari 202"));
-      primerElemento.appendChild(carname1);
+      primerElemento.appendChild(carname1);*/
 
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
