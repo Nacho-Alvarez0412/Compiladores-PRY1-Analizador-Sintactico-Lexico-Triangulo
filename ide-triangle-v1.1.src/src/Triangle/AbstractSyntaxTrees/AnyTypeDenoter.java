@@ -14,6 +14,8 @@
 
 package Triangle.AbstractSyntaxTrees;
 
+import org.w3c.dom.Node;
+
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public class AnyTypeDenoter extends TypeDenoter {
@@ -26,11 +28,13 @@ public class AnyTypeDenoter extends TypeDenoter {
     return v.visitAnyTypeDenoter(this, o);
   }
 
-  public Object visitXMl(Visitor v, Object o) {
-    return v.visitAnyTypeDenoter(this, o);
-  }
-
   public boolean equals (Object obj) {
     return false;
   }
+
+  @Override
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitAnyTypeDenoter(this, o);
+  }
+
 }

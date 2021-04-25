@@ -14,6 +14,8 @@
 
 package Triangle.AbstractSyntaxTrees;
 
+import org.w3c.dom.Node;
+
 import Triangle.CodeGenerator.RuntimeEntity;
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
@@ -29,6 +31,7 @@ public abstract class AST {
   }
 
   public abstract Object visit(Visitor v, Object o);
+  public abstract Object visitXML(Visitor v, Object o);
 
   public SourcePosition	position;
   public RuntimeEntity  entity;

@@ -28,10 +28,13 @@ public class AssignCommand extends Command {
     return v.visitAssignCommand(this, o);
   }
   
-  public Object visitXMl(Visitor v, Object o) {
-    return v.visitAssignCommand(this, o);
-  }
   
   public Vname V;
   public Expression E;
+
+
+  @Override
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitAssignCommand(this, o);
+  }
 }
