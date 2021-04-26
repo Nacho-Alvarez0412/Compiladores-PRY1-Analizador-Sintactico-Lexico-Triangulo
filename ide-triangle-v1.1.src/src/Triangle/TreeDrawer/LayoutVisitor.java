@@ -238,11 +238,11 @@ public class LayoutVisitor implements Visitor {
    }
     
    public Object visitForLoopUntilCommand (ForLoopUntilCommand ast, Object obj) {
-     return layoutQuaternary("ForWhileCommand.", ast.FFC, ast.E1, ast.E2, ast.C);
+     return layoutQuaternary("ForUntilCommand.", ast.FFC, ast.E1, ast.E2, ast.C);
    }
    
    public Object visitForFromCommand (ForFromCommand ast, Object obj) {
-     return layoutBinary("ForWhileCommand.", ast.I, ast.E);
+     return layoutBinary("ForFromCommand.", ast.I, ast.E);
    }
    // END CAMBIO Joseph
    
