@@ -29,6 +29,10 @@ public class IfCommand extends Command {
     return v.visitIfCommand(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitIfCommand(this, o);
+  }
+
   public Expression E;
   public Command C1, C2;
 }

@@ -24,6 +24,10 @@ public class ElseCase extends AST {
     public Object visit(Visitor v, Object o) {
         return v.visitElseCase(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitElseCase(this, o);
+    }
     
     public Command C;
     

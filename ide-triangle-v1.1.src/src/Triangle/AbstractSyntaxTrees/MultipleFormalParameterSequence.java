@@ -29,6 +29,10 @@ public class MultipleFormalParameterSequence extends FormalParameterSequence {
     return v.visitMultipleFormalParameterSequence(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitMultipleFormalParameterSequence(this, o);
+  }
+
   public boolean equals(Object fpsAST) {
     if (fpsAST instanceof MultipleFormalParameterSequence) {
       MultipleFormalParameterSequence mfpsAST =

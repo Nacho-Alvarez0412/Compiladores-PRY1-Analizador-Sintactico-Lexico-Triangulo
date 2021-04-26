@@ -27,7 +27,14 @@ public class AssignCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitAssignCommand(this, o);
   }
-
+  
+  
   public Vname V;
   public Expression E;
+
+
+  @Override
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitAssignCommand(this, o);
+  }
 }

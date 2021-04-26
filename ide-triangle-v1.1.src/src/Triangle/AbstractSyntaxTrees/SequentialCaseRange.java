@@ -26,6 +26,10 @@ public class SequentialCaseRange extends CaseRange {
     public Object visit(Visitor v, Object o) {
         return v.visitSequentialCaseRange(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSequentialCaseRange(this, o);
+    }
     
     public CaseRange CR1;
     public CaseRange CR2;

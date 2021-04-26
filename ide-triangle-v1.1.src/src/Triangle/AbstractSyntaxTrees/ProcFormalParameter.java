@@ -29,6 +29,10 @@ public class ProcFormalParameter extends FormalParameter {
     return v.visitProcFormalParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitProcFormalParameter(this, o);
+  }
+
   public Identifier I;
   public FormalParameterSequence FPS;
 

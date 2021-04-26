@@ -21,6 +21,10 @@ public class ForLoopWhileCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitForLoopWhileCommand(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitForLoopWhileCommand(this, o);
+  }
   
   public ForFromCommand FFC;
   public Expression E1,E2;

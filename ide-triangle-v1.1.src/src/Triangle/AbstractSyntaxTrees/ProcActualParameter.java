@@ -27,5 +27,9 @@ public class ProcActualParameter extends ActualParameter {
     return v.visitProcActualParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitProcActualParameter(this, o);
+  }
+
   public Identifier I;
 }

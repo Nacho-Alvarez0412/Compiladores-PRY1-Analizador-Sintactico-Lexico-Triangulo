@@ -28,6 +28,10 @@ public class Identifier extends Terminal {
     return v.visitIdentifier(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitIdentifier(this, o);
+  }
+
   public TypeDenoter type;
   public AST decl; // Either a Declaration or a FieldTypeDenoter
 }

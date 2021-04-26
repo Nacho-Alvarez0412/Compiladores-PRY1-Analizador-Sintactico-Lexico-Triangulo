@@ -14,6 +14,8 @@
 
 package Triangle.AbstractSyntaxTrees;
 
+import org.w3c.dom.Node;
+
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public class AnyTypeDenoter extends TypeDenoter {
@@ -29,4 +31,10 @@ public class AnyTypeDenoter extends TypeDenoter {
   public boolean equals (Object obj) {
     return false;
   }
+
+  @Override
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitAnyTypeDenoter(this, o);
+  }
+
 }

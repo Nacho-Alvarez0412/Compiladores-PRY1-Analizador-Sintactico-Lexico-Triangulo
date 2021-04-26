@@ -33,6 +33,10 @@ public class VarTDDeclaration extends SingleDeclaration {
     return v.visitVarTDDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitVarTDDeclaration(this, o);
+  }
+
 
 /* J.42
 public class VarDeclaration extends Declaration {

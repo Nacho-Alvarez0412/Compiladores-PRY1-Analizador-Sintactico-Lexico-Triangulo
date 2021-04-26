@@ -27,6 +27,11 @@ public class SequentialPackageDeclaration extends PackageDeclaration {
         return v.visitSequentialPackageDeclaration(this, o);
     }
     
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSequentialPackageDeclaration(this, o);
+    }
+    
     public PackageDeclaration PD1;
     public PackageDeclaration PD2;
 }

@@ -26,4 +26,8 @@ public class CharacterLiteral extends Terminal {
     return v.visitCharacterLiteral(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCharacterLiteral(this, o);
+  }
+
 }

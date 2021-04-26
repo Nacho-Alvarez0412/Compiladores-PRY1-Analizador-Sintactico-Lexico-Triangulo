@@ -28,6 +28,9 @@ public class UnaryExpression extends Expression {
   public Object visit(Visitor v, Object o) {
     return v.visitUnaryExpression(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitUnaryExpression(this, o);
+  }
 
   public Expression E;
   public Operator O;

@@ -24,6 +24,10 @@ public class SingleCase extends Case {
     public Object visit(Visitor v, Object o) {
         return v.visitSingleCase(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSingleCase(this, o);
+    }
     
     public CaseLiterals CL;
     public Command C;

@@ -32,6 +32,9 @@ public class TypeDeclaration extends SingleDeclaration {
   public Object visit(Visitor v, Object o) {
     return v.visitTypeDeclaration(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitTypeDeclaration(this, o);
+  }
 
   public Identifier I;
   public TypeDenoter T;

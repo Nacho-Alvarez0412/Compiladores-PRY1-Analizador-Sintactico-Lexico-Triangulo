@@ -27,5 +27,9 @@ public class CharacterExpression extends Expression {
     return v.visitCharacterExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCharacterExpression(this, o);
+  }
+
   public CharacterLiteral CL;
 }

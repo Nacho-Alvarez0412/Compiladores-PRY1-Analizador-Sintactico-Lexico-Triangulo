@@ -7,7 +7,7 @@ package Triangle.AbstractSyntaxTrees;
 
 /**
  * @newclass
- * @description Clase para representar un AST de dos o más procedures-functions
+ * @description Clase para representar un AST de dos o mï¿½s procedures-functions
  * @author Joseph
  * @codigo J.39
  */
@@ -24,6 +24,10 @@ public class SequentialProcFuncs extends ProcFuncs {
   }
 
   public Object visit(Visitor v, Object o) {
+    return v.visitSequentialProcFuncs(this, o);
+  }
+
+  public Object visitXML(Visitor v, Object o) {
     return v.visitSequentialProcFuncs(this, o);
   }
 

@@ -37,6 +37,10 @@ public class FuncDeclaration extends SingleDeclaration {
     return v.visitFuncDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitFuncDeclaration(this, o);
+  }
+
   public Identifier I;
   public FormalParameterSequence FPS;
   public TypeDenoter T;

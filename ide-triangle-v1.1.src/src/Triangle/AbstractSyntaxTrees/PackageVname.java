@@ -26,6 +26,11 @@ public class PackageVname extends Vname {
         return v.visitPackageVname(this, o);
     }
     
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitPackageVname(this, o);
+    }
+    
     public PackageIdentifier PI;
     public VarName VN;
     

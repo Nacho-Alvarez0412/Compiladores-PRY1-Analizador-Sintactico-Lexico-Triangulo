@@ -30,6 +30,10 @@ public class MultipleRecordAggregate extends RecordAggregate {
     return v.visitMultipleRecordAggregate(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitMultipleRecordAggregate(this, o);
+  }
+
   public Identifier I;
   public Expression E;
   public RecordAggregate RA;

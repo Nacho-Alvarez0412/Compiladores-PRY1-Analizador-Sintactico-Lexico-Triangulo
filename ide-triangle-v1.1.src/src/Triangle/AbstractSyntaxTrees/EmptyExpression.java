@@ -25,4 +25,8 @@ public class EmptyExpression extends Expression {
   public Object visit(Visitor v, Object o) {
     return v.visitEmptyExpression(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitEmptyExpression(this, o);
+  }
 }

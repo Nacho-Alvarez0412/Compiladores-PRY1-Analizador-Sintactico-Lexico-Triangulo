@@ -24,6 +24,10 @@ public class CompoundProgram extends Program {
     return v.visitCompoundProgram(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCompoundProgram(this, o);
+  }
+
   public PackageDeclaration PD;
   public Command C;
 }

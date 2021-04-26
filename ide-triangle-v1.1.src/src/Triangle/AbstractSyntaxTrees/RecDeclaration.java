@@ -19,6 +19,10 @@ public class RecDeclaration extends Declaration {
     return v.visitRecDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitRecDeclaration(this, o);
+  }
+
 
 
   public ProcFuncs PFs;

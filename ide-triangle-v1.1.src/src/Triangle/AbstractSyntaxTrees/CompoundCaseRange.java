@@ -25,6 +25,10 @@ public class CompoundCaseRange extends CaseRange {
     public Object visit(Visitor v, Object o) {
         return v.visitCompoundCaseRange(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitCompoundCaseRange(this, o);
+    }
     
     public CaseLiteral CL1;
     public CaseLiteral CL2;

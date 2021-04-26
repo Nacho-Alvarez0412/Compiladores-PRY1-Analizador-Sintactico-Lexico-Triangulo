@@ -26,6 +26,10 @@ public class CharTypeDenoter extends TypeDenoter {
     return v.visitCharTypeDenoter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCharTypeDenoter(this, o);
+  }
+
   public boolean equals (Object obj) {
     if (obj != null && obj instanceof ErrorTypeDenoter)
       return true;

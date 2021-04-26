@@ -34,6 +34,10 @@ public class CallExpression extends Expression {
     return v.visitCallExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitCallExpression(this, o);
+  }
+
   public LongIdentifier LI;
   public ActualParameterSequence APS;
 }

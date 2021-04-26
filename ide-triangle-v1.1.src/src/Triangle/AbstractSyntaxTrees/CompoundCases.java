@@ -24,6 +24,10 @@ public class CompoundCases extends Cases {
     public Object visit(Visitor v, Object o) {
         return v.visitCompoundCases(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitCompoundCases(this, o);
+    }
     
     public Case C;
     public ElseCase EC;

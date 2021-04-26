@@ -19,6 +19,9 @@ public class UntilLoopCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitUntilLoopCommand(this, o);
   }
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitUntilLoopCommand(this, o);
+  }
   
   public Expression E;
   public Command C;

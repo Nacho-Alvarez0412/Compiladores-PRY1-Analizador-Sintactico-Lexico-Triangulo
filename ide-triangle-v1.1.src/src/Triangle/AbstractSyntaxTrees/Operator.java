@@ -27,5 +27,9 @@ public class Operator extends Terminal {
     return v.visitOperator(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitOperator(this, o);
+  }
+
   public Declaration decl;
 }

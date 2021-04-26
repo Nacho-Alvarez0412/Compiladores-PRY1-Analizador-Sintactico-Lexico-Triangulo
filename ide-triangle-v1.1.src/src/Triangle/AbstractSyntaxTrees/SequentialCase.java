@@ -25,6 +25,10 @@ public class SequentialCase extends Case {
     public Object visit(Visitor v, Object o) {
         return v.visitSequentialCase(this, o);
     }
+
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitSequentialCase(this, o);
+    }
     
     public Case C1;
     public Case C2;

@@ -28,5 +28,11 @@ public class ArrayExpression extends Expression {
     return v.visitArrayExpression(this, o);
   }
 
+
   public ArrayAggregate AA;
+
+  @Override
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitArrayExpression(this, o);
+  }
 }

@@ -21,7 +21,9 @@ public class VarExpDeclaration extends SingleDeclaration {
     return v.visitVarExpDeclaration(this, o);
   }
 
-
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitVarExpDeclaration(this, o);
+  }
 
   public Identifier I;
   public Expression E;

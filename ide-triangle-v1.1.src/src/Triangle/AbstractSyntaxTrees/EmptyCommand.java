@@ -25,4 +25,8 @@ public class EmptyCommand extends Command {
   public Object visit(Visitor v, Object o) {
     return v.visitEmptyCommand(this, o);
   }
+
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitEmptyCommand(this, o);
+  }
 }

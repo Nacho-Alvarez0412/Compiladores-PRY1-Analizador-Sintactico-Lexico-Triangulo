@@ -17,9 +17,12 @@ import Triangle.AbstractSyntaxTrees.SimpleProgram;
 import Triangle.AbstractSyntaxTrees.CompoundProgram;
 import Triangle.HTML.Generator.HTML_Generator;
 import Triangle.SyntacticAnalyzer.Token;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Core.Visitors.XMLVisitor;
 
 
 
@@ -28,7 +31,7 @@ import java.util.logging.Logger;
  * to get to the ASTs in order to draw them in the IDE without modifying the
  * original Triangle code.
  *
- * @author Luis Leopoldo Pérez <luiperpe@ns.isi.ulatina.ac.cr>
+ * @author Luis Leopoldo Pï¿½rez <luiperpe@ns.isi.ulatina.ac.cr>
  */
 public class IDECompiler {
 
@@ -57,6 +60,7 @@ public class IDECompiler {
         Scanner scanner = new Scanner(source);
         Scanner HTMLscanner = new Scanner(HTMLsource);
         HTML_Generator htmlGen = new HTML_Generator();
+        XMLVisitor xmlGenerator = new XMLVisitor();
         htmlGen.setCode(sourceName);
         report = new IDEReporter();
         Parser parser = new Parser(scanner, report);
@@ -80,8 +84,20 @@ public class IDECompiler {
         isSimpleProgram = parser.getIsSimpleProgram();
         if (isSimpleProgram) {
             simpleProgramAST = parser.getSimpleProgram();
+            try {
+                xmlGenerator.generateXML(simpleProgramAST,sourceName.substring(sourceName.lastIndexOf("\\")+1).replaceAll(".tri", ".xml") );     
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            
+
         } else {
             compoundProgramAST = parser.getCompoundProgram();
+            try {
+                xmlGenerator.generateXML(compoundProgramAST,sourceName.substring(sourceName.lastIndexOf("\\")+1).replaceAll(".tri", ".xml"));     
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
         /*
             rootAST = parser.parseProgram();
@@ -109,7 +125,7 @@ public class IDECompiler {
                 Logger.getLogger(IDECompiler.class.getName()).log(Level.SEVERE, null, ex);
             }
         if (success)
-            //Satanas mas playo
+            //Satanas mas hijuelagran puta
             System.out.println("Compilation was successful.");
         else
             System.out.println("Compilation was unsuccessful.");

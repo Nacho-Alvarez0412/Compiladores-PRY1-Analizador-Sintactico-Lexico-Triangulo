@@ -28,6 +28,10 @@ public class LetExpression extends Expression {
     return v.visitLetExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitLetExpression(this, o);
+  }
+
   public Declaration D;
   public Expression E;
 }

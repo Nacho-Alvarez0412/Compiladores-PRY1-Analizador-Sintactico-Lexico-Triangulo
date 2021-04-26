@@ -34,6 +34,10 @@ public class ConstDeclaration extends SingleDeclaration {
     return v.visitConstDeclaration(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitConstDeclaration(this, o);
+  }
+
   public Identifier I;
   public Expression E;
 }

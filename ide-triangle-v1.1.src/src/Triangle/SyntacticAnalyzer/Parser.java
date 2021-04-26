@@ -698,7 +698,7 @@ public class Parser {
                Command cAST = parseCommand();
                accept(Token.END);
                finish(commandPos);
-               commandAST = new ForLoopUntilCommand(ffcAST, e2AST, e2AST, cAST, commandPos);               
+               commandAST = new ForLoopUntilCommand(ffcAST, e1AST, e2AST, cAST, commandPos);               
              }
              break;
              

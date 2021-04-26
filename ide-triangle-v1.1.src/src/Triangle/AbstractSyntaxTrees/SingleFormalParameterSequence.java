@@ -28,6 +28,10 @@ public class SingleFormalParameterSequence extends FormalParameterSequence {
     return v.visitSingleFormalParameterSequence(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSingleFormalParameterSequence(this, o);
+  }
+
   public boolean equals(Object fpsAST) {
     if (fpsAST instanceof SingleFormalParameterSequence) {
       SingleFormalParameterSequence sfpsAST =

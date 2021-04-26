@@ -30,6 +30,10 @@ public class BinaryExpression extends Expression {
     return v.visitBinaryExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitBinaryExpression(this, o);
+  }
+
   public Expression E1, E2;
   public Operator O;
 }

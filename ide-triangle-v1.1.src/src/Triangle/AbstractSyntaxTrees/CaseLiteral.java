@@ -24,6 +24,9 @@ public class CaseLiteral extends AST {
     public Object visit(Visitor v, Object o) {
         return v.visitCaseLiteral(this, o);
     }
+    public Object visitXML(Visitor v, Object o) {
+        return v.visitCaseLiteral(this, o);
+    }
     
     public Terminal T;
     

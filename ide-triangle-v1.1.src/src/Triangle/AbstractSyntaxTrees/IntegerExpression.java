@@ -27,5 +27,9 @@ public class IntegerExpression extends Expression {
     return v.visitIntegerExpression(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitIntegerExpression(this, o);
+  }
+
   public IntegerLiteral IL;
 }

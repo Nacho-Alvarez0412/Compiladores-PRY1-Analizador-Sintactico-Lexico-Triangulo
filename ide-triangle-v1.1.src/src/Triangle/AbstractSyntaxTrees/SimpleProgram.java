@@ -23,5 +23,9 @@ public class SimpleProgram extends Program {
     return v.visitSimpleProgram(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitSimpleProgram(this, o);
+  }
+
   public Command C;
 }

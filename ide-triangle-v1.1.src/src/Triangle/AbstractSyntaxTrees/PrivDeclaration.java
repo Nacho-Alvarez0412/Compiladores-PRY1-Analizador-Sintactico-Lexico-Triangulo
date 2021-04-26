@@ -20,7 +20,9 @@ public class PrivDeclaration extends Declaration {
     return v.visitPrivDeclaration(this, o);
   }
 
-
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitPrivDeclaration(this, o);
+  }
 
   public Declaration D1,D2;
 }

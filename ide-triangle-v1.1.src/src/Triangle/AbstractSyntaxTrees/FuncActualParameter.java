@@ -27,5 +27,9 @@ public class FuncActualParameter extends ActualParameter {
     return v.visitFuncActualParameter(this, o);
   }
 
+  public Object visitXML(Visitor v, Object o) {
+    return v.visitFuncActualParameter(this, o);
+  }
+
   public Identifier I;
 }

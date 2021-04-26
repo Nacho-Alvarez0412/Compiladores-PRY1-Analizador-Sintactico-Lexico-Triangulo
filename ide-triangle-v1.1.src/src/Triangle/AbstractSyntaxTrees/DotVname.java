@@ -28,7 +28,11 @@ public class DotVname extends Vname {
   // @descripcion   Eliminar visitors para Vname
   // @funcionalidad Visitors para Vname nuevo
   // @codigo        A.109
-  public Object visit (Visitor v, Object o) {
+  public Object visit(Visitor v, Object o) {
+    return null;
+  }
+
+  public Object visitXML(Visitor v, Object o) {
     return null;
   }
   /*
