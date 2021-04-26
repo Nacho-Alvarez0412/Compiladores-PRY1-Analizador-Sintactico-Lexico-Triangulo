@@ -168,7 +168,7 @@ public class HTML_Generator {
             html = html.concat(lineToString(line));
         }
         
-        File file = new File("..\\HTMLs\\"+this.fileName);
+        File file = new File("HTMLs\\"+this.fileName);
         file.getParentFile().mkdirs();
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file)); 
