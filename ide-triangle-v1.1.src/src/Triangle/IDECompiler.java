@@ -17,7 +17,6 @@ import Triangle.AbstractSyntaxTrees.SimpleProgram;
 import Triangle.AbstractSyntaxTrees.CompoundProgram;
 import Triangle.HTML.Generator.HTML_Generator;
 import Triangle.SyntacticAnalyzer.Token;
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 import java.io.IOException;
 import java.util.logging.Level;

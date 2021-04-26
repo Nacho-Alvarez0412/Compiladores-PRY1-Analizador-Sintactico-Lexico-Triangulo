@@ -911,7 +911,7 @@ public class XMLVisitor implements Visitor {
 
     Element elemento = doc.createElement("Identifier");
 
-    elemento.appendChild((Node) ast.decl.visitXML(this, null));
+//    elemento.appendChild((Node) ast.decl.visitXML(this, null));
 
     return elemento;
   }
@@ -929,7 +929,7 @@ public class XMLVisitor implements Visitor {
 
     Element elemento = doc.createElement("Operator");
 
-    elemento.appendChild((Node) ast.decl.visitXML(this, null));
+    //elemento.appendChild((Node) ast.decl.visitXML(this, null));
 
 
     return elemento;
@@ -1114,7 +1114,7 @@ public class XMLVisitor implements Visitor {
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(this.doc);
-      StreamResult result = new StreamResult(new File("C:\\tree.xml"));
+      StreamResult result = new StreamResult(new File("C:\\test\\tree.xml"));
       transformer.transform(source, result);
 
 
