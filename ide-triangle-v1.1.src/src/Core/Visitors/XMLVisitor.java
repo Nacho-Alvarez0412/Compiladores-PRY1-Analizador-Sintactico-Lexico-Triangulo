@@ -24,7 +24,7 @@ public class XMLVisitor implements Visitor {
   private Document doc;
 
   public Object visitAssignCommand(AssignCommand ast, Object o) {
-    Element elemento = doc.createElement("Assign Command");
+    Element elemento = doc.createElement("AssignCommand");
 
     elemento.appendChild((Node) ast.E.visitXML(this, null));
 
@@ -35,7 +35,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCallCommand(CallCommand ast, Object o) {
-    Element elemento = doc.createElement("Call Command");
+    Element elemento = doc.createElement("CallCommand");
 
     elemento.appendChild((Node) ast.APS.visitXML(this, null));
 
@@ -46,7 +46,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitEmptyCommand(EmptyCommand ast, Object o) {
-    Element elemento = doc.createElement("Empty Command");
+    Element elemento = doc.createElement("EmptyCommand");
 
 
     return elemento;
@@ -54,7 +54,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCompoundIfCommand(CompoundIfCommand ast, Object o) {
-    Element elemento = doc.createElement("Compound If Command");
+    Element elemento = doc.createElement("CompoundIfCommand");
 
     elemento.appendChild((Node) ast.E.visitXML(this, null));
 
@@ -67,7 +67,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitIfCommand(IfCommand ast, Object o) {
-    Element elemento = doc.createElement("If Command");
+    Element elemento = doc.createElement("IfCommand");
 
     elemento.appendChild((Node) ast.C1.visitXML(this, null));
 
@@ -80,7 +80,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitLetCommand(LetCommand ast, Object o) {
-    Element elemento = doc.createElement("Let Command");
+    Element elemento = doc.createElement("LetCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
     
@@ -92,7 +92,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSequentialCommand(SequentialCommand ast, Object o) {
-    Element elemento = doc.createElement("Sequential Command");
+    Element elemento = doc.createElement("SequentialCommand");
 
     elemento.appendChild((Node) ast.C1.visitXML(this, null));
     
@@ -103,7 +103,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitWhileLoopCommand(WhileLoopCommand ast, Object o) {
-    Element elemento = doc.createElement("While Loop Command");
+    Element elemento = doc.createElement("WhileLoopCommand");
     
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -114,7 +114,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitUntilLoopCommand(UntilLoopCommand ast, Object o) {
-    Element elemento = doc.createElement("Until Loop Command");
+    Element elemento = doc.createElement("UntilLoopCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -125,7 +125,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitDoLoopUntilCommand(DoLoopUntilCommand ast, Object o) {
-    Element elemento = doc.createElement("Do Loop Until Command");
+    Element elemento = doc.createElement("DoLoopUntilCommand");
     
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -136,7 +136,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitDoLoopWhileCommand(DoLoopWhileCommand ast, Object o) {
-    Element elemento = doc.createElement("Do Loop While Command");
+    Element elemento = doc.createElement("DoLoopWhileCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -147,7 +147,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSequentialElsifCommand(SequentialElsifCommand ast, Object o) {
-    Element elemento = doc.createElement("Sequential Else If Command");
+    Element elemento = doc.createElement("SequentialElseIfCommand");
 
     elemento.appendChild((Node) ast.SE1.visitXML(this, null));
 
@@ -158,7 +158,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleElsifCommand(SingleElsifCommand ast, Object o) {
-    Element elemento = doc.createElement("Single Else If Command");
+    Element elemento = doc.createElement("SingleElseIfCommand");
     
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -169,7 +169,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitForLoopDoCommand(ForLoopDoCommand ast, Object o) {
-    Element elemento = doc.createElement("For Loop Do Command");
+    Element elemento = doc.createElement("ForLoopDoCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -182,7 +182,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitForLoopWhileCommand(ForLoopWhileCommand ast, Object o) {
-    Element elemento = doc.createElement("For Loop While Command");
+    Element elemento = doc.createElement("ForLoopWhileCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -197,7 +197,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitForLoopUntilCommand(ForLoopUntilCommand ast, Object o) {
-    Element elemento = doc.createElement("For Loop Until Command");
+    Element elemento = doc.createElement("ForLoopUntilCommand");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -252,7 +252,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitChooseCommand(ChooseCommand ast, Object o) {
-    Element elemento = doc.createElement("Choose Command");
+    Element elemento = doc.createElement("ChooseCommand");
 
     elemento.appendChild((Node) ast.CS.visitXML(this, null));
 
@@ -264,7 +264,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitForFromCommand(ForFromCommand ast, Object o) {
-    Element elemento = doc.createElement("For From Command");
+    Element elemento = doc.createElement("ForFromCommand");
 
     elemento.appendChild((Node) ast.E.visitXML(this, null));
 
@@ -275,7 +275,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCaseLiteral(CaseLiteral ast, Object o) {
-    Element elemento = doc.createElement("Case Literal");
+    Element elemento = doc.createElement("CaseLiteral");
 
     elemento.appendChild((Node) ast.T.visitXML(this, null));
 
@@ -285,7 +285,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSimpleCaseRange(SimpleCaseRange ast, Object o) {
-    Element elemento = doc.createElement("Simple Case Range");
+    Element elemento = doc.createElement("SimpleCaseRange");
 
     elemento.appendChild((Node) ast.CL.visitXML(this, null));
 
@@ -294,7 +294,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCompoundCaseRange(CompoundCaseRange ast, Object o) {
-    Element elemento = doc.createElement("Compound Case Range");
+    Element elemento = doc.createElement("CompoundCaseRange");
 
     elemento.appendChild((Node) ast.CL1.visitXML(this, null));
 
@@ -305,7 +305,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSequentialCaseRange(SequentialCaseRange ast, Object o) {
-    Element elemento = doc.createElement("Sequential Case Range");
+    Element elemento = doc.createElement("SequentialCaseRange");
 
     elemento.appendChild((Node) ast.CR1.visitXML(this, null));
 
@@ -316,7 +316,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCaseLiterals(CaseLiterals ast, Object o) {
-    Element elemento = doc.createElement("Case Literals");
+    Element elemento = doc.createElement("CaseLiterals");
 
     elemento.appendChild((Node) ast.CR.visitXML(this, null));
 
@@ -325,7 +325,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCompoundCases(CompoundCases ast, Object o) {
-    Element elemento = doc.createElement("Compund Cases");
+    Element elemento = doc.createElement("CompundCases");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -336,7 +336,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitElseCase(ElseCase ast, Object o) {
-    Element elemento = doc.createElement("Else Case");
+    Element elemento = doc.createElement("ElseCase");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -346,7 +346,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSequentialCase(SequentialCase ast, Object o) {
-    Element elemento = doc.createElement("Sequential Case");
+    Element elemento = doc.createElement("SequentialCase");
 
     elemento.appendChild((Node) ast.C1.visitXML(this, null));
 
@@ -357,7 +357,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSimpleCases(SimpleCases ast, Object o) {
-    Element elemento = doc.createElement("Simple Cases");
+    Element elemento = doc.createElement("SimpleCases");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -366,7 +366,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleCase(SingleCase ast, Object o) {
-    Element elemento = doc.createElement("Single Case");
+    Element elemento = doc.createElement("SingleCase");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -377,14 +377,14 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitArrayExpression(ArrayExpression ast, Object o) {
-    Element elemento = doc.createElement("Array Expression");
+    Element elemento = doc.createElement("ArrayExpression");
 
     return elemento;
   }
 
   @Override
   public Object visitBinaryExpression(BinaryExpression ast, Object o) {
-    Element elemento = doc.createElement("Binary Expression");
+    Element elemento = doc.createElement("BinaryExpression");
 
     elemento.appendChild((Node) ast.E1.visitXML(this, null));
 
@@ -398,7 +398,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCallExpression(CallExpression ast, Object o) {
-    Element elemento = doc.createElement("Call Expression");
+    Element elemento = doc.createElement("CallExpression");
 
     elemento.appendChild((Node) ast.APS.visitXML(this, null));
 
@@ -409,7 +409,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitCharacterExpression(CharacterExpression ast, Object o) {
-    Element elemento = doc.createElement("Character Expression");
+    Element elemento = doc.createElement("CharacterExpression");
 
     elemento.appendChild((Node) ast.CL.visitXML(this, null));
 
@@ -419,14 +419,14 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitEmptyExpression(EmptyExpression ast, Object o) {
-    Element elemento = doc.createElement("Empty Expression");
+    Element elemento = doc.createElement("EmptyExpression");
 
     return elemento;
   }
 
   @Override
   public Object visitIfExpression(IfExpression ast, Object o) {
-    Element elemento = doc.createElement("If Expression");
+    Element elemento = doc.createElement("IfExpression");
 
     elemento.appendChild((Node) ast.E1.visitXML(this, null));
 
@@ -439,7 +439,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitIntegerExpression(IntegerExpression ast, Object o) {
-    Element elemento = doc.createElement("Integer Expression");
+    Element elemento = doc.createElement("IntegerExpression");
 
     elemento.appendChild((Node) ast.IL.visitXML(this, null));
 
@@ -448,7 +448,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitLetExpression(LetExpression ast, Object o) {
-    Element elemento = doc.createElement("Let Expression");
+    Element elemento = doc.createElement("LetExpression");
 
     elemento.appendChild((Node) ast.D.visitXML(this, null));
 
@@ -459,7 +459,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitRecordExpression(RecordExpression ast, Object o) {
-    Element elemento = doc.createElement("Record Expression");
+    Element elemento = doc.createElement("RecordExpression");
 
     elemento.appendChild((Node) ast.RA.visitXML(this, null));
 
@@ -468,7 +468,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitUnaryExpression(UnaryExpression ast, Object o) {
-    Element elemento = doc.createElement("Unary Expression");
+    Element elemento = doc.createElement("UnaryExpression");
 
     elemento.appendChild((Node) ast.O.visitXML(this, null));
 
@@ -479,7 +479,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitVnameExpression(VnameExpression ast, Object o) {
-    Element elemento = doc.createElement("Vname Expression");
+    Element elemento = doc.createElement("VnameExpression");
 
     elemento.appendChild((Node) ast.V.visitXML(this, null));
 
@@ -488,7 +488,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Binary Operator Declaration");
+    Element elemento = doc.createElement("BinaryOperatorDeclaration");
 
     elemento.appendChild((Node) ast.ARG1.visitXML(this, null));
 
@@ -503,7 +503,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitConstDeclaration(ConstDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Constant Declaration");
+    Element elemento = doc.createElement("ConstantDeclaration");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -514,7 +514,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitFuncDeclaration(FuncDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Function Declaration");
+    Element elemento = doc.createElement("FunctionDeclaration");
 
     elemento.appendChild((Node) ast.FPS.visitXML(this, null));
 
@@ -529,7 +529,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitProcDeclaration(ProcDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Procedure Declaration");
+    Element elemento = doc.createElement("ProcedureDeclaration");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -542,7 +542,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Sequential Declaration");
+    Element elemento = doc.createElement("SequentialDeclaration");
 
     elemento.appendChild((Node) ast.D1.visitXML(this, null));
 
@@ -553,7 +553,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitTypeDeclaration(TypeDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Type Declaration");
+    Element elemento = doc.createElement("TypeDeclaration");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -564,7 +564,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Unary Operator Declaration");
+    Element elemento = doc.createElement("UnaryOperatorDeclaration");
 
     elemento.appendChild((Node) ast.ARG.visitXML(this, null));
 
@@ -577,7 +577,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitVarTDDeclaration(VarTDDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Variable Typed-denoted Declaration");
+    Element elemento = doc.createElement("VariableTyped-denotedDeclaration");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -588,7 +588,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitVarExpDeclaration(VarExpDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Initialized Variable Declaration");
+    Element elemento = doc.createElement("InitializedVariableDeclaration");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -599,7 +599,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitRecDeclaration(RecDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Recursive declaration");
+    Element elemento = doc.createElement("RecursiveDeclaration");
 
     elemento.appendChild((Node) ast.PFs.visitXML(this, null));
 
@@ -608,7 +608,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitPrivDeclaration(PrivDeclaration ast, Object o) {
-    Element elemento = doc.createElement("Private declaration");
+    Element elemento = doc.createElement("PrivateDeclaration");
 
     elemento.appendChild((Node) ast.D1.visitXML(this, null));
 
@@ -620,7 +620,7 @@ public class XMLVisitor implements Visitor {
  
   @Override
   public Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o) {
-    Element elemento = doc.createElement("Multiple Array Aggregate");
+    Element elemento = doc.createElement("MultipleArrayAggregate");
 
     elemento.appendChild((Node) ast.AA.visitXML(this, null));
 
@@ -631,7 +631,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleArrayAggregate(SingleArrayAggregate ast, Object o) {
-    Element elemento = doc.createElement("Single Array Aggregate");
+    Element elemento = doc.createElement("SingleArrayAggregate");
 
     elemento.appendChild((Node) ast.E.visitXML(this, null));
 
@@ -641,7 +641,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitMultipleRecordAggregate(MultipleRecordAggregate ast, Object o) {
-    Element elemento = doc.createElement("Multiple Record Aggregate");
+    Element elemento = doc.createElement("MultipleRecordAggregate");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -654,7 +654,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleRecordAggregate(SingleRecordAggregate ast, Object o) {
-    Element elemento = doc.createElement("Single Record Aggregate");
+    Element elemento = doc.createElement("SingleRecordAggregate");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -666,7 +666,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitConstFormalParameter(ConstFormalParameter ast, Object o) {
-    Element elemento = doc.createElement("Constant Formal Parameter");
+    Element elemento = doc.createElement("ConstantFormalParameter");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -677,7 +677,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitFuncFormalParameter(FuncFormalParameter ast, Object o) {
-    Element elemento = doc.createElement("Function Formal Parameter");
+    Element elemento = doc.createElement("FunctionFormalParameter");
 
     elemento.appendChild((Node) ast.FPS.visitXML(this, null));
 
@@ -691,7 +691,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitProcFormalParameter(ProcFormalParameter ast, Object o) {
-    Element elemento = doc.createElement("Procedure Formal Parameter");
+    Element elemento = doc.createElement("ProcedureFormalParameter");
 
     elemento.appendChild((Node) ast.FPS.visitXML(this, null));
 
@@ -703,7 +703,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitVarFormalParameter(VarFormalParameter ast, Object o) {
-    Element elemento = doc.createElement("Variable Formal Parameter");
+    Element elemento = doc.createElement("VariableFormalParameter");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -714,14 +714,14 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitEmptyFormalParameterSequence(EmptyFormalParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Empty Formal Parameter Sequence");
+    Element elemento = doc.createElement("Empty FormalParameterSequence");
 
     return elemento;
   }
 
   @Override
   public Object visitMultipleFormalParameterSequence(MultipleFormalParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Multiple Formal Parameter Sequence");
+    Element elemento = doc.createElement("MultipleFormalParameterSequence");
     
     elemento.appendChild((Node) ast.FP.visitXML(this, null));
 
@@ -732,7 +732,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleFormalParameterSequence(SingleFormalParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Single Formal Parameter Sequence");
+    Element elemento = doc.createElement("SingleFormalParameterSequence");
 
     elemento.appendChild((Node) ast.FP.visitXML(this, null));
 
@@ -741,7 +741,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitConstActualParameter(ConstActualParameter ast, Object o) {
-    Element elemento = doc.createElement("Constant Actual Parameter");
+    Element elemento = doc.createElement("ConstantActualParameter");
 
     elemento.appendChild((Node) ast.E.visitXML(this, null));
 
@@ -750,7 +750,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitFuncActualParameter(FuncActualParameter ast, Object o) {
-    Element elemento = doc.createElement("Function Actual Parameter");
+    Element elemento = doc.createElement("FunctionActualParameter");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -759,7 +759,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitProcActualParameter(ProcActualParameter ast, Object o) {
-    Element elemento = doc.createElement("Procedure Actual Parameter");
+    Element elemento = doc.createElement("ProcedureActualParameter");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -768,7 +768,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitVarActualParameter(VarActualParameter ast, Object o) {
-    Element elemento = doc.createElement("Variable Formal Parameter");
+    Element elemento = doc.createElement("VariableFormalParameter");
 
     elemento.appendChild((Node) ast.V.visitXML(this, null));
 
@@ -777,14 +777,14 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitEmptyActualParameterSequence(EmptyActualParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Empty Formal Parameter Sequence");
+    Element elemento = doc.createElement("EmptyFormalParameterSequence");
 
     return elemento;
   }
 
   @Override
   public Object visitMultipleActualParameterSequence(MultipleActualParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Multiple Formal Parameter Sequence");
+    Element elemento = doc.createElement("MultipleFormalParameterSequence");
 
     elemento.appendChild((Node) ast.AP.visitXML(this, null));
 
@@ -795,7 +795,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSingleActualParameterSequence(SingleActualParameterSequence ast, Object o) {
-    Element elemento = doc.createElement("Single Formal Parameter Sequence");
+    Element elemento = doc.createElement("SingleFormalParameterSequence");
 
     elemento.appendChild((Node) ast.AP.visitXML(this, null));
 
@@ -812,7 +812,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitArrayTypeDenoter(ArrayTypeDenoter ast, Object o) {
-    Element elemento = doc.createElement("Array Type Denoter");
+    Element elemento = doc.createElement("ArrayTypeDenoter");
 
     elemento.appendChild((Node) ast.IL.visitXML(this, null));
 
@@ -847,7 +847,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSimpleTypeDenoter(SimpleTypeDenoter ast, Object o) {
 
-    Element elemento = doc.createElement("Simple Type Denoter");
+    Element elemento = doc.createElement("SimpleTypeDenoter");
 
     elemento.appendChild((Node) ast.LI.visitXML(this, null));
 
@@ -865,7 +865,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitRecordTypeDenoter(RecordTypeDenoter ast, Object o) {
 
-    Element elemento = doc.createElement("Record Type Denoter");
+    Element elemento = doc.createElement("RecordTypeDenoter");
 
     elemento.appendChild((Node) ast.FT.visitXML(this, null));
 
@@ -875,7 +875,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitMultipleFieldTypeDenoter(MultipleFieldTypeDenoter ast, Object o) {
 
-    Element elemento = doc.createElement("Multiple Field Type Denoter");
+    Element elemento = doc.createElement("MultipleFieldTypeDenoter");
 
     elemento.appendChild((Node) ast.FT.visitXML(this, null));
 
@@ -889,7 +889,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSingleFieldTypeDenoter(SingleFieldTypeDenoter ast, Object o) {
 
-    Element elemento = doc.createElement("Single Field Type Denoter");
+    Element elemento = doc.createElement("SingleFieldTypeDenoter");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -901,7 +901,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitCharacterLiteral(CharacterLiteral ast, Object o) {
 
-    Element elemento = doc.createElement("Character Literal");
+    Element elemento = doc.createElement("CharacterLiteral");
 
     return elemento;
   }
@@ -919,7 +919,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitIntegerLiteral(IntegerLiteral ast, Object o) {
 
-    Element elemento = doc.createElement("Integer Literal");
+    Element elemento = doc.createElement("IntegerLiteral");
 
     return elemento;
   }
@@ -938,7 +938,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitDotVarName(DotVarName ast, Object o) {
 
-    Element elemento = doc.createElement("Dot Var Name");
+    Element elemento = doc.createElement("DotVarName");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -950,7 +950,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSimpleVarName(SimpleVarName ast, Object o) {
 
-    Element elemento = doc.createElement("Simple Var Name");
+    Element elemento = doc.createElement("SimpleVarName");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -961,7 +961,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSubscriptVarName(SubscriptVarName ast, Object o) {
 
-    Element elemento = doc.createElement("Subscript Var Name");
+    Element elemento = doc.createElement("SubscriptVarName");
 
     elemento.appendChild((Node) ast.V.visitXML(this, null));
 
@@ -973,7 +973,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSimpleVname(SimpleVname ast, Object o) {
 
-    Element elemento = doc.createElement("Simple Vname");
+    Element elemento = doc.createElement("SimpleVname");
 
     elemento.appendChild((Node) ast.VN.visitXML(this, null));
 
@@ -983,7 +983,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitPackageIdentifier(PackageIdentifier ast, Object o) {
 
-    Element elemento = doc.createElement("Package Identifier");
+    Element elemento = doc.createElement("PackageIdentifier");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -993,7 +993,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitPackageVname(PackageVname ast, Object o) {
 
-    Element elemento = doc.createElement("Package Vname");
+    Element elemento = doc.createElement("PackageVname");
 
     elemento.appendChild((Node) ast.PI.visitXML(this, null));
 
@@ -1005,7 +1005,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSimpleLongIdentifier(SimpleLongIdentifier ast, Object o) {
 
-    Element elemento = doc.createElement("Simple Long Identifier");
+    Element elemento = doc.createElement("SimpleLongIdentifier");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
     
@@ -1015,7 +1015,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitPackageLongIdentifier(PackageLongIdentifier ast, Object o) {
 
-    Element elemento = doc.createElement("Package Long Identifier");
+    Element elemento = doc.createElement("PackageLongIdentifier");
 
     elemento.appendChild((Node) ast.I.visitXML(this, null));
 
@@ -1027,7 +1027,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSinglePackageDeclaration(SinglePackageDeclaration ast, Object o) {
 
-    Element elemento = doc.createElement("Single Package Declaration");
+    Element elemento = doc.createElement("SinglePackageDeclaration");
 
     elemento.appendChild((Node) ast.D.visitXML(this, null));
 
@@ -1039,7 +1039,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitSequentialPackageDeclaration(SequentialPackageDeclaration ast, Object o) {
    
-    Element elemento = doc.createElement("Sequential Package Declaration");
+    Element elemento = doc.createElement("SequentialPackageDeclaration");
 
     elemento.appendChild((Node) ast.PD1.visitXML(this, null));
 
@@ -1050,7 +1050,7 @@ public class XMLVisitor implements Visitor {
 
   @Override
   public Object visitSimpleProgram(SimpleProgram ast, Object o) {
-    Element elemento = this.doc.createElement("Simple Program");
+    Element elemento = this.doc.createElement("SimpleProgram");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -1060,7 +1060,7 @@ public class XMLVisitor implements Visitor {
   @Override
   public Object visitCompoundProgram(CompoundProgram ast, Object o) {
     
-    Element elemento = this.doc.createElement("Compound Program");
+    Element elemento = this.doc.createElement("CompoundProgram");
 
     elemento.appendChild((Node) ast.C.visitXML(this, null));
 
@@ -1119,7 +1119,7 @@ public class XMLVisitor implements Visitor {
 
 
 
-      
+
 
    } catch (Exception e) {
       e.printStackTrace();
