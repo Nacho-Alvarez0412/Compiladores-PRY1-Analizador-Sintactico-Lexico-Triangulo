@@ -1086,7 +1086,7 @@ public class XMLVisitor implements Visitor {
     return elemento;
   }
 
-  public Object generateXML(AST rootElement){
+  public Object generateXML(AST rootElement,String fileName){
     
     try {
 
@@ -1101,7 +1101,11 @@ public class XMLVisitor implements Visitor {
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(this.doc);
-      StreamResult result = new StreamResult(new File("C:\\test\\tree.xml"));
+
+      File file = new File("XMLs\\"+fileName);
+      file.getParentFile().mkdirs();
+      
+      StreamResult result = new StreamResult(file);
       transformer.transform(source, result);
 
    } catch (Exception e) {
