@@ -1116,9 +1116,10 @@ public class XMLVisitor implements Visitor {
       DOMSource source = new DOMSource(this.doc);
       StreamResult result = new StreamResult(new File("C:\\tree.xml"));
       transformer.transform(source, result);
+
+
+
       
-      StreamResult consoleResult = new StreamResult(System.out);
-      transformer.transform(source, consoleResult);
 
    } catch (Exception e) {
       e.printStackTrace();
