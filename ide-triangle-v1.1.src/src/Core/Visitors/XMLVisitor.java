@@ -1090,53 +1090,19 @@ public class XMLVisitor implements Visitor {
     
     try {
 
-      //Primero crea el documento
-
       DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
       DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
       this.doc = dBuilder.newDocument();
 
-      //Crea la raiz
-      
-      //Element rootElement = doc.createElement("Program");
-      //doc.appendChild(rootElement);
-
       this.doc.appendChild((Node) rootElement.visitXML(this, null));
-
-      //crea y agrega el primer elemento anidado a la raiz
-
-      /*Element primerElemento = doc.createElement("primerElemento");
-      rootElement.appendChild(primerElemento);
-
-      Attr attr = doc.createAttribute("company");
-      attr.setValue("Ferrari");
-      primerElemento.setAttributeNode(attr);
-
-      Element carname = doc.createElement("carname");
-      Attr attrType = doc.createAttribute("type");
-      attrType.setValue("formula one");
-      carname.setAttributeNode(attrType);
-      carname.appendChild(doc.createTextNode("Ferrari 101"));
-      primerElemento.appendChild(carname);
-
-      Element carname1 = doc.createElement("carname");
-      Attr attrType1 = doc.createAttribute("type");
-      attrType1.setValue("sports");
-      carname1.setAttributeNode(attrType1);
-      carname1.appendChild(doc.createTextNode("Ferrari 202"));
-      primerElemento.appendChild(carname1);*/
 
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
       Transformer transformer = transformerFactory.newTransformer();
       DOMSource source = new DOMSource(this.doc);
       StreamResult result = new StreamResult(new File("C:\\test\\tree.xml"));
       transformer.transform(source, result);
-
-
-
-
 
    } catch (Exception e) {
       e.printStackTrace();
