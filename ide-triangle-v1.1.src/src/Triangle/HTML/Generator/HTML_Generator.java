@@ -169,6 +169,7 @@ public class HTML_Generator {
         }
         
         File file = new File("..\\HTMLs\\"+this.fileName);
+        file.getParentFile().mkdirs();
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file)); 
             bw.write(html);
