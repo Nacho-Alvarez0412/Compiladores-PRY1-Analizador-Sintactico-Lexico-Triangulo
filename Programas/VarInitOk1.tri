@@ -1,0 +1,9 @@
+let
+	var a := 1;
+	var b := 'c';
+	var c : String
+in
+	nothing
+end
+
+! OK

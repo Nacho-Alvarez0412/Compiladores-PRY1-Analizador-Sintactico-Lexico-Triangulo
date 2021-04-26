@@ -1,0 +1,3 @@
+loop for i from 5 to 6 i < 5 do nothing ; nothing end
+
+!falta while o until después del 6

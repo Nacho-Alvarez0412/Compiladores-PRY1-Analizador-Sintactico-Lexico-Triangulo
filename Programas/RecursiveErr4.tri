@@ -1,0 +1,13 @@
+let
+	recursive
+		func suma(var i : Integer) : Integer ~
+			restar(i) + 1
+		proc restar(var i : Integer) ~
+			i := i + suma(i)
+		end
+	end
+in
+	nothing
+end
+
+! Error: Falta el "|" que separe los proc-funcs

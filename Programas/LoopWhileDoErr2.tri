@@ -1,0 +1,3 @@
+loop while a=5 nothing end
+
+! Error: falta el do

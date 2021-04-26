@@ -1,0 +1,1 @@
+choose 1 from when 0 .. 5 | 8 then putint (1) when 7 then putint(2) end

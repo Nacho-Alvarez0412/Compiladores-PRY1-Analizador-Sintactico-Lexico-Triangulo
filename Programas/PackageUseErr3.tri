@@ -1,0 +1,3 @@
+package myP ~ var a: Integer end;
+let var b: Integer in
+b := a[5] $ b; nothing end

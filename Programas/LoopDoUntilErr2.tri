@@ -1,0 +1,3 @@
+loop nothing  until 4=4 end
+
+! Error: Falta el do

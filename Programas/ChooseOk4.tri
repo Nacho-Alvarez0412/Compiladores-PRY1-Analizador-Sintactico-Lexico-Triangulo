@@ -1,0 +1,2 @@
+choose 1 from when 0 | 1 then putint (1) when 2 then putint(2)
+  else putint (5) end

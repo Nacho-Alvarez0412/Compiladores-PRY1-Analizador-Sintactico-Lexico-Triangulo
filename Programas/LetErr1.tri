@@ -1,0 +1,2 @@
+let   var i : Char; var j : Integer; const k ~ 8; type dia ~ Integer
+put(i); put(i) end

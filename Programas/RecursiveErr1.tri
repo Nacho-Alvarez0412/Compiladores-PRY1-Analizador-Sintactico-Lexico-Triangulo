@@ -1,0 +1,10 @@
+let
+	recursive
+		func doble ( var i : Integer ) : Integer ~
+			i*2
+	end
+in
+	nothing
+end
+
+! Error: Solo hay una alternativa

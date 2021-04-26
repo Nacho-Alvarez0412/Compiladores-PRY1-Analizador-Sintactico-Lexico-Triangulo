@@ -1,0 +1,9 @@
+choose 8 from
+
+  when 'a' .. 'c' then putint (1)
+
+  when 'd' .. then putint(7)
+
+  else  nothing
+
+end

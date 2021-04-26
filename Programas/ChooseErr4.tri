@@ -1,0 +1,7 @@
+choose  from
+
+  when 5 | 6 then nothing
+
+  else  putint (0)
+
+end

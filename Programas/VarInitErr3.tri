@@ -1,0 +1,10 @@
+let
+	var a := 'c';
+	var b : String := 0;
+	var c : Integer
+in
+	nothing;
+	nothing
+end
+
+! Error sintáctico: inicialización después de denotador de tipo

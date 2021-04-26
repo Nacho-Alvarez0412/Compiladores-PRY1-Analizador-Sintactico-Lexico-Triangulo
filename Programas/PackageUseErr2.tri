@@ -1,0 +1,3 @@
+package myP ~ var a: Integer end;
+let var b: Integer in
+    b := myP . a $ b; putint(b) end

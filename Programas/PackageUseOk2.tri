@@ -1,0 +1,3 @@
+package myP ~ var k: Integer end;
+let var b: Integer in 
+getint(var myP $ k); b := myP $ k ; myP $ a := myP $ k + 1; nothing; end

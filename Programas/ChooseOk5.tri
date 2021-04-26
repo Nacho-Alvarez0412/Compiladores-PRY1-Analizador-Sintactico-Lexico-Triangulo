@@ -1,0 +1,2 @@
+choose 0 from when 1 | 2 | 3 then putint (123) when 4 then 
+choose 2 from when 2 then putint (2) else nothing end end

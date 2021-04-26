@@ -1,0 +1,13 @@
+let
+	private
+		var a := 5;
+		var b := 15
+	! in falta, reporta error porque espera ; o in
+		var c := a * b *2
+	end ;
+	var d := 5
+in
+	putint(c)
+end
+
+! Error: Falta el in del private

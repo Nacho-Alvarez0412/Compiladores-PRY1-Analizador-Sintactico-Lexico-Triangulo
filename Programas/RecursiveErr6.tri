@@ -1,0 +1,11 @@
+let
+	recursive
+		proc triple ( var a : Integer ) ~
+			a := a*3
+		end
+	end
+in
+	nothing
+end
+
+! Error: Solo hay una alternativa

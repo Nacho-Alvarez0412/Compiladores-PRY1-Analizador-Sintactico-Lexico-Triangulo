@@ -1,0 +1,13 @@
+let
+	private
+		var x := 1;
+		var y := 2
+	in
+		var z := a + b
+	end;
+	var a := 5
+in
+	putint(c)
+end
+
+! Ok

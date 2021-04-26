@@ -1,0 +1,3 @@
+loop for i from 5 to 6 until i < 5  nothing ; nothing end
+
+!falta el do

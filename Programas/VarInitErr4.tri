@@ -1,0 +1,9 @@
+let
+	var j ::= 'c'; ! sintaxis inválida, debe ser como la asignación (":=")
+	var i : Integer;
+	var y : Integer
+in
+	nothing
+end
+
+! Error sintáctico: usar "::=" y no ":=" 

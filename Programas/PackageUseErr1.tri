@@ -1,0 +1,3 @@
+package myP ~ var a: Integer end; 
+b:= myP a;  
+putint(b) end

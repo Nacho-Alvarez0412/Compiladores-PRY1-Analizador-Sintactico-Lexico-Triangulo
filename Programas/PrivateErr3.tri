@@ -1,0 +1,13 @@
+let
+	private
+		! var x := 2;
+		! var y := 3
+	in
+		var z := x * y * 5
+	end;
+	var gallo := 5
+in
+	putint(gallo)
+end
+
+! Error: declaración local en el private quedó vacía

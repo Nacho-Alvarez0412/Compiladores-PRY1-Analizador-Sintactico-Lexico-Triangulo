@@ -1,0 +1,3 @@
+var x := 1
+
+! Error: No se puede declarar fuera de un let o un local

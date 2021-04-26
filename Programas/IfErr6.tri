@@ -1,0 +1,2 @@
+if 1=1 then puteol() elseif
+2=2 then put('2') else puteol() end

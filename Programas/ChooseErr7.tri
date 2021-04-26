@@ -1,0 +1,9 @@
+choose 10 from
+
+  when 5 .. 6 then putint (1) 
+
+  when 'a' | then putint(7)
+
+  else  putint (0)
+
+end

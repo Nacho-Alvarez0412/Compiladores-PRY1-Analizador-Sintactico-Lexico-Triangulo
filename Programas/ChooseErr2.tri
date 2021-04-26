@@ -1,0 +1,5 @@
+choose 1 from
+
+    when 'a' 'b' then putint (1)
+
+end

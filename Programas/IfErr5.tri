@@ -1,0 +1,4 @@
+if 0=0
+then put('0')
+elsif 1=1 put('1')
+else nothing end

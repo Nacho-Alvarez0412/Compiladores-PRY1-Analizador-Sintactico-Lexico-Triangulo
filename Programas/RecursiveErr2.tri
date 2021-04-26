@@ -1,0 +1,12 @@
+let
+	recursive
+		func triple(var a : Integer) : Integer ~
+			a*3
+		|
+		var a : Integer
+	end
+in
+	nothing
+end
+
+! Error: una de las alternativas no es un proc o func

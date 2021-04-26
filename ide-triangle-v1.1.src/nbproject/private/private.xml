@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/HTML/Generator/HTML_Generator.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/GUI/Main.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/HTML/Generator/HTML_Token.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/IDECompiler.java</file>
-            <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Triangle/SyntacticAnalyzer/Token.java</file>
-=======
             <file>file:/D:/Repositorios/PRY1-Compiladores/ide-triangle-v1.1.src/src/Core/Visitors/TreeVisitor.java</file>
->>>>>>> XML-Generator
         </group>
     </open-files>
 </project-private>
