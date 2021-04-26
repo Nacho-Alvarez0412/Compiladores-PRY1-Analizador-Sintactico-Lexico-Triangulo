@@ -379,6 +379,8 @@ public class XMLVisitor implements Visitor {
   public Object visitArrayExpression(ArrayExpression ast, Object o) {
     Element elemento = doc.createElement("ArrayExpression");
 
+    elemento.appendChild((Node) ast.AA.visitXML(this, null));
+
     return elemento;
   }
 
@@ -826,7 +828,6 @@ public class XMLVisitor implements Visitor {
   public Object visitBoolTypeDenoter(BoolTypeDenoter ast, Object o) {
     Element elemento = doc.createElement("bool");
 
-
     return elemento;
   }
 
@@ -903,6 +904,10 @@ public class XMLVisitor implements Visitor {
 
     Element elemento = doc.createElement("CharacterLiteral");
 
+    Attr attrType = doc.createAttribute("value");
+    attrType.setValue(ast.spelling);
+    elemento.setAttributeNode(attrType);
+
     return elemento;
   }
 
@@ -910,6 +915,10 @@ public class XMLVisitor implements Visitor {
   public Object visitIdentifier(Identifier ast, Object o) {
 
     Element elemento = doc.createElement("Identifier");
+
+    Attr attrType = doc.createAttribute("value");
+    attrType.setValue(ast.spelling);
+    elemento.setAttributeNode(attrType);
 
 //    elemento.appendChild((Node) ast.decl.visitXML(this, null));
 
@@ -921,6 +930,10 @@ public class XMLVisitor implements Visitor {
 
     Element elemento = doc.createElement("IntegerLiteral");
 
+    Attr attrType = doc.createAttribute("value");
+    attrType.setValue(ast.spelling);
+    elemento.setAttributeNode(attrType);
+
     return elemento;
   }
 
@@ -930,6 +943,10 @@ public class XMLVisitor implements Visitor {
     Element elemento = doc.createElement("Operator");
 
     //elemento.appendChild((Node) ast.decl.visitXML(this, null));
+
+    Attr attrType = doc.createAttribute("value");
+    attrType.setValue(ast.spelling);
+    elemento.setAttributeNode(attrType);
 
 
     return elemento;
